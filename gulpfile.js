@@ -17,9 +17,6 @@ gulp.task('js', () => {
         .pipe(babel())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist'))
-        .once('error', function () {
-            this.once('finish', () => process.exit(1));
-        });
 });
 
 gulp.task('resources', () => {
