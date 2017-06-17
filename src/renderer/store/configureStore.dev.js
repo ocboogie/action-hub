@@ -28,7 +28,8 @@ const configureStore = (initialState) => {
 
   // Apply Middleware & Compose Enhancers
   enhancers.push(applyMiddleware(...middleware));
-  const enhancer = compose(...enhancers);
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const enhancer = composeEnhancers(...enhancers);
 
   // Create Store
   const store = createStore(combineReducers({ ...rootReducer, router: routerReducer }), initialState, enhancer);
