@@ -42,5 +42,4 @@ gulp.task('watch', ['build'], () => {
     for (let value in gulpTasks) {
         gulp.watch(gulpTasks[value].files, [gulpTasks[value].taskName]);
     }
-    // gulp.watch(jsFiles, ['js']);
 });
