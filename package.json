@@ -7,8 +7,9 @@
   "scripts": {
     "start": "electron .",
     "watch": "gulp watch",
-    "js": "gulp js",
-    "html": "gulp html"
+    "build": "gulp build",
+    "build:js": "gulp js",
+    "build:resources": "gulp resources"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
