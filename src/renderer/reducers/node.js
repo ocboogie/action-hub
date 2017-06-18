@@ -1,7 +1,8 @@
 const reducer = (state = {}, action) => {
     if (action) {
         switch (action.type) {
-            case "GRID_RELOAD":
+            case "NODE_INIT":
+            case "NODE_LOAD":
                 return { ...action.payload }
         }
     }
