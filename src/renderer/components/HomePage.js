@@ -5,7 +5,6 @@ export default class MainPage extends Component {
         return (
             <div>
                 <h1>MainPage</h1>
-                <select>test</select>
             </div>
         );
     }
