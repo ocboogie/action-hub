@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { createHashHistory } from 'history';
-import { routerMiddleware, routerActions } from 'react-router-redux';
+import { routerMiddleware } from 'react-router-redux';
 import rootReducer from '../reducers';
 
 const history = createHashHistory();
@@ -17,11 +17,6 @@ const configureStore = (initialState) => {
   // Router Middleware
   const router = routerMiddleware(history);
   middleware.push(router);
-
-  // Redux DevTools Configuration
-  const actionCreators = {
-    ...routerActions,
-  };
 
   // Apply Middleware & Compose Enhancers
   enhancers.push(applyMiddleware(...middleware));

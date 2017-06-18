@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 
-import grid from './grid';
+import node from './node';
 
-const rootReducer = combineReducers({grid});
+const rootReducer = combineReducers({
+    routerReducer
+});
 
 export default rootReducer;
