@@ -17,6 +17,7 @@
     height: 100%;
     display: table;
     text-align: center;
+    cursor: pointer;
 }
 .button > span {
     display: table-cell;

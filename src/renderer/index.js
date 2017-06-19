@@ -22,9 +22,9 @@ const testNode = {
         {
             "type": "button",
             "value": {
-                "type": "node",
+                "type": "app",
                 "text": "games",
-                "value": {}
+                "args": {"path": "C:/Program Files (x86)/Audacity/audacity.exe"}
             }
         },
         {
@@ -32,7 +32,7 @@ const testNode = {
             "value": {
                 "type": "node",
                 "text": "apps",
-                "value": {}
+                "args": {}
             }
         }
     ]

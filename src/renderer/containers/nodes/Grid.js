@@ -18,7 +18,6 @@ class Grid extends Component {
         nodes.forEach(function (node, key) {
             renderedNodes.push(<div className="grid-node-container" style={style} key={key}><NodeContainer node={node} /></div>);
         });
-        // console.log(renderedNodes)
         return (
             <div className="grid">
                 {renderedNodes}
