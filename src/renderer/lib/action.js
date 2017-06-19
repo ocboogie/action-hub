@@ -1,5 +1,7 @@
 import { exec } from "child_process";
 
+import { displayNode } from './../actions/node';
+
 export const actionMap = {
     "app": {
         run: args => {
@@ -13,7 +15,7 @@ export const actionMap = {
     },
     "node": {
         run: (args, dispatch) => {
-
+            dispatch(displayNode(args.node));
         }
     }
 }

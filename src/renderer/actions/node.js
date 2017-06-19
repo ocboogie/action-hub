@@ -11,3 +11,10 @@ export function loadNode(node) {
         payload: node
     }
 }
+
+export function displayNode(node) {
+    return (dispatch, getState) => {
+        node.parent = getState().node;
+        dispatch(loadNode(node));
+    }
+}

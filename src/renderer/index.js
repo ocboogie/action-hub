@@ -24,7 +24,7 @@ const testNode = {
             "value": {
                 "type": "app",
                 "text": "games",
-                "args": {"path": "C:/Program Files (x86)/Audacity/audacity.exe"}
+                "args": { "path": "C:/Program Files (x86)/Audacity/audacity.exe" }
             }
         },
         {
@@ -32,7 +32,29 @@ const testNode = {
             "value": {
                 "type": "node",
                 "text": "apps",
-                "args": {}
+                "args": {
+                    "node": {
+                        "type": "grid",
+                        "value": [
+                            {
+                                "type": "button",
+                                "value": {
+                                    "type": "app",
+                                    "text": "audacity",
+                                    "args": { "path": "C:/Program Files (x86)/Audacity/audacity.exe" }
+                                }
+                            },
+                            {
+                                "type": "button",
+                                "value": {
+                                    "type": "app",
+                                    "text": "cmder",
+                                    "args": { "path": "C:/ProgramData/cmder/Cmder.exe" }
+                                }
+                            }
+                        ]
+                    }
+                }
             }
         }
     ]

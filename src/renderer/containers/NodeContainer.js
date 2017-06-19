@@ -5,6 +5,10 @@ import { nodeMap } from '../lib/node';
 
 class NodeContainer extends Component {
     render() {
+        if (!(this.props.node.type in nodeMap)) {
+            console.log("error");
+            return
+        }
         let Node = nodeMap[this.props.node.type].element
         return (
             <div className="node-container">
