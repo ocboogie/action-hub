@@ -11,3 +11,14 @@
     height: 100%;
     width: 100%;
 }
+
+.button {
+    width: 100%;
+    height: 100%;
+    display: table;
+    text-align: center;
+}
+.button > span {
+    display: table-cell;
+    vertical-align: middle;
+}
