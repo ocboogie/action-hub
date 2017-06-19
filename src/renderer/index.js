@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux'
 import { Route } from 'react-router'
 import { ConnectedRouter, push } from 'react-router-redux';
-import { ipcRenderer, webFrame } from 'electron';
+import { webFrame } from 'electron';
 
 import Root from './components/Root';
 import { history, configureStore } from './store/configureStore';
