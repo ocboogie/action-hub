@@ -7,4 +7,4 @@ if (__DEV__) {
 }
 const configureStore = configureStoreObj.configureStore;
 const history = configureStoreObj.history;
-export {configureStore, history}
+export { configureStore, history }

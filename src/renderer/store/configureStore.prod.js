@@ -7,25 +7,25 @@ import rootReducer from '../reducers';
 const history = createHashHistory();
 
 const configureStore = (initialState) => {
-  // Redux Configuration
-  const middleware = [];
-  const enhancers = [];
+    // Redux Configuration
+    const middleware = [];
+    const enhancers = [];
 
-  // Thunk Middleware
-  middleware.push(thunk);
+    // Thunk Middleware
+    middleware.push(thunk);
 
-  // Router Middleware
-  const router = routerMiddleware(history);
-  middleware.push(router);
+    // Router Middleware
+    const router = routerMiddleware(history);
+    middleware.push(router);
 
-  // Apply Middleware & Compose Enhancers
-  enhancers.push(applyMiddleware(...middleware));
-  const enhancer = compose(...enhancers);
+    // Apply Middleware & Compose Enhancers
+    enhancers.push(applyMiddleware(...middleware));
+    const enhancer = compose(...enhancers);
 
-  // Create Store
-  const store = createStore(rootReducer, initialState, enhancer);
+    // Create Store
+    const store = createStore(rootReducer, initialState, enhancer);
 
-  return store;
+    return store;
 };
 
 export { history, configureStore };
