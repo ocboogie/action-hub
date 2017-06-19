@@ -24,14 +24,15 @@ const testNode = {
             "value": {
                 "type": "node",
                 "text": "games",
-                "value": {
-                    "type": "search",
-                    "value": {
-                        "func": true,
-                        "funcName": "dir2actions",
-                        "args": { "path": "D:/DDocuments/test" }
-                    }
-                }
+                "value": {}
+            }
+        },
+        {
+            "type": "button",
+            "value": {
+                "type": "node",
+                "text": "apps",
+                "value": {}
             }
         }
     ]
