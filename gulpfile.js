@@ -12,7 +12,7 @@ const gulpTasks = {
     },
     resources: {
         taskName: 'resources',
-        files: 'src/**/*.?(html|eot|svg|ttf|woff|woff2)'
+        files: 'src/**/*.?(css|html|eot|svg|ttf|woff|woff2)'
     }
 }
 
