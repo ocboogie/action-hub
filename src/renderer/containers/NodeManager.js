@@ -7,7 +7,7 @@ import NodeContainer from './NodeContainer';
 class NodeManager extends Component {
     render() {
         return (
-            <div>
+            <div className="node-manager">
                 <NodeContainer node={this.props.node} />
             </div>
         );

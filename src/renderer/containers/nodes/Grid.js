@@ -13,13 +13,12 @@ class Grid extends Component {
             height: gridSize
         }
 
-        nodes.forEach(function(node, key) {
-            console.log(node)
-            renderedNodes.push(<div style={style} key={key} ><NodeContainer node={node}/></div>);
+        nodes.forEach(function (node, key) {
+            renderedNodes.push(<div className="grid-node-container" style={style} key={key}><NodeContainer node={node} /></div>);
         });
         // console.log(renderedNodes)
         return (
-            <div>
+            <div className="grid">
                 {renderedNodes}
             </div>
         );

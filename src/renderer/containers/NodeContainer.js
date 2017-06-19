@@ -7,7 +7,7 @@ class NodeContainer extends Component {
     render() {
         let Node = nodeMap[this.props.node.type].element
         return (
-            <div>
+            <div className="node-container">
                 <Node value={this.props.node.value} />
             </div >
         );

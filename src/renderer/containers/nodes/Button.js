@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class Button extends Component {
     render() {
         return (
-            <div>
+            <div className="button">
                 <h1>{this.props.value.text}</h1>
             </div>
         );
