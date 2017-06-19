@@ -12,6 +12,15 @@ export function loadNode(node) {
     }
 }
 
+export function backNode() {
+    return (dispatch, getState) => {
+        let parent = getState().node.parent;
+        if (parent) {
+            dispatch(loadNode(getState().node.parent));
+        }
+    }
+}
+
 export function displayNode(node) {
     return (dispatch, getState) => {
         node.parent = getState().node;
