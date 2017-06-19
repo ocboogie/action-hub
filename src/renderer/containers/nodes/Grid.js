@@ -10,7 +10,9 @@ class Grid extends Component {
         const gridSize = (100 * 1.0 / Math.ceil(Math.sqrt(nodes.length))).toString() + "%";
         const style = {
             width: gridSize,
-            height: gridSize
+            height: gridSize,
+            float: "left",
+            backgroundColor: "#e74c3c"
         }
 
         nodes.forEach(function (node, key) {

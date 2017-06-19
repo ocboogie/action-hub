@@ -1,0 +1,22 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    height: 100%;
+}
+
+.node-manager {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+.node-manager div {
+    height: 100%;
+    width: 100%;
+}
