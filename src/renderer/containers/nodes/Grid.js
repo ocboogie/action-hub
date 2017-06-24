@@ -11,8 +11,7 @@ class Grid extends Component {
         const style = {
             width: gridSize,
             height: gridSize,
-            float: "left",
-            backgroundColor: "#e74c3c"
+            float: "left"
         }
 
         nodes.forEach(function (node, key) {

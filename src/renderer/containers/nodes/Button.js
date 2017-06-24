@@ -15,8 +15,11 @@ class Button extends Component {
     }
 
     render() {
+        const style = {
+            backgroundColor: "#e74c3c"
+        }
         return (
-            <div onClick={this.handleClick} className="button">
+            <div onClick={this.handleClick} style={style} className="button">
                 <span className="button-text">{this.props.value.text}</span>
             </div>
         );
