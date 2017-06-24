@@ -10,16 +10,16 @@ class NodeManager extends Component {
     constructor(props) {
         super(props);
 
-        this.handleClick = this.handleClick.bind(this);
+        this.handleRightClick = this.handleRightClick.bind(this);
     }
 
-    handleClick() {
+    handleRightClick() {
         this.props.dispatch(backNode());
     }
 
     render() {
         return (
-            <div className="node-manager" onContextMenu={this.handleClick}>
+            <div className="node-manager" onContextMenu={this.handleRightClick}>
                 <NodeContainer node={this.props.node} />
             </div>
         );
