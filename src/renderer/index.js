@@ -9,6 +9,7 @@ import Root from './components/Root';
 import { history, configureStore } from './store/configureStore';
 import HomePage from './components/HomePage';
 import { initNode } from './actions/node';
+import { compileFuncs } from './lib/func'
 
 const store = configureStore();
 
@@ -35,30 +36,26 @@ const testNode = {
                 "args": {
                     "node": {
                         "type": "grid",
-                        "value": [
-                            {
-                                "type": "button",
-                                "value": {
-                                    "type": "app",
-                                    "text": "audacity",
-                                    "args": { "path": "C:/Program Files (x86)/Audacity/audacity.exe" }
-                                }
-                            },
-                            {
-                                "type": "button",
-                                "value": {
-                                    "type": "app",
-                                    "text": "cmder",
-                                    "args": { "path": "C:/ProgramData/cmder/Cmder.exe" }
+                        "value": {
+                            "func": true,
+                            "funcName": "dir2actions",
+                            "args": {
+                                "path": "D:/DDocuments/test", "recursive": true, "flat": true, "container": {
+                                    "type": "button",
+                                    "value": "<action>"
                                 }
                             }
-                        ]
+                        }
                     }
                 }
             }
         }
     ]
 }
+
+compileFuncs(testNode);
+
+console.log(testNode);
 
 store.dispatch(initNode(testNode))
 

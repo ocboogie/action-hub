@@ -1,6 +1,8 @@
 import * as fsp from 'fs-promise'
 import * as path from 'path';
 
+import replaceAll from '../../utills/replaceAll';
+
 const funcs = {
     "dir2actions": function dir2actions(args) {
         if (args.path == null) {
@@ -24,7 +26,12 @@ const funcs = {
                     }
                 }
             } else {
-                actions.push({ type: "app", value: pathOfFile, text: path.basename(pathOfFile) })
+                const action = { type: "app", value: pathOfFile, text: path.basename(pathOfFile) }
+                if (args.container) {
+                    actions.push(replaceAll(args.container, "<action>", action));
+                } else {
+                    actions.push(action)
+                }
             }
         }
         return actions;
