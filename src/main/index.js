@@ -44,6 +44,12 @@ app.on('ready', () => {
 
     config.setMainWindow(mainWindow);
 
+    if (process.platform === 'darwin') {
+        app.dock.hide();
+    } else {
+        mainWindow.setSkipTaskbar(true);
+    }
+
     mainWindow.loadURL(url.format({
         pathname: path.resolve(__dirname, '../index.html'),
         protocol: 'file:',
