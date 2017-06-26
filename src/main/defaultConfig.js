@@ -5,7 +5,7 @@ let hotkey;
 if (platform === 'darwin') {
     hotkey = 'Cmd+Ctrl+C';
 } else {
-    hotkey = 'Super+C';
+    hotkey = 'Super+Ctrl+C';
 }
 
 export default {
