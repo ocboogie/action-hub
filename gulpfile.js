@@ -1,10 +1,9 @@
-const gulp = require('gulp')
-sourcemaps = require('gulp-sourcemaps')
-babel = require('gulp-babel')
-watch = require('gulp-watch')
-replace = require('gulp-replace')
-plumber = require('gulp-plumber')
-xo = require("gulp-xo");
+const gulp = require('gulp');
+const sourcemaps = require('gulp-sourcemaps');
+const babel = require('gulp-babel');
+const replace = require('gulp-replace');
+const plumber = require('gulp-plumber');
+const xo = require('gulp-xo');
 
 const gulpTasks = {
     js: {
@@ -19,7 +18,7 @@ const gulpTasks = {
         taskName: 'resources',
         files: 'src/**/*.?(css|html|eot|svg|ttf|woff|woff2)'
     }
-}
+};
 
 gulp.task(gulpTasks.resources.taskName, () => {
     return gulp.src(gulpTasks.resources.files)
@@ -34,23 +33,22 @@ gulp.task(gulpTasks.js.taskName, () => {
         .pipe(sourcemaps.init())
         .pipe(babel())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task(gulpTasks.lint.taskName, () => {
-    return gulp.src(gulpTasks.js.files)
+    return gulp.src(gulpTasks.lint.files)
         .pipe(xo());
-    
 });
 
 gulp.task('build', () => {
-    for (let value in gulpTasks) {
+    for (const value in gulpTasks) {
         gulp.start(gulpTasks[value].taskName);
     }
 });
 
 gulp.task('watch', ['build'], () => {
-    for (let value in gulpTasks) {
+    for (const value in gulpTasks) {
         gulp.watch(gulpTasks[value].files, [gulpTasks[value].taskName]);
     }
 });
