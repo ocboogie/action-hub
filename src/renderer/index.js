@@ -1,11 +1,11 @@
-import { webFrame, remote } from 'electron';
+import { webFrame, remote, ipcRenderer } from 'electron';
 import React from 'react';
 import { render } from 'react-dom';
 import { push } from 'react-router-redux';
 
 import Root from './components/Root';
 import { history, configureStore } from './store/configureStore';
-import { initNode } from './actions/node';
+import { initNode, loadRoot } from './actions/node';
 import { compileFuncs } from './lib/func';
 import { displayError } from './actions/error';
 
@@ -36,3 +36,8 @@ if (error.active) {
 } else {
     store.dispatch(push('/node'));
 }
+
+ipcRenderer.on('hid', () => {
+    store.dispatch(loadRoot());
+});
+

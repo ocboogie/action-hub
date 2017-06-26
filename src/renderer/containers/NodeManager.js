@@ -1,3 +1,4 @@
+import { ipcRenderer } from 'electron';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -13,7 +14,11 @@ class NodeManager extends Component {
     }
 
     handleRightClick() {
-        this.props.dispatch(backNode());
+        if (this.props.node.parent) {
+            this.props.dispatch(backNode());
+        } else {
+            ipcRenderer.send('hide-window');
+        }
     }
 
     render() {

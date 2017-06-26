@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as url from 'url';
 
-import { app, BrowserWindow, Tray, Menu, screen, globalShortcut } from 'electron';
+import { app, BrowserWindow, Tray, Menu, screen, globalShortcut, ipcMain } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
 
 import * as config from './config';
@@ -86,4 +86,12 @@ app.on('ready', () => {
 
 app.on('window-all-closed', () => {
     app.quit();
+});
+
+ipcMain.on('hide-window', () => {
+    mainWindow.hide();
+});
+
+ipcMain.on('show-window', () => {
+    mainWindow.show();
 });

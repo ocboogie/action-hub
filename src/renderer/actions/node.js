@@ -1,3 +1,5 @@
+import { findRoot } from '../lib/node';
+
 export function initNode(node) {
     return {
         type: 'NODE_INIT',
@@ -16,8 +18,14 @@ export function backNode() {
     return (dispatch, getState) => {
         const parent = getState().node.parent;
         if (parent) {
-            dispatch(loadNode(getState().node.parent));
+            dispatch(loadNode(parent));
         }
+    };
+}
+
+export function loadRoot() {
+    return (dispatch, getState) => {
+        dispatch(loadNode(findRoot(getState().node)));
     };
 }
 
