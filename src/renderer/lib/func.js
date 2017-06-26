@@ -6,7 +6,7 @@ import replaceAll from '../../utills/replaceAll';
 
 const funcs = {
     dir2actions: function dir2actions(args) {
-        if (args.path === null) {
+        if (args.path === undefined) {
             // TODO
             console.log('error');
             return;

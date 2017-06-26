@@ -5,7 +5,6 @@ import NodeContainer from '../NodeContainer';
 
 class Grid extends Component {
     render() {
-        const renderedNodes = [];
         const nodes = this.props.value;
         const gridSize = (100 * 1.0 / Math.ceil(Math.sqrt(nodes.length))).toString() + '%';
         const style = {
@@ -14,9 +13,11 @@ class Grid extends Component {
             float: 'left'
         };
 
-        nodes.forEach(node => {
-            renderedNodes.push(<div className="grid-node-container" style={style} key={node.id}><NodeContainer node={node} /></div>);
-        });
+        const renderedNodes = nodes.map((node, key) =>
+            // We won't be mutating these so performance will be fine
+            // eslint-disable-next-line react/no-array-index-key
+            (<div className="grid-node-container" style={style} key={key}><NodeContainer node={node} /></div>)
+        );
         return (
             <div className="grid">
                 {renderedNodes}
