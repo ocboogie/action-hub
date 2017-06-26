@@ -29,10 +29,12 @@
   },
   "dependencies": {
     "bootstrap": "4.0.0-alpha.6",
+    "chokidar": "^1.7.0",
     "electron": "^1.6.11",
     "fs-promise": "^2.0.3",
     "history": "^4.6.2",
     "jquery": "^3.2.1",
+    "jsonlint": "^1.6.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",

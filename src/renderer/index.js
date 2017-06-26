@@ -3,65 +3,38 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux'
 import { Route } from 'react-router'
 import { ConnectedRouter, push } from 'react-router-redux';
-import { webFrame } from 'electron';
+import { webFrame, remote } from 'electron';
 
 import Root from './components/Root';
 import { history, configureStore } from './store/configureStore';
-import HomePage from './components/HomePage';
 import { initNode } from './actions/node';
 import { compileFuncs } from './lib/func'
-
-const store = configureStore();
+import { displayError } from './actions/error';
 
 // To make sure you can't zoom in
 webFrame.setVisualZoomLevelLimits(1, 1);
 webFrame.setLayoutZoomLevelLimits(1, 1);
 
-const testNode = {
-    "type": "grid",
-    "value": [
-        {
-            "type": "button",
-            "value": {
-                "type": "app",
-                "text": "games",
-                "args": { "path": "C:/Program Files (x86)/Audacity/audacity.exe" }
-            }
-        },
-        {
-            "type": "button",
-            "value": {
-                "type": "node",
-                "text": "apps",
-                "args": {
-                    "node": {
-                        "type": "grid",
-                        "value": {
-                            "func": true,
-                            "funcName": "dir2actions",
-                            "args": {
-                                "path": "D:/DDocuments/test", "recursive": true, "flat": true, "container": {
-                                    "type": "button",
-                                    "value": "<action>"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    ]
+const configFile = remote.require("./config");
+const config = configFile.config;
+const error = configFile.error;
+
+const testNode = config.rootNode;
+const store = configureStore();
+
+if(!error.active) {
+    compileFuncs(testNode);
+
+    store.dispatch(initNode(testNode));
 }
-
-compileFuncs(testNode);
-
-console.log(testNode);
-
-store.dispatch(initNode(testNode))
 
 render(
     <Root store={store} history={history} />,
     document.getElementById('root')
 );
 
-store.dispatch(push("/"));
+if (error.active) {
+    store.dispatch(displayError(error.msg));
+} else {
+    store.dispatch(push("/node"));
+}

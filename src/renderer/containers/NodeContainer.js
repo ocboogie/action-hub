@@ -7,7 +7,7 @@ class NodeContainer extends Component {
     render() {
         if (!(this.props.node.type in nodeMap)) {
             console.log("error");
-            return
+            return (<div />)
         }
         let Node = nodeMap[this.props.node.type].element
         return (
