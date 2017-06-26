@@ -5,13 +5,12 @@ class ErrorMsg extends Component {
     render() {
         return (
             <div className="error-msg">
-                <pre>{this.props.error.msg || ""}</pre>
+                <pre>{this.props.error.msg || ''}</pre>
             </div >
         );
     }
 }
 
-const mapStateToProps = (state) => ({error: state.error})
-
+const mapStateToProps = state => ({ error: state.error });
 
 export default connect(mapStateToProps)(ErrorMsg);

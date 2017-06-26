@@ -5,17 +5,17 @@ import NodeContainer from '../NodeContainer';
 
 class Grid extends Component {
     render() {
-        let renderedNodes = [];
+        const renderedNodes = [];
         const nodes = this.props.value;
-        const gridSize = (100 * 1.0 / Math.ceil(Math.sqrt(nodes.length))).toString() + "%";
+        const gridSize = (100 * 1.0 / Math.ceil(Math.sqrt(nodes.length))).toString() + '%';
         const style = {
             width: gridSize,
             height: gridSize,
-            float: "left"
-        }
+            float: 'left'
+        };
 
-        nodes.forEach(function (node, key) {
-            renderedNodes.push(<div className="grid-node-container" style={style} key={key}><NodeContainer node={node} /></div>);
+        nodes.forEach(node => {
+            renderedNodes.push(<div className="grid-node-container" style={style} key={node.id}><NodeContainer node={node} /></div>);
         });
         return (
             <div className="grid">
@@ -25,4 +25,4 @@ class Grid extends Component {
     }
 }
 
-export default connect()(Grid)
+export default connect()(Grid);

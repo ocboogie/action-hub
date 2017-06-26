@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { createHashHistory } from 'history';
 import { routerMiddleware } from 'react-router-redux';
@@ -7,7 +7,7 @@ import rootReducer from '../reducers';
 
 const history = createHashHistory();
 
-const configureStore = (initialState) => {
+const configureStore = initialState => {
     // Redux Configuration
     const middleware = [];
     const enhancers = [];
@@ -37,4 +37,4 @@ const configureStore = (initialState) => {
     return store;
 };
 
-export { history, configureStore }
+export { history, configureStore };

@@ -7,6 +7,7 @@
   "scripts": {
     "start": "electron .",
     "watch": "gulp watch",
+    "lint": "gulp lint",
     "build": "gulp build",
     "build:js": "gulp js",
     "build:resources": "gulp resources"
@@ -19,13 +20,17 @@
     "babel-preset-stage-2": "^6.24.1",
     "cross-env": "^5.0.1",
     "electron-devtools-installer": "^2.2.0",
+    "eslint-config-xo-react": "^0.12.0",
+    "eslint-plugin-react": "^7.1.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-plumber": "^1.1.0",
     "gulp-replace": "^0.5.4",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-watch": "^4.3.11",
-    "redux-logger": "^3.0.6"
+    "gulp-xo": "^0.15.0",
+    "redux-logger": "^3.0.6",
+    "xo": "^0.18.2"
   },
   "dependencies": {
     "bootstrap": "4.0.0-alpha.6",
@@ -43,5 +48,41 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "tether": "^1.4.0"
+  },
+  "xo": {
+    "extends": "xo-react",
+    "envs": [
+      "browser",
+      "node"
+    ],
+    "esnext": true,
+    "space": 4,
+    "globals": [
+      "__DEV__"
+    ],
+    "rules": {
+      "linebreak-style": [
+        2,
+        "windows"
+      ],
+      "object-curly-spacing": [
+        2,
+        "always"
+      ],
+      "unicorn/filename-case": 0,
+      "react/prop-types": 0,
+      "react/jsx-sort-props": 0,
+      "default-case": 0,
+      "react/jsx-tag-spacing": [
+        2,
+        {
+          "closingSlash": "never",
+          "beforeSelfClosing": "always",
+          "afterOpening": "never"
+        }
+      ],
+      "import/no-unresolved": 0
+    },
+    "settings": {}
   }
 }

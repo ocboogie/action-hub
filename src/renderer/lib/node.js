@@ -2,11 +2,12 @@
 import Grid from '../containers/nodes/Grid';
 import Button from '../containers/nodes/Button';
 
+// eslint-disable-next-line import/prefer-default-export
 export const nodeMap = {
-    "grid": {
+    grid: {
         element: Grid
     },
-    "button": {
+    button: {
         element: Button
     }
-}
+};

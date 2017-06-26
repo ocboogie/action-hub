@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { nodeMap } from '../lib/node';
-import NodeContainer from './NodeContainer';
 import { backNode } from '../actions/node';
+import NodeContainer from './NodeContainer';
 
 class NodeManager extends Component {
 
@@ -26,6 +25,6 @@ class NodeManager extends Component {
     }
 }
 
-const mapStateToProps = (state) => (state)
+const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(NodeManager)
+export default connect(mapStateToProps)(NodeManager);

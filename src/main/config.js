@@ -1,8 +1,7 @@
 import { homedir } from 'os';
-import * as fsp from 'fs-promise';
 import * as path from 'path';
 
-import { dialog } from 'electron';
+import * as fsp from 'fs-promise';
 import * as chokidar from 'chokidar';
 import { parse } from 'jsonlint';
 
@@ -10,9 +9,9 @@ import defaultConfig from './defaultConfig';
 
 const configPath = path.resolve(homedir(), '.actionHub.json');
 let mainWindow;
+let config;
 
-export let config;
-export const error = { msg: "", active: false };
+export const error = { msg: '', active: false };
 
 export function setMainWindow(window) {
     mainWindow = window;
@@ -24,13 +23,14 @@ function setConfig(_config) {
 }
 
 function loadConfig(path) {
-    let json = fsp.readFileSync(path, 'utf8');
+    const json = fsp.readFileSync(path, 'utf8');
     if (json) {
+        let cfg;
         try {
-            var cfg = parse(json);
+            cfg = parse(json);
         } catch (err) {
             error.active = true;
-            error.msg = "JSON error: " + err;
+            error.msg = 'JSON error: ' + err;
             return false;
         }
 
@@ -47,10 +47,14 @@ function loadConfig(path) {
 
 function watch(path) {
     chokidar.watch(path).on('change', () => {
-        error.msg = "";
+        error.msg = '';
         error.active = false;
         loadConfig(path);
     });
+}
+
+export function getConfig() {
+    return config;
 }
 
 export function reloadConfig(path = configPath) {
@@ -59,7 +63,7 @@ export function reloadConfig(path = configPath) {
 
 export function init() {
     if (!fsp.existsSync(configPath)) {
-        fsp.writeFileSync(configPath, "")
+        fsp.writeFileSync(configPath, '');
     }
     if (!loadConfig(configPath)) {
         setConfig(defaultConfig);

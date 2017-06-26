@@ -10,14 +10,14 @@ class Button extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(e) {
+    handleClick() {
         this.props.dispatch(runAction(this.props.value));
     }
 
     render() {
         const style = {
-            backgroundColor: "#e74c3c"
-        }
+            backgroundColor: '#e74c3c'
+        };
         return (
             <div onClick={this.handleClick} style={style} className="button">
                 <span className="button-text">{this.props.value.text}</span>
@@ -26,4 +26,4 @@ class Button extends Component {
     }
 }
 
-export default connect()(Button)
+export default connect()(Button);
