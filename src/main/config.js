@@ -36,11 +36,13 @@ function loadConfig(path) {
 
         // TODO error checking
         setConfig(cfg);
-        return true;
     } else {
         setConfig(null);
-        return true;
     }
+    if (mainWindow) {
+        mainWindow.reload();
+    }
+    return true;
 }
 
 function watch(path) {
@@ -48,13 +50,12 @@ function watch(path) {
         error.msg = "";
         error.active = false;
         loadConfig(path);
-        if (mainWindow) {
-            mainWindow.reload();
-        }
     });
-
 }
 
+export function reloadConfig(path = configPath) {
+    loadConfig(path);
+}
 
 export function init() {
     if (!fsp.existsSync(configPath)) {
