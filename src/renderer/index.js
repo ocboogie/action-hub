@@ -17,11 +17,11 @@ const configFile = remote.require('./config');
 const config = configFile.config;
 const error = configFile.error;
 
-const rootNode = config.rootNode;
+let rootNode = config.rootNode;
 const store = configureStore();
 
 if (!error.active) {
-    compileFuncs(rootNode);
+    rootNode = compileFuncs(rootNode);
 
     store.dispatch(initNode(rootNode));
 }
