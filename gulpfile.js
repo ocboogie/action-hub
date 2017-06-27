@@ -4,6 +4,7 @@ const babel = require('gulp-babel');
 const replace = require('gulp-replace');
 const plumber = require('gulp-plumber');
 const xo = require('gulp-xo');
+const clean = require('gulp-clean');
 
 const gulpTasks = {
     js: {
@@ -16,9 +17,13 @@ const gulpTasks = {
     },
     resources: {
         taskName: 'resources',
-        files: 'src/**/*.?(css|html|eot|svg|ttf|woff|woff2)'
+        files: 'src/**/*.?(css|html|eot|svg|ttf|woff|woff2|json)'
     }
 };
+
+gulp.task('clean', () => {
+    return gulp.src(['./dist', './release-builds']).pipe(clean());
+});
 
 gulp.task(gulpTasks.resources.taskName, () => {
     return gulp.src(gulpTasks.resources.files)

@@ -1,6 +1,7 @@
 {
-  "name": "app-hub",
+  "name": "action-hub",
   "version": "1.0.0",
+  "description": "A hub for app, websites and action",
   "main": "dist/main/index.js",
   "author": "ocboogie",
   "license": "MIT",
@@ -8,9 +9,30 @@
     "start": "electron .",
     "watch": "gulp watch",
     "lint": "gulp lint",
+    "prod": "cross-env NODE_ENV=production gulp build",
     "build": "gulp build",
     "build:js": "gulp js",
-    "build:resources": "gulp resources"
+    "build:resources": "gulp resources",
+    "clean": "gulp clean",
+    "package:win": "npm run clean && npm run prod && electron-builder --win --x64"
+  },
+  "build": {
+    "productName": "ActionHub",
+    "appId": "org.ocboogie.ActionHub",
+    "files": [
+      "dist/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "directories": {
+      "buildResources": "resources",
+      "output": "release-builds"
+    }
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -19,11 +41,14 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "cross-env": "^5.0.1",
+    "electron": "^1.6.11",
+    "electron-builder": "^19.8.0",
     "electron-devtools-installer": "^2.2.0",
     "eslint-config-xo-react": "^0.12.0",
     "eslint-plugin-react": "^7.1.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-clean": "^0.3.2",
     "gulp-plumber": "^1.1.0",
     "gulp-replace": "^0.5.4",
     "gulp-sourcemaps": "^2.6.0",
@@ -34,7 +59,6 @@
   "dependencies": {
     "bootstrap": "4.0.0-alpha.6",
     "chokidar": "^1.7.0",
-    "electron": "^1.6.11",
     "fs-promise": "^2.0.3",
     "history": "^4.6.2",
     "jquery": "^3.2.1",
@@ -43,7 +67,7 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
-    "react-router-redux": "next",
+    "react-router-redux": "5.0.0-alpha.6",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "tether": "^1.4.0"

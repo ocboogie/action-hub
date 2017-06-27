@@ -1,0 +1,7 @@
+{
+    "name": "actionhub",
+    "description": "A hub for app, websites and action",
+    "version": "0.0.1",
+    "author": "ocboogie",
+    "main": "main/index.js"
+}
