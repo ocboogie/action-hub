@@ -32,7 +32,7 @@ const funcs = {
                     }
                 } else {
                     const fileName = (args.hideExtension) ? path.basename(pathOfFile).replace(/\.[^/.]+$/, '') : path.basename(pathOfFile);
-                    const action = { type: 'app', value: pathOfFile, text: fileName };
+                    const action = { type: 'app', text: fileName, args: { path: pathOfFile } };
                     if (args.container) {
                         actions.push(replaceAll(args.container, '<action>', action));
                     } else {
