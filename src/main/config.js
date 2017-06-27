@@ -9,7 +9,9 @@ import defaultConfig from './defaultConfig';
 
 const configPath = path.resolve(homedir(), '.actionHub.json');
 let mainWindow;
-let config;
+
+// eslint-disable-next-line import/no-mutable-exports
+export let config;
 
 export const error = { msg: '', active: false };
 
@@ -51,10 +53,6 @@ function watch(path) {
         error.active = false;
         loadConfig(path);
     });
-}
-
-export function getConfig() {
-    return config;
 }
 
 export function reloadConfig(path = configPath) {

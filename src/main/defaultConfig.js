@@ -11,5 +11,6 @@ if (platform === 'darwin') {
 export default {
     windowSize: 500,
     alwaysOnTop: true,
+    hideWhenLeaveFocus: true,
     hotkey
 };

@@ -9,18 +9,25 @@ let tray;
 let mainWindow;
 
 config.init();
-const configObj = config.getConfig();
+
+function hide() {
+    mainWindow.hide();
+    mainWindow.webContents.send('hid');
+}
+
+function showOnCur() {
+    mainWindow.webContents.send('shown');
+    const curPos = screen.getCursorScreenPoint();
+    const winPos = mainWindow.getSize();
+    mainWindow.setPosition(Math.round(curPos.x - (winPos[0] / 2)), Math.round(curPos.y - (winPos[1] / 2)));
+    mainWindow.show();
+}
 
 function toggleHide() {
     if (mainWindow.isVisible()) {
-        mainWindow.hide();
-        mainWindow.webContents.send('hid');
+        hide();
     } else {
-        mainWindow.webContents.send('shown');
-        const curPos = screen.getCursorScreenPoint();
-        const winPos = mainWindow.getSize();
-        mainWindow.setPosition(Math.round(curPos.x - (winPos[0] / 2)), Math.round(curPos.y - (winPos[1] / 2)));
-        mainWindow.show();
+        showOnCur();
     }
 }
 
@@ -48,9 +55,9 @@ app.on('ready', () => {
     tray.setContextMenu(contextMenu);
 
     mainWindow = new BrowserWindow({
-        width: configObj.windowSize,
-        height: configObj.windowSize,
-        alwaysOnTop: configObj.alwaysOnTop,
+        width: config.config.windowSize,
+        height: config.config.windowSize,
+        alwaysOnTop: config.config.alwaysOnTop,
         frame: false
     });
 
@@ -70,12 +77,18 @@ app.on('ready', () => {
 
     mainWindow.webContents.openDevTools();
 
-    globalShortcut.register(configObj.hotkey, () => {
+    globalShortcut.register(config.config.hotkey, () => {
         toggleHide();
     });
 
     mainWindow.on('closed', () => {
         mainWindow = null;
+    });
+
+    mainWindow.on('blur', () => {
+        if (config.config.hideWhenLeaveFocus) {
+            hide();
+        }
     });
 
     if (__DEV__) {

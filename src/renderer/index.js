@@ -14,7 +14,7 @@ webFrame.setVisualZoomLevelLimits(1, 1);
 webFrame.setLayoutZoomLevelLimits(1, 1);
 
 const configFile = remote.require('./config');
-const config = configFile.getConfig();
+const config = configFile.config;
 const error = configFile.error;
 
 const rootNode = config.rootNode;
