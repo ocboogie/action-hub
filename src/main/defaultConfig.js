@@ -12,5 +12,6 @@ export default {
     windowSize: 500,
     alwaysOnTop: true,
     hideWhenLeaveFocus: true,
+    windowSettings: {},
     hotkey
 };

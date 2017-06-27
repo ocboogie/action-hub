@@ -58,7 +58,10 @@ app.on('ready', () => {
         width: config.config.windowSize,
         height: config.config.windowSize,
         alwaysOnTop: config.config.alwaysOnTop,
-        frame: false
+        resizable: false,
+        frame: false,
+        backgroundColor: '#2d2d2d',
+        ...config.config.windowSettings
     });
 
     config.setMainWindow(mainWindow);
@@ -74,7 +77,6 @@ app.on('ready', () => {
         protocol: 'file:',
         slashes: true
     }));
-
 
     globalShortcut.register(config.config.hotkey, () => {
         toggleHide();
