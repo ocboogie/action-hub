@@ -1,3 +1,5 @@
+import { ipcRenderer } from 'electron';
+
 import { actionMap } from '../lib/action';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -8,6 +10,9 @@ export function runAction(action) {
             console.log('error');
             return;
         }
-        actionMap[action.type].run(action.args, dispatch);
+        const hide = () => {
+            ipcRenderer.send('hide-window');
+        };
+        actionMap[action.type].run(action.args, hide, dispatch);
     };
 }
