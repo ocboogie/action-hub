@@ -13,6 +13,7 @@ const funcs = {
         }
         args.recursive = args.recursive || true;
         args.flat = args.flat || true;
+        args.hideExtension = args.hideExtension || true;
 
         let actions = [];
         const files = fsp.readdirSync(args.path);
@@ -27,7 +28,8 @@ const funcs = {
                     }
                 }
             } else {
-                const action = { type: 'app', value: pathOfFile, text: path.basename(pathOfFile) };
+                const fileName = (args.hideExtension) ? path.basename(pathOfFile).replace(/\.[^/.]+$/, '') : path.basename(pathOfFile);
+                const action = { type: 'app', value: pathOfFile, text: fileName };
                 if (args.container) {
                     actions.push(replaceAll(args.container, '<action>', action));
                 } else {
