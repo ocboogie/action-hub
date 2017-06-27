@@ -75,7 +75,6 @@ app.on('ready', () => {
         slashes: true
     }));
 
-    mainWindow.webContents.openDevTools();
 
     globalShortcut.register(config.config.hotkey, () => {
         toggleHide();
@@ -92,6 +91,7 @@ app.on('ready', () => {
     });
 
     if (__DEV__) {
+        mainWindow.webContents.openDevTools();
         const electronDevtools = require('electron-devtools-installer');
         const installExtension = electronDevtools.default;
         const { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = electronDevtools;
