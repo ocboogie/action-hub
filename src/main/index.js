@@ -108,9 +108,9 @@ app.on('window-all-closed', () => {
 });
 
 ipcMain.on('hide-window', () => {
-    mainWindow.hide();
+    hide();
 });
 
 ipcMain.on('show-window', () => {
-    mainWindow.show();
+    showOnCur();
 });
