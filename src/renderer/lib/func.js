@@ -13,7 +13,8 @@ const funcs = {
         args: {
             recursive: true,
             flat: true,
-            hideExtension: true
+            hideExtension: true,
+            container: null
         },
         func: function dir2actions(args) {
             let actions = [];
