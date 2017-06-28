@@ -21,7 +21,7 @@ export function setMainWindow(window) {
 
 function setConfig(_config) {
     _config = _config || {};
-    config = { ...defaultConfig, ..._config };
+    config = Object.assign(defaultConfig, _config);
 }
 
 function loadConfig(path) {
