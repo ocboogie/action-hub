@@ -2,11 +2,16 @@ import * as path from 'path';
 import * as url from 'url';
 
 import { app, BrowserWindow, Tray, Menu, screen, globalShortcut, ipcMain } from 'electron';
+import { enableLiveReload } from 'electron-compile';
 
 import * as config from './config';
 
 let tray;
 let mainWindow;
+
+if (process.env.NODE_ENV === 'development') {
+    enableLiveReload();
+}
 
 config.init();
 

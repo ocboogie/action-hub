@@ -1,7 +1,21 @@
 {
-  "extends": "xo-react",
+  "extends": [
+    "xo/esnext",
+    "xo-react"
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "parser": "babel-eslint",
   "rules": {
+    "indent": [
+      2,
+      4,
+      {
+        "SwitchCase": 1
+      }
+    ],
     "linebreak-style": [
       2,
       "windows"

@@ -53,6 +53,7 @@
         "electron-devtools-installer": "^2.2.0",
         "electron-prebuilt-compile": "1.6.11",
         "eslint": "^4.1.1",
+        "eslint-config-xo": "^0.18.2",
         "eslint-config-xo-react": "^0.12.0",
         "eslint-plugin-import": "^2.6.0",
         "eslint-plugin-jsx-a11y": "^6.0.0",
