@@ -30,7 +30,7 @@
     "unicorn/filename-case": 0,
     "react/jsx-indent": [
       2,
-      "4 spaces"
+      4
     ],
     "react/prop-types": 0,
     "react/jsx-sort-props": 0,
