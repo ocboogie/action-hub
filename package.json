@@ -11,7 +11,9 @@
         "package": "electron-forge package",
         "make": "electron-forge make",
         "lint": "eslint src",
-        "lint:fix": "eslint src --fix"
+        "lint:fix": "eslint src --fix",
+        "lint:watch": "esw src -w",
+        "dev": "concurrently \"npm run lint:watch\" \"npm run start\""
     },
     "keywords": [],
     "config": {
@@ -49,6 +51,7 @@
         "babel-preset-env": "^1.5.2",
         "babel-preset-react": "^6.24.1",
         "babel-preset-stage-2": "^6.24.1",
+        "concurrently": "^3.5.0",
         "cross-env": "^5.0.1",
         "electron-devtools-installer": "^2.2.0",
         "electron-prebuilt-compile": "1.6.11",
@@ -58,6 +61,7 @@
         "eslint-plugin-import": "^2.6.0",
         "eslint-plugin-jsx-a11y": "^6.0.0",
         "eslint-plugin-react": "^7.1.0",
+        "eslint-watch": "^3.1.2",
         "redux-logger": "^3.0.6"
     },
     "dependencies": {
