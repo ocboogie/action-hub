@@ -2,11 +2,16 @@ import * as path from 'path';
 import * as url from 'url';
 
 import { app, BrowserWindow, Tray, Menu, screen, globalShortcut, ipcMain } from 'electron';
+import { enableLiveReload } from 'electron-compile';
 
 import * as config from './config';
 
 let tray;
 let mainWindow;
+
+if (process.env.NODE_ENV === 'development') {
+    enableLiveReload();
+}
 
 config.init();
 
@@ -57,10 +62,6 @@ app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: config.config.windowSize,
         height: config.config.windowSize,
-        alwaysOnTop: config.config.alwaysOnTop,
-        resizable: false,
-        frame: false,
-        backgroundColor: '#2d2d2d',
         ...config.config.windowSettings
     });
 
@@ -92,7 +93,7 @@ app.on('ready', () => {
         }
     });
 
-    if (__DEV__) {
+    if (process.env.NODE_ENV === 'development') {
         mainWindow.webContents.openDevTools();
         const electronDevtools = require('electron-devtools-installer');
         const installExtension = electronDevtools.default;
@@ -113,4 +114,12 @@ ipcMain.on('hide-window', () => {
 
 ipcMain.on('show-window', () => {
     showOnCur();
+});
+
+ipcMain.on('get-config', event => {
+    event.returnValue = config.config;
+});
+
+ipcMain.on('get-error', event => {
+    event.returnValue = config.config;
 });

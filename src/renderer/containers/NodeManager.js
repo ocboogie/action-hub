@@ -6,7 +6,6 @@ import { backNode } from '../actions/node';
 import NodeContainer from './NodeContainer';
 
 class NodeManager extends Component {
-
     constructor(props) {
         super(props);
 

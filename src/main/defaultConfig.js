@@ -8,10 +8,16 @@ if (platform === 'darwin') {
     hotkey = 'Super+Ctrl+C';
 }
 
+const dev = process.env.NODE_ENV === 'development';
+
 export default {
-    windowSize: 500,
-    alwaysOnTop: true,
-    hideWhenLeaveFocus: true,
-    windowSettings: {},
+    windowSize: dev ? 1000 : 500,
+    hideWhenLeaveFocus: !dev,
+    windowSettings: {
+        alwaysOnTop: true,
+        frame: dev,
+        resizable: dev,
+        backgroundColor: '#2d2d2d'
+    },
     hotkey
 };
