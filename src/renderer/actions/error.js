@@ -1,15 +1,15 @@
 import { push } from 'react-router-redux';
 
-export function changeErrorMsg(msg) {
+export function changeError(error) {
     return {
-        type: 'ERROR_MSG_CHANGE',
-        payload: msg
+        type: 'ERROR_CHANGE',
+        payload: error
     };
 }
 
 export function displayError(msg) {
     return dispatch => {
-        dispatch(changeErrorMsg(msg));
+        dispatch(changeError({ msg, active: true }));
         dispatch(push('/error'));
     };
 }
