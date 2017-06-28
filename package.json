@@ -13,6 +13,7 @@
         "lint": "eslint src",
         "lint:fix": "eslint src --fix",
         "lint:watch": "esw src -w",
+        "prod": "electron-forge start",
         "dev": "concurrently \"npm run lint:watch\" \"npm run start\""
     },
     "keywords": [],
