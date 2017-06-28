@@ -62,10 +62,6 @@ app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: config.config.windowSize,
         height: config.config.windowSize,
-        alwaysOnTop: config.config.alwaysOnTop,
-        resizable: false,
-        frame: false,
-        backgroundColor: '#2d2d2d',
         ...config.config.windowSettings
     });
 
