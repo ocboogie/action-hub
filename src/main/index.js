@@ -121,5 +121,5 @@ ipcMain.on('get-config', event => {
 });
 
 ipcMain.on('get-error', event => {
-    event.returnValue = config.config;
+    event.returnValue = config.error;
 });
