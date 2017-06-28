@@ -1,5 +1,5 @@
 let configureStoreObj;
-if (__DEV__) {
+if (process.env.NODE_ENV === 'development') {
     configureStoreObj = require('./configureStore.dev');
 } else {
     configureStoreObj = require('./configureStore.prod');

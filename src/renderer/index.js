@@ -13,9 +13,9 @@ import { displayError } from './actions/error';
 webFrame.setVisualZoomLevelLimits(1, 1);
 webFrame.setLayoutZoomLevelLimits(1, 1);
 
-const configFile = remote.require('./config');
-const config = configFile.config;
-const error = configFile.error;
+// const configFile = remote.require('./config');
+const config = ipcRenderer.sendSync('get-config');
+const error = ipcRenderer.sendSync('get-error');
 
 let rootNode = config.rootNode;
 const store = configureStore();

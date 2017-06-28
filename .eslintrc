@@ -1,0 +1,32 @@
+{
+  "extends": "xo-react",
+  "parser": "babel-eslint",
+  "rules": {
+    "linebreak-style": [
+      2,
+      "windows"
+    ],
+    "default-case": 0,
+    "object-curly-spacing": [
+      2,
+      "always"
+    ],
+    "import/extensions": 0,
+    "import/no-extraneous-dependencies": 0,
+    "unicorn/filename-case": 0,
+    "react/jsx-indent": [
+      2,
+      "4 spaces"
+    ],
+    "react/prop-types": 0,
+    "react/jsx-sort-props": 0,
+    "react/jsx-tag-spacing": [
+      2,
+      {
+        "closingSlash": "never",
+        "beforeSelfClosing": "always",
+        "afterOpening": "never"
+      }
+    ]
+  }
+}

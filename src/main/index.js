@@ -92,7 +92,7 @@ app.on('ready', () => {
         }
     });
 
-    if (__DEV__) {
+    if (process.env.NODE_ENV === 'development') {
         mainWindow.webContents.openDevTools();
         const electronDevtools = require('electron-devtools-installer');
         const installExtension = electronDevtools.default;
@@ -113,4 +113,12 @@ ipcMain.on('hide-window', () => {
 
 ipcMain.on('show-window', () => {
     showOnCur();
+});
+
+ipcMain.on('get-config', event => {
+    event.returnValue = config.config;
+});
+
+ipcMain.on('get-error', event => {
+    event.returnValue = config.config;
 });
