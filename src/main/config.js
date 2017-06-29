@@ -24,8 +24,15 @@ function setConfig(_config) {
     config = Object.assign(defaultConfig, _config);
 }
 
+function reloadWindow() {
+    if (mainWindow) {
+        mainWindow.reload();
+    }
+}
+
 function loadConfig(path) {
     const json = fsp.readFileSync(path, 'utf8');
+
     if (json) {
         let cfg;
         try {
@@ -33,6 +40,7 @@ function loadConfig(path) {
         } catch (err) {
             error.active = true;
             error.msg = 'JSON error: ' + err;
+            reloadWindow();
             return false;
         }
 
@@ -41,9 +49,7 @@ function loadConfig(path) {
     } else {
         setConfig(null);
     }
-    if (mainWindow) {
-        mainWindow.reload();
-    }
+    reloadWindow();
     return true;
 }
 
