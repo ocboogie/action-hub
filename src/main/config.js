@@ -3,7 +3,7 @@ import * as path from 'path';
 
 import * as fsp from 'fs-promise';
 import * as chokidar from 'chokidar';
-import { parse } from 'jsonlint';
+import { parse } from 'json5';
 
 import defaultConfig from './defaultConfig';
 
