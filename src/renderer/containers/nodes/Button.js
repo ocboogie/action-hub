@@ -14,8 +14,10 @@ class Button extends Component {
     }
 
     render() {
+        const buttonColor = '#e74c3c';
         const style = {
-            backgroundColor: '#e74c3c'
+            backgroundColor: buttonColor,
+            outlineColor: buttonColor
         };
         return (
             <div onClick={this.handleClick} style={style} className="button">

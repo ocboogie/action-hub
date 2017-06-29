@@ -23,6 +23,8 @@ body {
     display: table;
     text-align: center;
     cursor: pointer;
+    outline-style: solid;
+    outline-width: 1px;
 }
 
 .button > span {
