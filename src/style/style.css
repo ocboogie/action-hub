@@ -24,7 +24,29 @@ body {
     text-align: center;
     cursor: pointer;
 }
+
 .button > span {
     display: table-cell;
     vertical-align: middle;
+}
+
+.error-text {
+    font-size: 5em;
+    text-align: center;
+    color: #e62747;
+}
+
+.error-msg-container {
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 0px;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #4fdbe4;
+}
+
+.error-msg-container > pre {
+    font-family: "roboto";
+    white-space: pre-wrap;
+    font-size: 0.8em;
 }

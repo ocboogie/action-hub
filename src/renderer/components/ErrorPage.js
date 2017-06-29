@@ -5,7 +5,7 @@ export default class SettingsPage extends Component {
     render() {
         return (
             <div>
-                <h1>Error!</h1>
+                <h1 className="error-text">Error!</h1>
                 <ErrorMsg />
             </div>
         );
