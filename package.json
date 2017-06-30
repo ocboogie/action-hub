@@ -55,6 +55,7 @@
         "concurrently": "^3.5.0",
         "cross-env": "^5.0.1",
         "electron-devtools-installer": "^2.2.0",
+        "electron-forge": "^3.0.5",
         "electron-prebuilt-compile": "1.6.11",
         "eslint": "^4.1.1",
         "eslint-config-xo": "^0.18.2",
