@@ -15,14 +15,18 @@ const funcs = {
             recursive: true,
             flat: true,
             hideExtension: true,
+            showHidden: false,
             container: null
         },
         func: function dir2actions(args) {
             let actions = [];
-            const files = fsp.readdirSync(args.path);
+            let files = fsp.readdirSync(args.path);
+            if (!args.showHidden) {
+                files = files.filter(item => !(/(^|\/)\.[^/.]/g).test(item));
+            }
             for (const file of files) {
                 const pathOfFile = path.join(args.path, file);
-                if (fsp.statSync(pathOfFile).isDirectory()) {
+                if (fsp.statSync(pathOfFile).isDirectory() && path.extname(file) !== '.app') {
                     if (args.recursive) {
                         if (args.flat) {
                             actions = actions.concat(dir2actions({ ...args, path: pathOfFile }));
