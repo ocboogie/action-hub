@@ -16,10 +16,6 @@
         "SwitchCase": 1
       }
     ],
-    "linebreak-style": [
-      2,
-      "windows"
-    ],
     "default-case": 0,
     "object-curly-spacing": [
       2,
