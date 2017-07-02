@@ -1,6 +1,7 @@
 
 import Grid from '../containers/nodes/Grid';
 import Button from '../containers/nodes/Button';
+import Web from '../containers/nodes/Web';
 
 export function findRoot(node) {
     if (node.parent === undefined) {
@@ -16,5 +17,8 @@ export const nodeMap = {
     },
     button: {
         element: Button
+    },
+    web: {
+        element: Web
     }
 };
