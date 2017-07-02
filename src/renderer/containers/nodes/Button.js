@@ -10,7 +10,7 @@ class Button extends Component {
     }
 
     handleClick() {
-        this.props.dispatch(runAction(this.props.value));
+        this.props.dispatch(runAction(this.props.args.action));
     }
 
     render() {
@@ -21,7 +21,7 @@ class Button extends Component {
         };
         return (
             <div onClick={this.handleClick} style={style} className="button">
-                <span className="button-text">{this.props.value.text}</span>
+                <span className="button-text">{this.props.args.text}</span>
             </div>
         );
     }

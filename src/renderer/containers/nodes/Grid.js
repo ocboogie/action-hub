@@ -5,7 +5,7 @@ import NodeContainer from '../NodeContainer';
 
 class Grid extends Component {
     render() {
-        const nodes = this.props.value;
+        const nodes = this.props.args.nodes;
         const gridSize = (100 * 1.0 / Math.ceil(Math.sqrt(nodes.length))).toString() + '%';
         const style = {
             width: gridSize,

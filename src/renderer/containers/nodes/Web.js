@@ -9,7 +9,7 @@ class Web extends Component {
         };
         return (
             <div style={fill} className="web">
-                <webview style={fill} src={this.props.value} />
+                <webview style={fill} src={this.props.args.url} />
             </div>
         );
     }
