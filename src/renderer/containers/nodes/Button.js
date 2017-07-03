@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import { runAction } from '../../actions/action';
 
@@ -15,14 +16,25 @@ class Button extends Component {
 
     render() {
         const buttonColor = '#e74c3c';
-        const style = {
-            backgroundColor: buttonColor,
-            outlineColor: buttonColor
-        };
+        const Button = styled.div`
+            background-color: ${buttonColor};
+            outline-color: ${buttonColor};
+            width: 100%;
+            height: 100%;
+            display: table;
+            text-align: center;
+            cursor: pointer;
+            outline-style: solid;
+            outline-width: 1px;
+            > span {
+                display: table-cell;
+                vertical-align: middle;
+            }
+        `;
         return (
-            <div onClick={this.handleClick} style={style} className="button">
+            <Button onClick={this.handleClick}>
                 <span className="button-text">{this.props.args.text}</span>
-            </div>
+            </Button>
         );
     }
 }
