@@ -18,12 +18,7 @@ const error = ipcRenderer.sendSync('get-error');
 
 let rootNode = config.rootNode;
 const store = configureStore();
-
-if (!error.active) {
-    rootNode = compileFuncs(rootNode);
-
-    store.dispatch(initNode(rootNode));
-}
+store.dispatch(push('/'));
 
 render(
     <Root store={store} history={history} />,
@@ -33,6 +28,8 @@ render(
 if (error.active) {
     store.dispatch(displayError(error.msg));
 } else {
+    rootNode = compileFuncs(rootNode);
+    store.dispatch(initNode(rootNode));
     store.dispatch(push('/node'));
 }
 

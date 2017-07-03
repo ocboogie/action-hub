@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 
-import NodeManager from '../containers/NodeManager';
-
-export default class MainPage extends Component {
+export default class HomePage extends Component {
     render() {
         return (
             <div>
-                <NodeManager />
+                <h1>Loading...</h1>
             </div>
         );
     }
