@@ -2,7 +2,7 @@ import * as path from 'path';
 
 import * as fsp from 'fs-promise';
 
-import replaceAll from '../../utills/replaceAll';
+import apply2all from '../../utills/apply2all';
 import findAndReplaceInObj from '../../utills/findAndReplaceInObj';
 
 const funcs = {
@@ -36,9 +36,15 @@ const funcs = {
                     }
                 } else {
                     const fileName = (args.hideExtension) ? path.basename(pathOfFile).replace(/\.[^/.]+$/, '') : path.basename(pathOfFile);
-                    const action = { type: 'app', text: fileName, args: { path: pathOfFile } };
+                    const action = ['app', { path: pathOfFile }];
                     if (args.container) {
-                        actions.push(replaceAll(args.container, '<action>', action));
+                        actions.push(apply2all(args.container, value => {
+                            if (value === '<action>') {
+                                return action;
+                            } else if (value === '<text>') {
+                                return fileName;
+                            }
+                        }));
                     } else {
                         actions.push(action);
                     }
