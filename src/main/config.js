@@ -7,7 +7,7 @@ import { parse } from 'json5';
 
 import defaultConfig from './defaultConfig';
 
-const configPath = path.resolve(homedir(), '.actionHub.json');
+const configPath = path.resolve(homedir(), '.actionHub.json5');
 let mainWindow;
 
 // eslint-disable-next-line import/no-mutable-exports
