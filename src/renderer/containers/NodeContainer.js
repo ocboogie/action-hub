@@ -12,7 +12,7 @@ class NodeContainer extends Component {
         return (
             <div className="node-container">
                 <Node args={this.props.node[1]} />
-            </div >
+            </div>
         );
     }
 }

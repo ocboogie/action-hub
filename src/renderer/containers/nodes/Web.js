@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 class Web extends Component {
     render() {
-        const fill = {
-            width: '100%',
-            height: '100%'
-        };
+        const Web = styled.div`
+            width: 100%;
+            height: 100%;
+            > webview {
+                width: 100%;
+                height: 100%;
+            }
+        `;
+
         return (
-            <div style={fill} className="web">
-                <webview style={fill} src={this.props.args.url} />
-            </div>
+            <Web>
+                <webview src={this.props.args.url} />
+            </Web>
         );
     }
 }
