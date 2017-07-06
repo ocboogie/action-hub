@@ -19,13 +19,10 @@ export default class Button extends Component {
                 background-color: ${props => new Color(props.theme.btnColor).lighten(0.1).string()};
                 color: ${props => props.theme.textColor};
             }
-
             &:active {
                 background-color: ${props => new Color(props.theme.btnColor).darken(0.05).string()};
             }
-
             &:focus, &:active:focus {
-                color: ${props => props.theme.textColor};
                 outline: 0 none;
             }
         `;
