@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import theme from '../theme';
 
 export default class App extends Component {
     render() {
@@ -8,9 +9,11 @@ export default class App extends Component {
             background-color: #2d2d2d;
         `;
         return (
-            <Style>
-                {this.props.children}
-            </Style>
+            <ThemeProvider theme={theme}>
+                <Style>
+                    {this.props.children}
+                </Style>
+            </ThemeProvider>
         );
     }
 }
