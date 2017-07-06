@@ -16,7 +16,7 @@ export default class Button extends Component {
             border-radius: 6px;
             border: none;
             &:hover {
-                background-color: ${props => new Color(props.theme.btnColor).lighten(0.05).string()};
+                background-color: ${props => new Color(props.theme.btnColor).lighten(0.1).string()};
                 color: ${props => props.theme.textColor};
             }
 
