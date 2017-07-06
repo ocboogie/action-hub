@@ -68,6 +68,7 @@
     },
     "dependencies": {
         "chokidar": "^1.7.0",
+        "color": "^2.0.0",
         "electron-compile": "^6.4.1",
         "fs-promise": "^2.0.3",
         "history": "^4.6.2",
