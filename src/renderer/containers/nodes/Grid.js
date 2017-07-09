@@ -21,7 +21,7 @@ class Grid extends Component {
             (<GridNodeContainer key={key}><NodeContainer node={node} /></GridNodeContainer>)
         );
         return (
-            <div className="grid">
+            <div>
                 {renderedNodes}
             </div>
         );

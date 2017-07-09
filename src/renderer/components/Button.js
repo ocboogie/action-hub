@@ -27,7 +27,7 @@ export default class Button extends Component {
             }
         `;
         return (
-            <Button>
+            <Button className={this.props.className}>
                 {this.props.children}
             </Button>
         );

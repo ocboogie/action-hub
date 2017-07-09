@@ -33,7 +33,7 @@ class Button extends Component {
         `;
         return (
             <Button onClick={this.handleClick}>
-                <span className="button-text">{this.props.args.text}</span>
+                <span>{this.props.args.text}</span>
             </Button>
         );
     }
