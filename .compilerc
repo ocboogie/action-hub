@@ -3,14 +3,7 @@
     "development": {
       "application/javascript": {
         "presets": [
-          [
-            "env",
-            {
-              "targets": {
-                "electron": "1.6"
-              }
-            }
-          ],
+          "es2015",
           "stage-2",
           "react"
         ],
@@ -20,14 +13,7 @@
     "production": {
       "application/javascript": {
         "presets": [
-          [
-            "env",
-            {
-              "targets": {
-                "electron": "1.6"
-              }
-            }
-          ],
+          "es2015",
           "stage-2",
           "react"
         ],
