@@ -1,4 +1,4 @@
-export default function apply2all(obj, func) {
+export default function deepMap(obj, func) {
     if (Array.isArray(obj)) {
         obj = obj.slice();
     } else {
@@ -6,7 +6,7 @@ export default function apply2all(obj, func) {
     }
     for (const [key, value] of Object.entries(obj)) {
         if (typeof value === 'object') {
-            obj[key] = apply2all(value, func);
+            obj[key] = deepMap(value, func);
         } else {
             const output = func(value);
             if (output !== undefined) {

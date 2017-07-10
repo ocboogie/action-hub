@@ -2,7 +2,7 @@ import * as path from 'path';
 
 import * as fsp from 'fs-promise';
 
-import apply2all from '../../utills/apply2all';
+import deepMap from '../../utills/deepMap';
 import findAndReplaceInObj from '../../utills/findAndReplaceInObj';
 
 const funcs = {
@@ -38,7 +38,7 @@ const funcs = {
                     const fileName = (args.hideExtension) ? path.basename(pathOfFile).replace(/\.[^/.]+$/, '') : path.basename(pathOfFile);
                     const action = ['app', { path: pathOfFile }];
                     if (args.container) {
-                        actions.push(apply2all(args.container, value => {
+                        actions.push(deepMap(args.container, value => {
                             if (value === '<action>') {
                                 return action;
                             } else if (value === '<text>') {
