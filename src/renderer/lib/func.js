@@ -3,10 +3,8 @@ import * as path from 'path';
 import * as fsp from 'fs-promise';
 
 import deepMap from '../../utills/deepMap';
-import findAndReplaceInObj from '../../utills/findAndReplaceInObj';
 
-const funcs = {
-    /* eslint-disable func-name-matching */
+const funcMap = {
     dir2actions: {
         mandatoryArgs: [
             'path'
@@ -18,7 +16,7 @@ const funcs = {
             showHidden: false,
             container: null
         },
-        func: function dir2actions(args) {
+        creator: function creator(args) {
             let actions = [];
             let files = fsp.readdirSync(args.path);
             if (!args.showHidden) {
@@ -29,7 +27,7 @@ const funcs = {
                 if (fsp.statSync(pathOfFile).isDirectory() && path.extname(file) !== '.app') {
                     if (args.recursive) {
                         if (args.flat) {
-                            actions = actions.concat(dir2actions({ ...args, path: pathOfFile }));
+                            actions = actions.concat(creator({ ...args, path: pathOfFile }));
                         } else {
                             // TODO
                         }
@@ -53,24 +51,21 @@ const funcs = {
             return actions;
         }
     }
-    /* eslint-enable func-name-matching */
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export function compileFuncs(obj) {
-    return findAndReplaceInObj(obj, obj => (obj.func === true), obj => {
-        if (!(obj.funcName in funcs)) {
+export function compileFunc(type, args) {
+    if (!(type in funcMap)) {
+        // TODO
+        console.log('error');
+        return;
+    }
+    for (const value of funcMap[type].mandatoryArgs) {
+        if (args[value] === undefined) {
             // TODO
             console.log('error');
             return;
         }
-        for (const value of funcs[obj.funcName].mandatoryArgs) {
-            if (obj.args[value] === undefined) {
-                // TODO
-                console.log('error');
-                return;
-            }
-        }
-        return funcs[obj.funcName].func(Object.assign(funcs[obj.funcName].args, obj.args));
-    });
+    }
+    return funcMap[type].creator(Object.assign(funcMap[type].args || {}, args));
 }

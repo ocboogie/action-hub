@@ -116,10 +116,6 @@ ipcMain.on('show-window', () => {
     showOnCur();
 });
 
-ipcMain.on('get-config', event => {
-    event.returnValue = config.config;
-});
-
-ipcMain.on('get-error', event => {
-    event.returnValue = config.error;
+ipcMain.on('get-data', event => {
+    event.returnValue = { config: config.config, error: config.error, rootNodeFunc: config.rootNodeFunc };
 });

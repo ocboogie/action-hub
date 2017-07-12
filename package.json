@@ -1,85 +1,85 @@
 {
-    "name": "action-hub",
-    "productName": "action-hub",
-    "version": "1.0.0",
-    "description": "A hub for app, websites and action",
-    "main": "src/main/index.js",
-    "author": "ocboogie",
-    "license": "MIT",
-    "scripts": {
-        "start": "cross-env NODE_ENV=development electron-forge start",
-        "package": "electron-forge package",
-        "make": "electron-forge make",
-        "lint": "eslint src",
-        "lint:fix": "eslint src --fix",
-        "lint:watch": "esw src -w",
-        "prod": "electron-forge start",
-        "dev": "concurrently -k \"npm run lint:watch\" \"npm run start\""
-    },
-    "keywords": [],
-    "config": {
-        "forge": {
-            "make_targets": {
-                "win32": [
-                    "squirrel"
-                ],
-                "darwin": [
-                    "zip"
-                ],
-                "linux": [
-                    "deb",
-                    "rpm"
-                ]
-            },
-            "electronPackagerConfig": {},
-            "electronWinstallerConfig": {
-                "name": "action_hub"
-            },
-            "electronInstallerDebian": {},
-            "electronInstallerRedhat": {},
-            "github_repository": {
-                "owner": "ocboogie",
-                "name": "action-hub"
-            },
-            "windowsStoreConfig": {
-                "packageName": "",
-                "name": "actionhub"
-            }
-        }
-    },
-    "devDependencies": {
-        "babel-eslint": "^7.2.3",
-        "babel-preset-es2015": "^6.24.1",
-        "babel-preset-react": "^6.24.1",
-        "babel-preset-stage-2": "^6.24.1",
-        "concurrently": "^3.5.0",
-        "cross-env": "^5.0.1",
-        "electron-devtools-installer": "^2.2.0",
-        "electron-forge": "^3.0.5",
-        "electron-prebuilt-compile": "1.6.11",
-        "eslint": "^4.1.1",
-        "eslint-config-xo": "^0.18.2",
-        "eslint-config-xo-react": "^0.12.0",
-        "eslint-plugin-import": "^2.6.0",
-        "eslint-plugin-jsx-a11y": "^6.0.0",
-        "eslint-plugin-react": "^7.1.0",
-        "eslint-watch": "^3.1.2",
-        "redux-logger": "^3.0.6"
-    },
-    "dependencies": {
-        "chokidar": "^1.7.0",
-        "color": "^2.0.0",
-        "electron-compile": "^6.4.1",
-        "fs-promise": "^2.0.3",
-        "history": "^4.6.2",
-        "json5": "^0.5.1",
-        "react": "^15.6.1",
-        "react-dom": "^15.6.1",
-        "react-redux": "^5.0.5",
-        "react-router": "^4.1.1",
-        "react-router-redux": "5.0.0-alpha.6",
-        "redux": "^3.6.0",
-        "redux-thunk": "^2.2.0",
-        "styled-components": "^2.1.0"
+  "name": "action-hub",
+  "productName": "action-hub",
+  "version": "1.0.0",
+  "description": "A hub for app, websites and action",
+  "main": "src/main/index.js",
+  "author": "ocboogie",
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "lint:watch": "esw src -w",
+    "prod": "electron-forge start",
+    "dev": "concurrently -k \"npm run lint:watch\" \"npm run start\""
+  },
+  "keywords": [],
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {},
+      "electronWinstallerConfig": {
+        "name": "action_hub"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "ocboogie",
+        "name": "action-hub"
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "actionhub"
+      }
     }
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "concurrently": "^3.5.0",
+    "cross-env": "^5.0.1",
+    "electron-devtools-installer": "^2.2.0",
+    "electron-forge": "^3.0.5",
+    "electron-prebuilt-compile": "1.6.11",
+    "eslint": "^4.1.1",
+    "eslint-config-xo": "^0.18.2",
+    "eslint-config-xo-react": "^0.12.0",
+    "eslint-plugin-import": "^2.6.0",
+    "eslint-plugin-jsx-a11y": "^6.0.0",
+    "eslint-plugin-react": "^7.1.0",
+    "eslint-watch": "^3.1.2",
+    "redux-logger": "^3.0.6"
+  },
+  "dependencies": {
+    "chokidar": "^1.7.0",
+    "color": "^2.0.0",
+    "electron-compile": "^6.4.1",
+    "fs-promise": "^2.0.3",
+    "history": "^4.6.2",
+    "jsonfn": "^0.31.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "react-router-redux": "5.0.0-alpha.6",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^2.1.0"
+  }
 }

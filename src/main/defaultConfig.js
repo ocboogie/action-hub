@@ -14,7 +14,7 @@ export default {
     windowSize: dev ? 1000 : 500,
     hideWhenLeaveFocus: !dev,
     windowSettings: {
-        alwaysOnTop: true,
+        alwaysOnTop: !dev,
         frame: dev,
         resizable: dev,
         backgroundColor: '#2d2d2d'

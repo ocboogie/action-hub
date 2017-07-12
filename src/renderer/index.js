@@ -6,18 +6,17 @@ import { push } from 'react-router-redux';
 import Root from './components/Root';
 import { history, configureStore } from './store/configureStore';
 import { initNode, loadRoot } from './actions/node';
-import { compileFuncs } from './lib/func';
+import compileRootNode from './compileRootNode';
 import { displayError } from './actions/error';
 
 // To make sure you can't zoom in
 webFrame.setVisualZoomLevelLimits(1, 1);
 webFrame.setLayoutZoomLevelLimits(1, 1);
 
-const config = ipcRenderer.sendSync('get-config');
-const error = ipcRenderer.sendSync('get-error');
-
-let rootNode = config.rootNode;
+const { error, rootNodeFunc } = ipcRenderer.sendSync('get-data');
+let rootNode;
 const store = configureStore();
+
 store.dispatch(push('/'));
 
 render(
@@ -26,11 +25,16 @@ render(
 );
 
 if (error.active) {
+    console.log(error);
     store.dispatch(displayError(error.msg));
 } else {
-    rootNode = compileFuncs(rootNode);
-    store.dispatch(initNode(rootNode));
-    store.dispatch(push('/node'));
+    rootNode = compileRootNode(rootNodeFunc);
+    if (rootNode[0]) {
+        store.dispatch(displayError(rootNode[1].toString()));
+    } else {
+        store.dispatch(initNode(rootNode[1]));
+        store.dispatch(push('/node'));
+    }
 }
 
 ipcRenderer.on('hid', () => {

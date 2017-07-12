@@ -3,16 +3,17 @@ import * as path from 'path';
 
 import * as fsp from 'fs-promise';
 import * as chokidar from 'chokidar';
-import { parse } from 'json5';
+import { JSONfn } from 'jsonfn';
 
 import defaultConfig from './defaultConfig';
 
-const configPath = path.resolve(homedir(), '.actionHub.json5');
+const configPath = path.resolve(homedir(), '.actionHub.js');
 let mainWindow;
 
-// eslint-disable-next-line import/no-mutable-exports
+// eslint-disable import/no-mutable-exports
 export let config;
-
+export let rootNodeFunc;
+// eslint-enable import/no-mutable-exports
 export const error = { msg: '', active: false };
 
 export function setMainWindow(window) {
@@ -31,26 +32,16 @@ function reloadWindow() {
 }
 
 function loadConfig(path) {
-    const json = fsp.readFileSync(path, 'utf8');
-
-    if (json) {
-        let cfg;
-        try {
-            cfg = parse(json);
-        } catch (err) {
-            error.active = true;
-            error.msg = 'JSON error: ' + err;
-            reloadWindow();
-            return false;
-        }
-
-        // TODO error checking
-        setConfig(cfg);
-    } else {
+    try {
+        const configObj = require(path);
+        rootNodeFunc = JSONfn.stringify(configObj.rootNode);
+        setConfig(configObj.config);
+    } catch (err) {
+        error.active = true;
+        error.msg = 'There was an error loading your config: "' + err.message + '"';
         setConfig(null);
     }
     reloadWindow();
-    return true;
 }
 
 function watch(path) {
@@ -69,8 +60,6 @@ export function init() {
     if (!fsp.existsSync(configPath)) {
         fsp.writeFileSync(configPath, '');
     }
-    if (!loadConfig(configPath)) {
-        setConfig(defaultConfig);
-    }
+    loadConfig(configPath);
     watch(configPath);
 }
