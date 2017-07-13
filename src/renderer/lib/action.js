@@ -68,5 +68,5 @@ export function createAction(type, args) {
             return;
         }
     }
-    return actionMap[type].creator(Object.assign(actionMap[type].args || {}, args));
+    return actionMap[type].creator(Object.assign({}, actionMap[type].args, args));
 }

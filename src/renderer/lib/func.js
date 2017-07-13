@@ -67,5 +67,5 @@ export function compileFunc(type, args) {
             return;
         }
     }
-    return funcMap[type].creator(Object.assign(funcMap[type].args || {}, args));
+    return funcMap[type].creator(Object.assign({}, funcMap[type].args, args));
 }

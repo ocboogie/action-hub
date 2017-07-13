@@ -67,5 +67,5 @@ export function createNode(type, args) {
             return;
         }
     }
-    return nodeMap[type].creator(Object.assign(nodeMap[type].args || {}, args));
+    return nodeMap[type].creator(Object.assign({}, nodeMap[type].args, args));
 }
