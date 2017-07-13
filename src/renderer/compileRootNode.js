@@ -1,11 +1,10 @@
-import { JSONfn } from 'jsonfn';
+import * as JSONfn from 'json-fn';
 
 import { createNode } from './lib/node';
 import { createAction } from './lib/action';
 import { compileFunc } from './lib/func';
 
 export default rootNodeFunc => {
-    console.log(createNode('button', { action: {} }));
     try {
         const rootNode = JSONfn.parse(rootNodeFunc)(createNode, createAction, compileFunc);
         return [false, rootNode];
