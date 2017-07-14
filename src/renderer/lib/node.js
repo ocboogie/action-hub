@@ -4,6 +4,8 @@ import Grid from '../containers/nodes/Grid';
 import Text from '../containers/nodes/Text';
 import Web from '../containers/nodes/Web';
 
+import argParser from '../../utills/argParser';
+
 export function findRoot(node) {
     if (node.parent === undefined) {
         return node;
@@ -55,17 +57,8 @@ export const nodeMap = {
 };
 
 export function createNode(type, args) {
-    if (!(type in nodeMap)) {
-        // TODO
+    args = argParser(nodeMap, type, args, () => {
         console.log('error');
-        return;
-    }
-    for (const value of nodeMap[type].mandatoryArgs) {
-        if (args[value] === undefined) {
-            // TODO
-            console.log('error');
-            return;
-        }
-    }
-    return nodeMap[type].creator(Object.assign({}, nodeMap[type].args, args));
+    });
+    return nodeMap[type].creator(args);
 }

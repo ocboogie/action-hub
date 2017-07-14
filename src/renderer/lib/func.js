@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as fsp from 'fs-promise';
 
 import deepMap from '../../utills/deepMap';
+import argParser from '../../utills/argParser';
 
 const funcMap = {
     dir2actions: {
@@ -55,17 +56,8 @@ const funcMap = {
 
 // eslint-disable-next-line import/prefer-default-export
 export function compileFunc(type, args) {
-    if (!(type in funcMap)) {
-        // TODO
+    args = argParser(funcMap, type, args, () => {
         console.log('error');
-        return;
-    }
-    for (const value of funcMap[type].mandatoryArgs) {
-        if (args[value] === undefined) {
-            // TODO
-            console.log('error');
-            return;
-        }
-    }
-    return funcMap[type].creator(Object.assign({}, funcMap[type].args, args));
+    });
+    return funcMap[type].creator(args);
 }

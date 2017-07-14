@@ -3,6 +3,7 @@ import { exec } from 'child_process';
 import { shell } from 'electron';
 
 import { displayNode } from './../actions/node';
+import argParser from '../../utills/argParser';
 
 // eslint-disable-next-line import/prefer-default-export
 export const actionMap = {
@@ -56,17 +57,8 @@ export const actionMap = {
 };
 
 export function createAction(type, args) {
-    if (!(type in actionMap)) {
-        // TODO
+    args = argParser(actionMap, type, args, () => {
         console.log('error');
-        return;
-    }
-    for (const value of actionMap[type].mandatoryArgs) {
-        if (args[value] === undefined) {
-            // TODO
-            console.log('error');
-            return;
-        }
-    }
-    return actionMap[type].creator(Object.assign({}, actionMap[type].args, args));
+    });
+    return actionMap[type].creator(args);
 }
