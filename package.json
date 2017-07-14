@@ -1,18 +1,23 @@
 {
   "name": "action-hub",
-  "productName": "action-hub",
-  "version": "1.0.0",
+  "productName": "actionHub",
+  "version": "0.1.0",
   "description": "A hub for app, websites and action",
-  "main": "dist/main.js",
+  "main": "dist/main",
   "author": "ocboogie",
   "license": "MIT",
   "scripts": {
     "webpack:watch": "webpack -w",
     "webpack": "webpack",
     "electron": "cross-env NODE_ENV=development electron .",
+    "prod": "cross-env NODE_ENV=production electron .",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "lint:watch": "esw src -w"
+    "lint:watch": "esw src -w",
+    "package:win": "electron-packager . \"Action Hub\" -w --out=release-builds",
+    "package:osx": "electron-packager . \"Action Hub\" -o --out=release-builds",
+    "package:linux": "electron-packager . \"Action Hub\" -l --out=release-builds",
+    "package:all": "electron-packager . \"Action Hub\" --all --out=release-builds"
   },
   "keywords": [],
   "devDependencies": {
@@ -27,6 +32,7 @@
     "cross-env": "^5.0.1",
     "electron": "^1.6.11",
     "electron-devtools-installer": "^2.2.0",
+    "electron-packager": "^8.7.2",
     "eslint": "^4.1.1",
     "eslint-config-xo": "^0.18.2",
     "eslint-config-xo-react": "^0.12.0",
