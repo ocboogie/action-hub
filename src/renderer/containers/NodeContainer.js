@@ -10,7 +10,7 @@ class NodeContainer extends Component {
         }
         const Node = nodeMap[this.props.node[0]].element;
         return (
-            <div>
+            <div {...this.props.node[2]}>
                 <Node args={this.props.node[1]} />
             </div>
         );

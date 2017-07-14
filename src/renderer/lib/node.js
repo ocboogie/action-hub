@@ -1,8 +1,7 @@
 
-import Button from '../containers/nodes/Button';
-import Grid from '../containers/nodes/Grid';
-import Text from '../containers/nodes/Text';
-import Web from '../containers/nodes/Web';
+import Grid from '../nodes/Grid';
+import Text from '../nodes/Text';
+import Web from '../nodes/Web';
 
 import argParser from '../../utills/argParser';
 
@@ -15,24 +14,12 @@ export function findRoot(node) {
 
 // eslint-disable-next-line import/prefer-default-export
 export const nodeMap = {
-    button: {
-        mandatoryArgs: [
-            'action'
-        ],
-        args: {
-            text: ''
-        },
-        creator: args => {
-            return ['button', args];
-        },
-        element: Button
-    },
     grid: {
         mandatoryArgs: [
             'nodes'
         ],
-        creator: args => {
-            return ['grid', args];
+        creator: (args, reactArgs) => {
+            return ['grid', args, reactArgs];
         },
         element: Grid
     },
@@ -40,8 +27,8 @@ export const nodeMap = {
         args: {
             text: ''
         },
-        creator: args => {
-            return ['text', args];
+        creator: (args, reactArgs) => {
+            return ['text', args, reactArgs];
         },
         element: Text
     },
@@ -49,16 +36,16 @@ export const nodeMap = {
         mandatoryArgs: [
             'url'
         ],
-        creator: args => {
-            return ['web', args];
+        creator: (args, reactArgs) => {
+            return ['web', args, reactArgs];
         },
         element: Web
     }
 };
 
-export function createNode(type, args) {
+export function createNode(type, args, reactArgs = {}) {
     args = argParser(nodeMap, type, args, () => {
         console.log('error');
     });
-    return nodeMap[type].creator(args);
+    return nodeMap[type].creator(args, reactArgs);
 }

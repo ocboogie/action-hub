@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import NodeContainer from '../NodeContainer';
+import NodeContainer from '../containers/NodeContainer';
 
 class Grid extends Component {
     render() {

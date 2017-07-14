@@ -28,7 +28,7 @@ if (error.active) {
     console.log(error);
     store.dispatch(displayError(error.msg));
 } else {
-    rootNode = compileRootNode(rootNodeFunc);
+    rootNode = compileRootNode(rootNodeFunc, store);
     if (rootNode[0]) {
         store.dispatch(displayError(rootNode[1].toString()));
     } else {

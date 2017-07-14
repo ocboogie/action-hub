@@ -4,8 +4,34 @@ import * as fsp from 'fs-promise';
 
 import deepMap from '../../utills/deepMap';
 import argParser from '../../utills/argParser';
+import { createNode } from './node';
 
 const funcMap = {
+    button: {
+        mandatoryArgs: [
+            'action',
+            'runAction'
+        ],
+        args: {
+            text: ''
+        },
+        creator: args => {
+            return createNode(
+                'text',
+                {
+                    text: args.text
+                },
+                {
+                    onClick: () => {
+                        args.runAction(args.action);
+                    },
+                    style: {
+                        cursor: 'pointer'
+                    }
+                }
+            );
+        }
+    },
     dir2actions: {
         mandatoryArgs: [
             'path'
