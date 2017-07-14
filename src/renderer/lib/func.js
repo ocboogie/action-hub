@@ -7,7 +7,6 @@ import argParser from '../../utills/argParser';
 import { createNode } from './node';
 import { createAction } from './action';
 
-
 const funcMap = {
     button: {
         mandatoryArgs: [
