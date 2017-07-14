@@ -5,16 +5,20 @@ import { shell } from 'electron';
 import { displayNode } from './../actions/node';
 import argParser from '../../utills/argParser';
 
+export const defaultGlobalArgs = {
+    canHide: true
+};
+
 // eslint-disable-next-line import/prefer-default-export
 export const actionMap = {
     app: {
         mandatoryArgs: [
             'path'
         ],
-        creator: args => {
-            return ['app', args];
+        creator: (args, globalArgs) => {
+            return ['app', args, globalArgs];
         },
-        run: (args, hide) => {
+        run: (args, globalArgs, hide) => {
             hide();
             exec(`"${args.path}"`);
         }
@@ -23,10 +27,10 @@ export const actionMap = {
         mandatoryArgs: [
             'cmd'
         ],
-        creator: args => {
-            return ['cmd', args];
+        creator: (args, globalArgs) => {
+            return ['cmd', args, globalArgs];
         },
-        run: (args, hide) => {
+        run: (args, globalArgs, hide) => {
             hide();
             exec(args.cmd);
         }
@@ -35,10 +39,10 @@ export const actionMap = {
         mandatoryArgs: [
             'node'
         ],
-        creator: args => {
-            return ['node', args];
+        creator: (args, globalArgs) => {
+            return ['node', args, globalArgs];
         },
-        run: (args, hide, dispatch) => {
+        run: (args, globalArgs, hide, dispatch) => {
             dispatch(displayNode(args.node));
         }
     },
@@ -46,19 +50,20 @@ export const actionMap = {
         mandatoryArgs: [
             'url'
         ],
-        creator: args => {
-            return ['url', args];
+        creator: (args, globalArgs) => {
+            return ['url', args, globalArgs];
         },
-        run: (args, hide) => {
+        run: (args, globalArgs, hide) => {
             hide();
             shell.openExternal(args.url);
         }
     }
 };
 
-export function createAction(type, args) {
+export function createAction(type, args, globalArgs = {}) {
     args = argParser(actionMap, type, args, () => {
         console.log('error');
     });
-    return actionMap[type].creator(args);
+    console.log(Object.assign({}, defaultGlobalArgs, actionMap[type].globalArgs, globalArgs));
+    return actionMap[type].creator(args, Object.assign({}, defaultGlobalArgs, actionMap[type].globalArgs, globalArgs));
 }

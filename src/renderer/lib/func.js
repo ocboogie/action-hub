@@ -5,6 +5,8 @@ import * as fsp from 'fs-promise';
 import deepMap from '../../utills/deepMap';
 import argParser from '../../utills/argParser';
 import { createNode } from './node';
+import { createAction } from './action';
+
 
 const funcMap = {
     button: {
@@ -61,15 +63,19 @@ const funcMap = {
                     }
                 } else {
                     const fileName = (args.hideExtension) ? path.basename(pathOfFile).replace(/\.[^/.]+$/, '') : path.basename(pathOfFile);
-                    const action = ['app', { path: pathOfFile }];
+                    const action = createAction('app', { path: pathOfFile });
                     if (args.container) {
-                        actions.push(deepMap(args.container, value => {
-                            if (value === '<action>') {
-                                return action;
-                            } else if (value === '<text>') {
-                                return fileName;
-                            }
-                        }));
+                        if (typeof args.container === 'function') {
+                            actions.push(args.container(action, fileName));
+                        } else {
+                            actions.push(deepMap(args.container, value => {
+                                if (value === '<action>') {
+                                    return action;
+                                } else if (value === '<text>') {
+                                    return fileName;
+                                }
+                            }));
+                        }
                     } else {
                         actions.push(action);
                     }
