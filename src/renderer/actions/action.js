@@ -1,13 +1,13 @@
 import { ipcRenderer } from 'electron';
 
 import { actionMap } from '../lib/action';
+import { displayError } from './error';
 
 // eslint-disable-next-line import/prefer-default-export
 export function runAction(action) {
     return dispatch => {
         if (!(action[0] in actionMap)) {
-            // TODO
-            console.log('error');
+            dispatch(displayError(`Corrupt action: "${action[0]}" is not a action type. Full action: [${action}]`));
             return;
         }
         const hide = (action[2].canHide) ? () => {
