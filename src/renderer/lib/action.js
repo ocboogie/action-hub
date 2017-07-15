@@ -1,7 +1,8 @@
 import { exec } from 'child_process';
 
-import { shell } from 'electron';
+import { shell, remote } from 'electron';
 
+import { runAction } from '../actions/action';
 import { displayNode } from './../actions/node';
 import argParser from '../../utills/argParser';
 
@@ -56,6 +57,28 @@ export const actionMap = {
         run(args, globalArgs, hide) {
             hide();
             shell.openExternal(args.url);
+        }
+    },
+    confirm: {
+        mandatoryArgs: [
+            'action'
+        ],
+        args: {
+            msg: ''
+        },
+        creator(args, globalArgs) {
+            return ['confirm', args, globalArgs];
+        },
+        run(args, globalArgs, hide, dispatch) {
+            const choice = remote.dialog.showMessageBox(remote.getCurrentWindow(), {
+                type: 'question',
+                buttons: ['Yes', 'No'],
+                title: 'Confirm',
+                message: args.msg
+            });
+            if (choice === 0) {
+                dispatch(runAction(args.action));
+            }
         }
     }
 };
