@@ -64,6 +64,5 @@ export function createAction(type, args, globalArgs = {}) {
     args = argParser(actionMap, type, args, () => {
         console.log('error');
     });
-    console.log(Object.assign({}, defaultGlobalArgs, actionMap[type].globalArgs, globalArgs));
     return actionMap[type].creator(args, Object.assign({}, defaultGlobalArgs, actionMap[type].globalArgs, globalArgs));
 }
