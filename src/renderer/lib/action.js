@@ -15,10 +15,10 @@ export const actionMap = {
         mandatoryArgs: [
             'path'
         ],
-        creator: (args, globalArgs) => {
+        creator(args, globalArgs) {
             return ['app', args, globalArgs];
         },
-        run: (args, globalArgs, hide) => {
+        run(args, globalArgs, hide) {
             hide();
             exec(`"${args.path}"`);
         }
@@ -27,10 +27,10 @@ export const actionMap = {
         mandatoryArgs: [
             'cmd'
         ],
-        creator: (args, globalArgs) => {
+        creator(args, globalArgs) {
             return ['cmd', args, globalArgs];
         },
-        run: (args, globalArgs, hide) => {
+        run(args, globalArgs, hide) {
             hide();
             exec(args.cmd);
         }
@@ -39,10 +39,10 @@ export const actionMap = {
         mandatoryArgs: [
             'node'
         ],
-        creator: (args, globalArgs) => {
+        creator(args, globalArgs) {
             return ['node', args, globalArgs];
         },
-        run: (args, globalArgs, hide, dispatch) => {
+        run(args, globalArgs, hide, dispatch) {
             dispatch(displayNode(args.node));
         }
     },
@@ -50,10 +50,10 @@ export const actionMap = {
         mandatoryArgs: [
             'url'
         ],
-        creator: (args, globalArgs) => {
+        creator(args, globalArgs) {
             return ['url', args, globalArgs];
         },
-        run: (args, globalArgs, hide) => {
+        run(args, globalArgs, hide) {
             hide();
             shell.openExternal(args.url);
         }

@@ -23,7 +23,7 @@ const funcMap = {
                     text: args.text
                 },
                 {
-                    onClick: () => {
+                    onClick() {
                         args.runAction(args.action);
                     },
                     style: {
