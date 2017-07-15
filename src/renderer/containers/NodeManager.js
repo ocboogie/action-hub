@@ -14,7 +14,7 @@ class NodeManager extends Component {
     }
 
     handleRightClick() {
-        if (this.props.node.parent) {
+        if (this.props.node[3]) {
             this.props.dispatch(backNode());
         } else {
             ipcRenderer.send('hide-window');

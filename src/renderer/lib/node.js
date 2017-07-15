@@ -6,10 +6,10 @@ import Web from '../nodes/Web';
 import argParser from '../../utills/argParser';
 
 export function findRoot(node) {
-    if (node.parent === undefined) {
+    if (node[3] === undefined) {
         return node;
     }
-    return findRoot(node.parent);
+    return findRoot(node[3]);
 }
 
 // eslint-disable-next-line import/prefer-default-export

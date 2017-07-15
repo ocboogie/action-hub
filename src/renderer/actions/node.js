@@ -16,7 +16,7 @@ export function loadNode(node) {
 
 export function backNode() {
     return (dispatch, getState) => {
-        const parent = getState().node.parent;
+        const parent = getState().node[3];
         if (parent) {
             dispatch(loadNode(parent));
         }
@@ -31,7 +31,7 @@ export function loadRoot() {
 
 export function displayNode(node) {
     return (dispatch, getState) => {
-        node.parent = getState().node;
+        node[3] = getState().node;
         dispatch(loadNode(node));
     };
 }
