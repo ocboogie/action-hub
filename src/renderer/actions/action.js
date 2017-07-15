@@ -5,7 +5,6 @@ import { actionMap } from '../lib/action';
 // eslint-disable-next-line import/prefer-default-export
 export function runAction(action) {
     return dispatch => {
-        console.log(action);
         if (!(action[0] in actionMap)) {
             // TODO
             console.log('error');
