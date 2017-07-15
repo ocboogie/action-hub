@@ -5,9 +5,9 @@ export default class Text extends Component {
     constructor(props) {
         super(props);
 
-        this.isTextFunc = typeof this.props.args.text === 'function';
+        this.isTextObj = typeof this.props.args.text === 'function';
 
-        if (this.isTextFunc) {
+        if (this.isTextObj) {
             this.state = { text: '' };
         } else {
             this.state = { text: this.props.args.text };
@@ -15,8 +15,14 @@ export default class Text extends Component {
     }
 
     componentWillMount() {
-        if (this.isTextFunc) {
-            this.props.args.text(this.changeText.bind(this));
+        if (this.isTextObj) {
+            this.unmountFunc = this.props.args.text(this.changeText.bind(this));
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.isTextObj && this.unmountFunc) {
+            this.unmountFunc();
         }
     }
 
@@ -35,15 +41,26 @@ export default class Text extends Component {
             text-align: center;
             outline-style: solid;
             outline-width: 1px;
-            > span {
+            > div {
                 display: table-cell;
                 vertical-align: middle;
             }
         `;
         return (
+            /* eslint-disable react/no-array-index-key */
             <Text>
-                <span>{this.state.text}</span>
+                <div>
+                    {this.state.text.split('\n').map((item, key) => {
+                        return (
+                            <span key={key}>
+                                {item}
+                                <br />
+                            </span>
+                        );
+                    })}
+                </div>
             </Text>
+            /* eslint-enable react/no-array-index-key */
         );
     }
 }
