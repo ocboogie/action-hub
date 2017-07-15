@@ -2,6 +2,28 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 export default class Text extends Component {
+    constructor(props) {
+        super(props);
+
+        this.isTextFunc = typeof this.props.args.text === 'function';
+
+        if (this.isTextFunc) {
+            this.state = { text: '' };
+        } else {
+            this.state = { text: this.props.args.text };
+        }
+    }
+
+    componentWillMount() {
+        if (this.isTextFunc) {
+            this.props.args.text(this.changeText.bind(this));
+        }
+    }
+
+    changeText(text) {
+        this.setState({ text });
+    }
+
     render() {
         const backgroundColor = '#e74c3c';
         const Text = styled.div`
@@ -20,7 +42,7 @@ export default class Text extends Component {
         `;
         return (
             <Text>
-                <span>{this.props.args.text}</span>
+                <span>{this.state.text}</span>
             </Text>
         );
     }
