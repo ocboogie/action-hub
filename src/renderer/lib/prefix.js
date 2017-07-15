@@ -7,7 +7,7 @@ import argParser from '../../utills/argParser';
 import { createNode } from './node';
 import { createAction } from './action';
 
-const funcMap = {
+const prefixMap = {
     button: {
         mandatoryArgs: [
             'action',
@@ -16,14 +16,14 @@ const funcMap = {
         args: {
             text: ''
         },
-        creator: args => {
+        creator(args) {
             return createNode(
                 'text',
                 {
                     text: args.text
                 },
                 {
-                    onClick: () => {
+                    onClick() {
                         args.runAction(args.action);
                     },
                     style: {
@@ -86,9 +86,9 @@ const funcMap = {
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export function compileFunc(type, args) {
-    args = argParser(funcMap, type, args, () => {
+export function createPrefix(type, args) {
+    args = argParser(prefixMap, type, args, () => {
         console.log('error');
     });
-    return funcMap[type].creator(args);
+    return prefixMap[type].creator(args);
 }

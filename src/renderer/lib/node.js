@@ -18,7 +18,7 @@ export const nodeMap = {
         mandatoryArgs: [
             'nodes'
         ],
-        creator: (args, reactArgs) => {
+        creator(args, reactArgs) {
             return ['grid', args, reactArgs];
         },
         element: Grid
@@ -27,7 +27,7 @@ export const nodeMap = {
         args: {
             text: ''
         },
-        creator: (args, reactArgs) => {
+        creator(args, reactArgs) {
             return ['text', args, reactArgs];
         },
         element: Text
@@ -36,7 +36,7 @@ export const nodeMap = {
         mandatoryArgs: [
             'url'
         ],
-        creator: (args, reactArgs) => {
+        creator(args, reactArgs) {
             return ['web', args, reactArgs];
         },
         element: Web
