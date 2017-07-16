@@ -1,5 +1,7 @@
 const path = require('path');
 
+const webpack = require('webpack');
+
 module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -18,5 +20,8 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json']
-    }
+    },
+    plugins: [
+        new webpack.NormalModuleReplacementPlugin(/^any-promise$/, 'bluebird')
+    ]
 };
