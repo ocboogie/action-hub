@@ -39,10 +39,13 @@ const prefixMap = {
         ],
         args: {
             recursive: true,
-            flat: true,
+            flat: false,
             hideExtension: true,
             showHidden: false,
-            container: null
+            container: null,
+            folderCreator: actions => {
+                return createAction('node', { node: createNode('grid', { nodes: actions }) });
+            }
         },
         creator: function creator(args) {
             let actions = [];
@@ -52,16 +55,25 @@ const prefixMap = {
             }
             for (const file of files) {
                 const pathOfFile = path.join(args.path, file);
+                const fileName = (args.hideExtension) ? path.basename(pathOfFile).replace(/\.[^/.]+$/, '') : path.basename(pathOfFile);
                 if (fsp.statSync(pathOfFile).isDirectory() && path.extname(file) !== '.app') {
                     if (args.recursive) {
+                        const actionInFolder = creator({ ...args, path: pathOfFile });
                         if (args.flat) {
-                            actions = actions.concat(creator({ ...args, path: pathOfFile }));
+                            actions = actions.concat(actionInFolder);
+                        } else if (typeof args.container === 'function') {
+                            actions.push(args.container(args.folderCreator(actionInFolder), fileName));
                         } else {
-                            // TODO
+                            actions.push(deepMap(args.container, value => {
+                                if (value === '<action>') {
+                                    return args.folderCreator(actionInFolder);
+                                } else if (value === '<text>') {
+                                    return fileName;
+                                }
+                            }));
                         }
                     }
                 } else {
-                    const fileName = (args.hideExtension) ? path.basename(pathOfFile).replace(/\.[^/.]+$/, '') : path.basename(pathOfFile);
                     const action = createAction('app', { path: pathOfFile });
                     if (args.container) {
                         if (typeof args.container === 'function') {
