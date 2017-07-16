@@ -8,7 +8,7 @@ import Root from './components/Root';
 import { history, configureStore } from './store/configureStore';
 import { initNode, loadRoot } from './actions/node';
 import compileRootNode from './compileRootNode';
-import { displayError } from './actions/error';
+import displayError, { setDisptach } from './displayError';
 
 // To make sure you can't zoom in
 webFrame.setVisualZoomLevelLimits(1, 1);
@@ -21,19 +21,21 @@ let rootNode;
 
 store.dispatch(push('/'));
 
+setDisptach(store.dispatch);
+
 render(
     <Root store={store} history={history} />,
     document.getElementById('root')
 );
 
 if (potentialError.active) {
-    store.dispatch(displayError(potentialError.msg));
+    displayError(potentialError.msg);
 } else {
     const configScript = JSONfn.parse(configScriptString);
     rootNode = compileRootNode(configScript.rootNode, store);
     if (rootNode[0]) {
-        store.dispatch(displayError(rootNode[1].toString()));
-    } else {
+        displayError(rootNode[1].toString());
+    } else if (store.getState().routerReducer.location.pathname !== '/error') {
         store.dispatch(initNode(rootNode[1]));
         store.dispatch(push('/node'));
     }
