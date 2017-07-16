@@ -39,7 +39,7 @@ const prefixMap = {
         ],
         args: {
             recursive: true,
-            flat: false,
+            flat: true,
             hideExtension: true,
             showHidden: false,
             container: null,
