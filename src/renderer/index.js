@@ -2,6 +2,7 @@ import { webFrame, ipcRenderer } from 'electron';
 import React from 'react';
 import { render } from 'react-dom';
 import { push } from 'react-router-redux';
+import * as JSONfn from 'json-fn';
 
 import Root from './components/Root';
 import { history, configureStore } from './store/configureStore';
@@ -13,9 +14,10 @@ import { displayError } from './actions/error';
 webFrame.setVisualZoomLevelLimits(1, 1);
 webFrame.setLayoutZoomLevelLimits(1, 1);
 
-const { error, rootNodeFunc } = ipcRenderer.sendSync('get-data');
-let rootNode;
+const { potentialError, configScriptString } = ipcRenderer.sendSync('get-data');
 const store = configureStore();
+
+let rootNode;
 
 store.dispatch(push('/'));
 
@@ -24,11 +26,11 @@ render(
     document.getElementById('root')
 );
 
-if (error.active) {
-    console.log(error);
-    store.dispatch(displayError(error.msg));
+if (potentialError.active) {
+    store.dispatch(displayError(potentialError.msg));
 } else {
-    rootNode = compileRootNode(rootNodeFunc, store);
+    const configScript = JSONfn.parse(configScriptString);
+    rootNode = compileRootNode(configScript.rootNode, store);
     if (rootNode[0]) {
         store.dispatch(displayError(rootNode[1].toString()));
     } else {

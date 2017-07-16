@@ -1,14 +1,20 @@
 import * as path from 'path';
 import * as url from 'url';
+import { homedir } from 'os';
 
 import { app, BrowserWindow, Tray, Menu, screen, globalShortcut, ipcMain } from 'electron';
 
-import * as config from './config';
+import defaultConfig from './defaultConfig';
+import Config from '../common/Config';
+import PotentialError from '../common/PotentialError';
+
+const configFileName = '.actionHub.js';
+const configPath = path.resolve(homedir(), configFileName);
 
 let tray;
 let mainWindow;
-
-config.init();
+const potentialError = new PotentialError();
+const config = new Config(configPath, defaultConfig, potentialError.activate.bind(potentialError), potentialError.deactivate.bind(potentialError));
 
 function hide() {
     mainWindow.hide();
@@ -60,7 +66,7 @@ app.on('ready', () => {
         ...config.config.windowSettings
     });
 
-    config.setMainWindow(mainWindow);
+    config.setWindow(mainWindow);
 
     if (process.platform === 'darwin') {
         app.dock.hide();
@@ -112,5 +118,5 @@ ipcMain.on('show-window', () => {
 });
 
 ipcMain.on('get-data', event => {
-    event.returnValue = { config: config.config, error: config.error, rootNodeFunc: config.rootNodeFunc };
+    event.returnValue = { potentialError: potentialError.toObj(), configScriptString: config.scriptString };
 });

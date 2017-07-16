@@ -4,7 +4,7 @@ import { shell, remote } from 'electron';
 
 import { runAction } from '../actions/action';
 import { displayNode } from './../actions/node';
-import argParser from '../../utills/argParser';
+import argParser from '../../common/utills/argParser';
 
 export const defaultGlobalArgs = {
     canHide: true

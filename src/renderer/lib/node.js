@@ -3,7 +3,7 @@ import Grid from '../nodes/Grid';
 import Text from '../nodes/Text';
 import Web from '../nodes/Web';
 
-import argParser from '../../utills/argParser';
+import argParser from '../../common/utills/argParser';
 
 export function findRoot(node) {
     if (node[3] === undefined) {

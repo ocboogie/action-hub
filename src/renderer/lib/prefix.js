@@ -2,8 +2,8 @@ import * as path from 'path';
 
 import * as fsp from 'fs-promise';
 
-import deepMap from '../../utills/deepMap';
-import argParser from '../../utills/argParser';
+import deepMap from '../../common/utills/deepMap';
+import argParser from '../../common/utills/argParser';
 import { createNode } from './node';
 import { createAction } from './action';
 
