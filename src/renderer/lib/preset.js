@@ -7,7 +7,7 @@ import argParser from '../../common/utills/argParser';
 import { createNode } from './node';
 import { createAction } from './action';
 
-const prefixMap = {
+const presetMap = {
     button: {
         mandatoryArgs: [
             'action',
@@ -98,9 +98,9 @@ const prefixMap = {
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export function createPrefix(type, args) {
-    args = argParser(prefixMap, type, args, () => {
+export function createPreset(type, args) {
+    args = argParser(presetMap, type, args, () => {
         console.log('error');
     });
-    return prefixMap[type].creator(args);
+    return presetMap[type].creator(args);
 }
