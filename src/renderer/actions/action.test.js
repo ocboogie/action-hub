@@ -6,6 +6,7 @@ import * as node from './node';
 import { createAction } from '../lib/action';
 import { createNode } from '../lib/node';
 import { displayError } from './error';
+import { setDisptach } from '../displayError';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -15,6 +16,7 @@ const exampleAction = createAction('node', { node: exampleNode });
 
 it('should run the action', () => {
     const store = mockStore({});
+    setDisptach(store.dispatch);
 
     store.dispatch(action.runAction(exampleAction));
     const actions = store.getActions();
@@ -27,6 +29,7 @@ it('should run the action', () => {
 it('should display an error if not a recognized action type', () => {
     const store = mockStore({});
     const compareStore = mockStore({});
+    setDisptach(store.dispatch);
 
     const doNothingExampleAction = [].concat(exampleAction);
     doNothingExampleAction.type = 'not a action type';

@@ -57,8 +57,8 @@ it('should load the root node', () => {
 
 it('should load a node and make the current node the parent', () => {
     const store = mockStore({ node: exampleNode.parent });
-
-    store.dispatch(node.displayNode(exampleNode.slice(0, 3)));
+    const { parent, ...testNode } = exampleNode;
+    store.dispatch(node.displayNode(testNode));
     const actions = store.getActions();
 
     expect(actions).toEqual([
