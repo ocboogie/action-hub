@@ -20,6 +20,11 @@
     "package:linux": "electron-packager . \"Action Hub\" -l --out=release-builds",
     "package:all": "electron-packager . \"Action Hub\" --all --out=release-builds"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "^.+\\.(css|less|scss|styl)$": "identity-obj-proxy"
+    }
+  },
   "keywords": [],
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -46,6 +51,7 @@
     "eslint-plugin-react": "^7.1.0",
     "eslint-watch": "^3.1.2",
     "html-webpack-plugin": "^2.29.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^20.0.4",
     "react-test-renderer": "^15.6.1",
     "redux-logger": "^3.0.6",
