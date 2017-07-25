@@ -1,3 +1,4 @@
+import React from 'react';
 import uuidv4 from 'uuid/v4';
 
 import Grid from '../nodes/Grid';
@@ -5,8 +6,20 @@ import Text from '../nodes/Text';
 import Web from '../nodes/Web';
 
 import argParser from '../../common/utills/argParser';
+import NodeContainer from '../containers/NodeContainer';
 
-export const cache = {};
+const cache = {};
+
+export function getCachedNode(node) {
+    let CachedNode;
+    if (cache[node.uuid] === undefined) {
+        CachedNode = (<NodeContainer node={node} />);
+        cache[node.uuid] = CachedNode;
+    } else {
+        CachedNode = cache[node.uuid];
+    }
+    return CachedNode;
+}
 
 export function findRoot(node) {
     if (node.parent === undefined) {
