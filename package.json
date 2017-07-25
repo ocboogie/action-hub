@@ -32,6 +32,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "concurrently": "^3.5.0",
     "cross-env": "^5.0.1",
+    "css-loader": "^0.28.4",
     "electron": "^1.6.11",
     "electron-devtools-installer": "^2.2.0",
     "electron-packager": "^8.7.2",
@@ -49,22 +50,24 @@
     "react-test-renderer": "^15.6.1",
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.2.3",
+    "style-loader": "^0.18.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
     "webpack": "^3.2.0",
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
     "chokidar": "^1.7.0",
-    "color": "^2.0.0",
     "fs-promise": "^2.0.3",
     "history": "^4.6.2",
     "json-fn": "^1.1.1",
     "react": "^15.6.1",
+    "react-css-modules": "^4.5.2",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-redux": "5.0.0-alpha.6",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0",
-    "styled-components": "^2.1.0"
+    "redux-thunk": "^2.2.0"
   }
 }

@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import cssModules from 'react-css-modules';
 
 import ErrorMsg from '../containers/ErrorMsg';
+import styles from './ErrorPage.styl';
 
-export default class ErrorPage extends Component {
+class ErrorPage extends Component {
     render() {
-        const ErrorText = styled.h1`
-            font-size: 5em;
-            text-align: center;
-            color: #e62747;
-        `;
         return (
             <div>
-                <ErrorText>Error!</ErrorText>
+                <div styleName="ErrorText">Error!</div>
                 <ErrorMsg />
             </div>
         );
     }
 }
+
+export default cssModules(ErrorPage, styles);

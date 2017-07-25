@@ -1,0 +1,22 @@
+@import '../style/variables.styl'
+
+.Button
+    color: $textColor
+    background-color: $btnColor
+    padding-top: 19px
+    padding-bottom: 19px
+    padding-right: 26px
+    padding-left: 26px
+    font-size: 18px
+    line-height: 1.33333
+    border-radius: 6px
+    border: none
+    &:hover 
+        background-color: lighten($btnColor, 5)
+        color: $textColor
+
+    &:active 
+        background-color: darken($btnColor, 3)
+
+    &:focus, &:active:focus 
+        outline: 0 none

@@ -1,8 +1,9 @@
 import { ipcRenderer } from 'electron';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
+import cssModules from 'react-css-modules';
 
+import styles from './NodeManager.styl';
 import { backNode } from '../actions/node';
 import NodeContainer from './NodeContainer';
 
@@ -22,26 +23,14 @@ class NodeManager extends Component {
     }
 
     render() {
-        const NodeManager = styled.div`
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            overflow: hidden;
-            div {
-                height: 100%;
-                width: 100%;
-            }
-        `;
         return (
-            <NodeManager onContextMenu={this.handleRightClick}>
+            <div styleName="NodeManager" onContextMenu={this.handleRightClick}>
                 <NodeContainer node={this.props.node} />
-            </NodeManager>
+            </div>
         );
     }
 }
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(NodeManager);
+export default connect(mapStateToProps)(cssModules(NodeManager, styles));

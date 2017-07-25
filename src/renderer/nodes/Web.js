@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
+import cssModules from 'react-css-modules';
+
+import styles from './Web.styl';
 
 class Web extends Component {
     render() {
-        const Web = styled.div`
-            width: 100%;
-            height: 100%;
-            > webview {
-                width: 100%;
-                height: 100%;
-            }
-        `;
-
         return (
-            <Web>
+            <div>
                 <webview src={this.props.args.url} />
-            </Web>
+            </div>
         );
     }
 }
 
-export default connect()(Web);
+export default cssModules(Web, styles);

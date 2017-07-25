@@ -29,14 +29,12 @@ module.exports = merge.smart(base, {
                 use: 'file-loader'
             },
             {
-                test: /\.scss$/,
-                use: [{
-                    loader: 'style-loader' // Creates style nodes from JS strings
-                }, {
-                    loader: 'css-loader' // Translates CSS into CommonJS
-                }, {
-                    loader: 'sass-loader' // Compiles Sass to CSS
-                }]
+                test: /\.styl$/,
+                use: [
+                    'style-loader',
+                    'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+                    'stylus-loader'
+                ]
             }
             // Use one of these to serve jQuery for Bootstrap scripts:
         ]

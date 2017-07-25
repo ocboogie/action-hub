@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import theme from '../theme';
+import cssModules from 'react-css-modules';
 
-export default class App extends Component {
+import styles from './App.styl';
+
+class App extends Component {
     render() {
-        const Style = styled.div`
-            font-family: "roboto";
-            background-color: #2d2d2d;
-        `;
         return (
-            <ThemeProvider theme={theme}>
-                <Style>
-                    {this.props.children}
-                </Style>
-            </ThemeProvider>
+            <div styleName="App">
+                {this.props.children}
+            </div>
         );
     }
 }
+
+export default cssModules(App, styles);
