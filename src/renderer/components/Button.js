@@ -6,7 +6,7 @@ import styles from './Button.styl';
 class Button extends Component {
     render() {
         return (
-            <div styleName="Button">
+            <div onClick={this.props.onClick} styleName="Button">
                 {this.props.children}
             </div>
         );
