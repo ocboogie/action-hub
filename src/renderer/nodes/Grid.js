@@ -4,6 +4,7 @@ import cssModules from 'react-css-modules';
 
 import styles from './Grid.styl';
 import NodeContainer from '../containers/NodeContainer';
+import { cache } from '../lib/node';
 
 class Grid extends Component {
     render() {
@@ -16,11 +17,16 @@ class Grid extends Component {
             float: 'left'
         };
 
-        const renderedNodes = nodes.map((node, key) =>
-            // We won't be mutating these so performance will be fine
-            // eslint-disable-next-line react/no-array-index-key
-            (<div style={GridNodeContainer} key={key}><NodeContainer node={node} /></div>)
-        );
+        const renderedNodes = nodes.map(node => {
+            let CachedNode;
+            if (cache[node.uuid] === undefined) {
+                CachedNode = (<NodeContainer node={node} />);
+                cache[node.uuid] = CachedNode;
+            } else {
+                CachedNode = cache[node.uuid];
+            }
+            return (<div style={GridNodeContainer} key={node.uuid}>{CachedNode}</div>);
+        });
         return (
             <div styleName="Grid">
                 {renderedNodes}

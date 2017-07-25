@@ -1,9 +1,12 @@
+import uuidv4 from 'uuid/v4';
 
 import Grid from '../nodes/Grid';
 import Text from '../nodes/Text';
 import Web from '../nodes/Web';
 
 import argParser from '../../common/utills/argParser';
+
+export const cache = {};
 
 export function findRoot(node) {
     if (node.parent === undefined) {
@@ -47,5 +50,7 @@ export function createNode(type, args, reactArgs = {}) {
     args = argParser(nodeMap, type, args, () => {
         console.log('error');
     });
-    return nodeMap[type].creator(args, reactArgs);
+    const node = nodeMap[type].creator(args, reactArgs);
+    node.uuid = uuidv4();
+    return node;
 }
