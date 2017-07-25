@@ -29,10 +29,10 @@ it('should display an error if not a recognized action type', () => {
     const compareStore = mockStore({});
 
     const doNothingExampleAction = [].concat(exampleAction);
-    doNothingExampleAction[0] = 'not a action type';
+    doNothingExampleAction.type = 'not a action type';
 
     store.dispatch(action.runAction(doNothingExampleAction));
-    compareStore.dispatch(displayError(`Corrupt action: "${doNothingExampleAction[0]}" is not a action type. Full action: [${doNothingExampleAction}]`));
+    compareStore.dispatch(displayError(`Corrupt action: "${doNothingExampleAction.type}" is not a action type. Full action: [${doNothingExampleAction}]`));
     const actions = store.getActions();
 
     expect(actions).toEqual(compareStore.getActions());

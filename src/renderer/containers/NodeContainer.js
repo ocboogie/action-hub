@@ -5,13 +5,13 @@ import { nodeMap } from '../lib/node';
 
 class NodeContainer extends Component {
     render() {
-        if (!(this.props.node[0] in nodeMap)) {
+        if (!(this.props.node.type in nodeMap)) {
             return (<div />);
         }
-        const Node = nodeMap[this.props.node[0]].element;
+        const Node = nodeMap[this.props.node.type].element;
         return (
-            <div {...this.props.node[2]}>
-                <Node args={this.props.node[1]} />
+            <div {...this.props.node.reactArgs}>
+                <Node args={this.props.node.args} />
             </div>
         );
     }

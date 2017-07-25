@@ -33,7 +33,7 @@ if (potentialError.active) {
 } else {
     const configScript = JSONfn.parse(configScriptString);
     rootNode = compileRootNode(configScript.rootNode, store);
-    if (rootNode[0]) {
+    if (rootNode.type) {
         displayError(rootNode[1].toString());
     } else if (store.getState().routerReducer.location.pathname !== '/error') {
         store.dispatch(initNode(rootNode[1]));

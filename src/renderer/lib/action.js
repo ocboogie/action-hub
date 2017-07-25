@@ -6,7 +6,7 @@ import { runAction } from '../actions/action';
 import { displayNode } from './../actions/node';
 import argParser from '../../common/utills/argParser';
 
-export const defaultGlobalArgs = {
+export const defaultCommonArgs = {
     canHide: true
 };
 
@@ -16,10 +16,10 @@ export const actionMap = {
         mandatoryArgs: [
             'path'
         ],
-        creator(args, globalArgs) {
-            return ['app', args, globalArgs];
+        creator(args, commonArgs) {
+            return { type: 'app', args, commonArgs };
         },
-        run(args, globalArgs, hide) {
+        run(args, commonArgs, hide) {
             hide();
             exec(`"${args.path}"`);
         }
@@ -28,10 +28,10 @@ export const actionMap = {
         mandatoryArgs: [
             'cmd'
         ],
-        creator(args, globalArgs) {
-            return ['cmd', args, globalArgs];
+        creator(args, commonArgs) {
+            return { type: 'cmd', args, commonArgs };
         },
-        run(args, globalArgs, hide) {
+        run(args, commonArgs, hide) {
             hide();
             exec(args.cmd);
         }
@@ -40,10 +40,10 @@ export const actionMap = {
         mandatoryArgs: [
             'node'
         ],
-        creator(args, globalArgs) {
-            return ['node', args, globalArgs];
+        creator(args, commonArgs) {
+            return { type: 'node', args, commonArgs };
         },
-        run(args, globalArgs, hide, dispatch) {
+        run(args, commonArgs, hide, dispatch) {
             dispatch(displayNode(args.node));
         }
     },
@@ -51,10 +51,10 @@ export const actionMap = {
         mandatoryArgs: [
             'url'
         ],
-        creator(args, globalArgs) {
-            return ['url', args, globalArgs];
+        creator(args, commonArgs) {
+            return { type: 'url', args, commonArgs };
         },
-        run(args, globalArgs, hide) {
+        run(args, commonArgs, hide) {
             hide();
             shell.openExternal(args.url);
         }
@@ -66,10 +66,10 @@ export const actionMap = {
         args: {
             msg: ''
         },
-        creator(args, globalArgs) {
-            return ['confirm', args, globalArgs];
+        creator(args, commonArgs) {
+            return { type: 'confirm', args, commonArgs };
         },
-        run(args, globalArgs, hide, dispatch) {
+        run(args, commonArgs, hide, dispatch) {
             const choice = remote.dialog.showMessageBox(remote.getCurrentWindow(), {
                 type: 'question',
                 buttons: ['Yes', 'No'],
@@ -83,9 +83,9 @@ export const actionMap = {
     }
 };
 
-export function createAction(type, args, globalArgs = {}) {
+export function createAction(type, args, commonArgs = {}) {
     args = argParser(actionMap, type, args, () => {
         console.log('error');
     });
-    return actionMap[type].creator(args, Object.assign({}, defaultGlobalArgs, actionMap[type].globalArgs, globalArgs));
+    return actionMap[type].creator(args, Object.assign({}, defaultCommonArgs, actionMap[type].commonArgs, commonArgs));
 }

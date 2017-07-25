@@ -8,8 +8,8 @@ const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 const exampleNode = createNode('web', { url: 'a url' });
-exampleNode[3] = createNode('text', { text: 'parent 1' });
-exampleNode[3][3] = createNode('text', { text: 'parent 2' });
+exampleNode.parent = createNode('text', { text: 'parent 1' });
+exampleNode.parent.parent = createNode('text', { text: 'parent 2' });
 
 it('should create an action to init a node', () => {
     const expectedAction = { type: 'NODE_INIT', payload: exampleNode };
@@ -31,11 +31,11 @@ describe('backNode function', () => {
         const actions = store.getActions();
 
         expect(actions).toEqual([
-            node.loadNode(exampleNode[3])
+            node.loadNode(exampleNode.parent)
         ]);
     });
     it('should do nothing if parent is undefined', () => {
-        const store = mockStore({ node: exampleNode[3][3] });
+        const store = mockStore({ node: exampleNode.parent.parent });
 
         store.dispatch(node.backNode());
         const actions = store.getActions();
@@ -51,12 +51,12 @@ it('should load the root node', () => {
     const actions = store.getActions();
 
     expect(actions).toEqual([
-        node.loadNode(exampleNode[3][3])
+        node.loadNode(exampleNode.parent.parent)
     ]);
 });
 
 it('should load a node and make the current node the parent', () => {
-    const store = mockStore({ node: exampleNode[3] });
+    const store = mockStore({ node: exampleNode.parent });
 
     store.dispatch(node.displayNode(exampleNode.slice(0, 3)));
     const actions = store.getActions();

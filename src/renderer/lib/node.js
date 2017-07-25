@@ -6,10 +6,10 @@ import Web from '../nodes/Web';
 import argParser from '../../common/utills/argParser';
 
 export function findRoot(node) {
-    if (node[3] === undefined) {
+    if (node.parent === undefined) {
         return node;
     }
-    return findRoot(node[3]);
+    return findRoot(node.parent);
 }
 
 // eslint-disable-next-line import/prefer-default-export
@@ -19,7 +19,7 @@ export const nodeMap = {
             'nodes'
         ],
         creator(args, reactArgs) {
-            return ['grid', args, reactArgs];
+            return { type: 'grid', args, reactArgs };
         },
         element: Grid
     },
@@ -28,7 +28,7 @@ export const nodeMap = {
             text: ''
         },
         creator(args, reactArgs) {
-            return ['text', args, reactArgs];
+            return { type: 'text', args, reactArgs };
         },
         element: Text
     },
@@ -37,7 +37,7 @@ export const nodeMap = {
             'url'
         ],
         creator(args, reactArgs) {
-            return ['web', args, reactArgs];
+            return { type: 'web', args, reactArgs };
         },
         element: Web
     }
