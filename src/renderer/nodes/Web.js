@@ -6,7 +6,7 @@ import styles from './Web.styl';
 class Web extends Component {
     render() {
         return (
-            <div>
+            <div styleName="Web">
                 <webview src={this.props.args.url} />
             </div>
         );
