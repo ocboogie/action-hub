@@ -16,8 +16,7 @@ export default class Config {
             displayError(`No config found. Create a config at "${configPath}"`);
             return;
         }
-        this.loadConfig(configPath);
-        this.watch(configPath);
+        this.setupConfig(configPath);
     }
 
     setConfig(config = {}) {
@@ -34,18 +33,26 @@ export default class Config {
         return module.exports;
     }
 
-    watch() {
-        this.watcher = chokidar.watch(this.configPath).on('change', () => {
+    watch(configPath) {
+        if (this.watcher) {
+            this.watcher.close();
+        }
+        this.watcher = chokidar.watch(configPath).on('change', () => {
             this.deactivateError();
-            this.loadConfig(this.configPath);
+            this.loadConfig(configPath);
         });
+    }
+
+    setupConfig(path) {
+        this.watch(path);
+        this.loadConfig(path);
     }
 
     loadConfig(path) {
         try {
             this.configScript = new vm.Script(fsp.readFileSync(path, 'utf8'), { filename: basename(this.configPath), displayErrors: true });
         } catch (err) {
-            this.displayError(`There was an error loading your config: "${err}"`);
+            this.displayError(`There was an error loading config ${this.configPath}: "${err}"`);
             this.setConfig(null);
             this.reloadWindow();
             return;
@@ -53,6 +60,10 @@ export default class Config {
         this.scriptObj = this.extract(this.configScript);
         this.scriptString = JSONfn.stringify(this.scriptObj);
         this.setConfig(this.scriptObj.config);
+        if (this.config.configPath) {
+            this.setupConfig(this.config.configPath);
+            return;
+        }
         this.reloadWindow();
     }
 
