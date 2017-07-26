@@ -1,6 +1,4 @@
-import * as vm from 'vm';
-import { basename } from 'path';
-
+import { NodeVM, VMScript } from 'vm2';
 import * as fsp from 'fs-promise';
 import * as chokidar from 'chokidar';
 import * as JSONfn from 'json-fn';
@@ -11,6 +9,11 @@ export default class Config {
         this.displayError = displayError;
         this.deactivateError = deactivateError;
         this.defaultConfig = defaultConfig;
+        this.vm = new NodeVM({
+            require: {
+                external: true
+            }
+        });
 
         if (!fsp.existsSync(configPath)) {
             displayError(`No config found. Create a config at "${configPath}"`);
@@ -25,12 +28,6 @@ export default class Config {
 
     setWindow(_window) {
         this.window = _window;
-    }
-
-    extract(script) {
-        const module = { exports: {} };
-        script.runInNewContext({ module });
-        return module.exports;
     }
 
     watch(configPath) {
@@ -50,14 +47,14 @@ export default class Config {
 
     loadConfig(path) {
         try {
-            this.configScript = new vm.Script(fsp.readFileSync(path, 'utf8'), { filename: basename(this.configPath), displayErrors: true });
+            this.configScript = new VMScript(fsp.readFileSync(path, 'utf8'));
+            this.scriptObj = this.vm.run(this.configScript, path);
         } catch (err) {
             this.displayError(`There was an error loading config ${this.configPath}: "${err}"`);
             this.setConfig(null);
             this.reloadWindow();
             return;
         }
-        this.scriptObj = this.extract(this.configScript);
         this.scriptString = JSONfn.stringify(this.scriptObj);
         this.setConfig(this.scriptObj.config);
         if (this.config.configPath) {
