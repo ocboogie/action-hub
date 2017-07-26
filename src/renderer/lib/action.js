@@ -3,6 +3,7 @@ import { exec } from 'child_process';
 import { shell, remote } from 'electron';
 
 import { runAction } from '../actions/action';
+import { displayError } from '../actions/error';
 import { displayNode } from './../actions/node';
 import argParser from '../../common/utills/argParser';
 
@@ -78,6 +79,24 @@ export const actionMap = {
             });
             if (choice === 0) {
                 dispatch(runAction(args.action));
+            }
+        }
+    },
+    func: {
+        mandatoryArgs: [
+            'func'
+        ],
+        args: {
+            args: []
+        },
+        creator(args, commonArgs) {
+            return { type: 'func', args, commonArgs };
+        },
+        run(args, commonArgs, hide, dispatch) {
+            try {
+                args.func(...args.args);
+            } catch (e) {
+                dispatch(displayError(`An error occurred while running your function: ${e}`));
             }
         }
     }
