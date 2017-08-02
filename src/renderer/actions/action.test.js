@@ -31,7 +31,7 @@ it('should display an error if not a recognized action type', () => {
     const compareStore = mockStore({});
     setDisptach(store.dispatch);
 
-    const doNothingExampleAction = [].concat(exampleAction);
+    const doNothingExampleAction = Object.assign({}, exampleAction);
     doNothingExampleAction.type = 'not a action type';
 
     store.dispatch(action.runAction(doNothingExampleAction));
