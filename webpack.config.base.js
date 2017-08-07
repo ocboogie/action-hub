@@ -21,6 +21,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json']
     },
+    externals: { vm2: 'commonjs vm2' },
     plugins: [
         new webpack.NormalModuleReplacementPlugin(/^any-promise$/, 'bluebird')
     ]

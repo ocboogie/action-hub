@@ -5,7 +5,7 @@ import * as JSONfn from 'json-fn';
 
 export default class Config {
     constructor(configPath, defaultConfig, displayError, deactivateError) {
-        this.configPath = configPath;
+        this.originalConfigPath = configPath;
         this.displayError = displayError;
         this.deactivateError = deactivateError;
         this.defaultConfig = defaultConfig;
@@ -47,8 +47,10 @@ export default class Config {
 
     loadConfig(path) {
         try {
-            this.configScript = new VMScript(fsp.readFileSync(path, 'utf8'));
+            this.configString = fsp.readFileSync(path, 'utf8');
+            this.configScript = new VMScript(this.configString);
             this.scriptObj = this.vm.run(this.configScript, path);
+            this.configPath = path;
         } catch (err) {
             this.displayError(`There was an error loading config ${this.configPath}: "${err}"`);
             this.setConfig(null);

@@ -118,5 +118,5 @@ ipcMain.on('show-window', () => {
 });
 
 ipcMain.on('get-data', event => {
-    event.returnValue = { potentialError: potentialError.toObj(), configScriptString: config.scriptString };
+    event.returnValue = { potentialError: potentialError.toObj(), configString: config.configString, configPath: config.configPath };
 });

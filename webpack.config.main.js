@@ -14,6 +14,5 @@ module.exports = merge.smart(base, {
         __dirname: false,
         __filename: false
     },
-    externals: { vm2: 'commonjs vm2' },
     target: 'electron-main'
 });
