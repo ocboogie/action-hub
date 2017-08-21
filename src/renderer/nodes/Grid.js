@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import cssModules from 'react-css-modules';
 
-import styles from './Grid.styl';
 import { getCachedNode } from '../lib/node';
 
 class Grid extends Component {
@@ -20,11 +18,11 @@ class Grid extends Component {
             return (<div style={GridNodeContainer} key={node.uuid}>{getCachedNode(node)}</div>);
         });
         return (
-            <div styleName="Grid">
+            <div>
                 {renderedNodes}
             </div>
         );
     }
 }
 
-export default connect()(cssModules(Grid, styles));
+export default connect()(Grid);
