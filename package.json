@@ -11,7 +11,6 @@
     "webpack": "webpack",
     "electron": "cross-env NODE_ENV=development electron .",
     "prod": "cross-env NODE_ENV=production electron .",
-    "test": "jest",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "lint:watch": "esw src -w",
@@ -20,16 +19,10 @@
     "package:linux": "electron-packager . \"Action Hub\" -l --out=release-builds",
     "package:all": "electron-packager . \"Action Hub\" --all --out=release-builds"
   },
-  "jest": {
-    "moduleNameMapper": {
-      "^.+\\.(css|less|scss|styl)$": "identity-obj-proxy"
-    }
-  },
   "keywords": [],
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
-    "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.1",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-es2015": "^6.24.1",
@@ -46,13 +39,11 @@
     "eslint-config-xo-react": "^0.12.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.6.0",
-    "eslint-plugin-jest": "^20.0.3",
     "eslint-plugin-jsx-a11y": "^6.0.0",
     "eslint-plugin-react": "^7.1.0",
     "eslint-watch": "^3.1.2",
     "html-webpack-plugin": "^2.29.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^20.0.4",
     "react-test-renderer": "^15.6.1",
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.2.3",

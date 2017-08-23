@@ -3,13 +3,9 @@
     "xo/esnext",
     "xo-react"
   ],
-  "plugins": [
-    "jest"
-  ],
   "env": {
     "browser": true,
-    "node": true,
-    "jest/globals": true
+    "node": true
   },
   "parser": "babel-eslint",
   "rules": {
@@ -41,10 +37,6 @@
         "beforeSelfClosing": "always",
         "afterOpening": "never"
       }
-    ],
-    "jest/no-disabled-tests": 1,
-    "jest/no-focused-tests": 2,
-    "jest/no-identical-title": 2,
-    "jest/valid-expect": 2
+    ]
   }
 }
