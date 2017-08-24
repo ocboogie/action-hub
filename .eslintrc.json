@@ -37,6 +37,7 @@
         "beforeSelfClosing": "always",
         "afterOpening": "never"
       }
-    ]
+    ],
+    "capitalized-comments": 0
   }
 }
