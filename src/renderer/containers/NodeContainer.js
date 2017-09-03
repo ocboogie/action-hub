@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { nodeMap } from '../lib/node';
-
 class NodeContainer extends Component {
     render() {
-        if (!(this.props.node.type in nodeMap)) {
+        const found = window.pluginManager.findRegistrable('node', this.props.node.type);
+        if (found === undefined) {
             return (<div />);
         }
-        const Node = nodeMap[this.props.node.type].element;
+        const Node = found.element;
         return (
             <div {...this.props.node.reactArgs}>
                 <Node args={this.props.node.args} />

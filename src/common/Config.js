@@ -4,19 +4,22 @@ import * as chokidar from 'chokidar';
 import * as JSONfn from 'json-fn';
 
 export default class Config {
-    constructor(configPath, defaultConfig, displayError, deactivateError) {
+    constructor(configPath, defaultConfig, log, deactivateError) {
         this.originalConfigPath = configPath;
-        this.displayError = displayError;
+        this.log = log;
         this.deactivateError = deactivateError;
         this.defaultConfig = defaultConfig;
         this.vm = new NodeVM({
             require: {
                 external: true
+            },
+            sandbox: {
+                dev: process.env.NODE_ENV === 'development'
             }
         });
 
         if (!fsp.existsSync(configPath)) {
-            displayError(`No config found. Create a config at "${configPath}"`);
+            log(`No config found. Create a config at "${configPath}"`);
             return;
         }
         this.setupConfig(configPath);
@@ -52,7 +55,7 @@ export default class Config {
             this.scriptObj = this.vm.run(this.configScript, path);
             this.configPath = path;
         } catch (err) {
-            this.displayError(`There was an error loading config ${this.configPath}: "${err}"`);
+            this.log(`There was an error loading config "${this.configPath}": ${err}`);
             this.setConfig(null);
             this.reloadWindow();
             return;

@@ -1,15 +1,11 @@
 import { NodeVM, VMScript } from 'vm2';
 
-import { createNode } from './lib/node';
-import { createAction } from './lib/action';
-import { createPreset } from './lib/preset';
 import { runAction } from './actions/action';
+import { create } from './lib/plugin';
 
 export default (configString, configPath, store) => {
     const sandbox = {
-        createNode,
-        createAction,
-        createPreset,
+        create,
         store,
         setTimeout,
         setInterval,
@@ -17,7 +13,8 @@ export default (configString, configPath, store) => {
         clearInterval,
         runAction: action => {
             store.dispatch(runAction(action));
-        }
+        },
+        dev: process.env.NODE_ENV === 'development'
     };
     const vm = new NodeVM({
         require: {

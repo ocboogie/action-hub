@@ -14,6 +14,7 @@ export default {
     windowSize: dev ? 1000 : 500,
     hideWhenLeaveFocus: !dev,
     configPath: null,
+    displayWarnings: dev,
     windowSettings: {
         alwaysOnTop: !dev,
         frame: dev,

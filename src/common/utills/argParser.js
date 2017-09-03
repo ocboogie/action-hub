@@ -1,13 +1,9 @@
-export default function argParser(map, key, args, error) {
-    if (!(key in map)) {
-        error('Key in not in map', key);
-        return;
-    }
-    for (const value of (map[key].mandatoryArgs || [])) {
+export default function argParser(argTemplate, args, error) {
+    for (const value of (argTemplate.mandatoryArgs || [])) {
         if (args[value] === undefined) {
-            error('A mandatory arg in undefined', value);
+            error(`Argument ${value} is mandatory`);
             return;
         }
     }
-    return Object.assign({}, map[key].args, args);
+    return Object.assign({}, argTemplate.args, args);
 }

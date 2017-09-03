@@ -1,7 +1,6 @@
 import { ipcRenderer } from 'electron';
 
-import { actionMap } from '../lib/action';
-import displayError from '../displayError';
+import { log } from './error';
 
 // eslint-disable-next-line import/prefer-default-export
 export function runAction(action) {
@@ -12,13 +11,15 @@ export function runAction(action) {
             }
             return;
         }
-        if (!(action.type in actionMap)) {
-            displayError(`Corrupt action: "${action.type}" is not a action type. Full action: [${action}]`);
-            return;
-        }
+
         const hide = (action.commonArgs.canHide) ? () => {
             ipcRenderer.send('hide-window');
         } : () => { };
-        actionMap[action.type].run(action.args, action.commonArgs, hide, dispatch);
+        const found = window.pluginManager.findRegistrable('action', action.type);
+        if (found !== undefined) {
+            found.run(action.args, action.commonArgs, hide, dispatch);
+            return;
+        }
+        dispatch(log(`Could not find action type "${action.type}"`));
     };
 }
