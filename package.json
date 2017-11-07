@@ -7,7 +7,8 @@
   "scripts": {
     "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
     "format": "npm run lint -- --fix",
-    "build": "node ./scripts/build.js",
+    "build": "cross-env NODE_ENV=development node ./scripts/build.js",
+    "prod": "cross-env NODE_ENV=production node ./scripts/build.js",
     "compile-md": "remark . -o"
   },
   "devDependencies": {
@@ -18,6 +19,7 @@
     "babel-preset-react": "^6.24.1",
     "bluebird": "^3.5.1",
     "chalk": "^2.3.0",
+    "cross-env": "^5.1.1",
     "eslint": "^4.10.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.7.0",
