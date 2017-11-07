@@ -16,6 +16,9 @@ Promise.resolve(fs.readdir(packagesDir))
     const packageDir = path.join(packagesDir, file);
     const webpackConfigPath = path.join(packageDir, "webpack.config.js");
     const packagePakPath = path.join(packageDir, "package.json");
+    if (!fs.lstatSync(packageDir).isDirectory()) {
+      return;
+    }
 
     if (!fs.existsSync(packagePakPath)) {
       console.log(chalk.yellow(`No package.json found for "${file}".`));
