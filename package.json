@@ -1,0 +1,42 @@
+{
+  "name": "action-hub-standard-plugin",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "ocboogie",
+  "repository": "git@github.com:ocboogie/action-hub.git",
+  "scripts": {
+    "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
+    "format": "npm run lint -- --fix",
+    "build": "node ./scripts/build.js",
+    "compile-md": "remark . -o"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "bluebird": "^3.5.1",
+    "chalk": "^2.3.0",
+    "eslint": "^4.10.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.7.0",
+    "eslint-formatter-pretty": "^1.3.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.2.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.4.0",
+    "fs-extra": "^4.0.2",
+    "lodash": "^4.17.4",
+    "prettier": "^1.7.4",
+    "remark-bookmarks": "^1.0.0",
+    "remark-cli": "^4.0.0",
+    "remark-preset-lint-recommended": "^3.0.1",
+    "remark-stringify": "^4.0.0",
+    "webpack": "^3.8.1",
+    "webpack-merge": "^4.1.1"
+  }
+}
