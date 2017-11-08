@@ -1,0 +1,26 @@
+{
+  "name": "cheerio-react-bind",
+  "version": "0.1.0",
+  "description": "Binds a Cheerio dom to its reacts dom with custom tags",
+  "license": "MIT",
+  "author": "ocboogie",
+  "repository": "git@github.com:ocboogie/action-hub.git",
+  "main": "./lib/cheerio-react-bind.js",
+  "module": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "testMatch": [
+      "**/tests/**/*.js?(x)"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^21.2.1",
+    "react-test-renderer": "^16.0.0"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "react": "^16.0.0"
+  }
+}
