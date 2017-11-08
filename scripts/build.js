@@ -55,7 +55,9 @@ Promise.resolve(fs.readdir(packagesDir))
       entry: path.join(packageDir, "src/index.js"),
       output: {
         path: path.join(packageDir, "lib"),
-        filename: `${pak.name}.js`,
+        filename: `${pak.name}${process.env.NODE_ENV === "development"
+          ? ""
+          : ".min"}.js`,
         library: `${camelCase(pak.name)}.js`
       }
     };

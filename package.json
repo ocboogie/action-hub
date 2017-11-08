@@ -45,6 +45,7 @@
     "remark-cli": "^4.0.0",
     "remark-preset-lint-recommended": "^3.0.1",
     "remark-stringify": "^4.0.0",
+    "unminified-webpack-plugin": "^1.4.1",
     "webpack": "^3.8.1",
     "webpack-merge": "^4.1.1"
   }

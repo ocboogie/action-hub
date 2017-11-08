@@ -1,6 +1,6 @@
 {
   "name": "cheerio-react-bind",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Binds a Cheerio dom to its reacts dom with custom tags",
   "license": "MIT",
   "author": "ocboogie",

@@ -1,9 +1,10 @@
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const UnminifiedWebpackPlugin = require("unminified-webpack-plugin");
 
 const plugins = [];
 
 if (process.env.NODE_ENV !== "development") {
-  plugins.push(new UglifyJsPlugin());
+  plugins.push(new UglifyJsPlugin(), new UnminifiedWebpackPlugin());
 }
 
 module.exports = {
