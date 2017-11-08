@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "author": "ocboogie",
-  "repository": "git@github.com:ocboogie/action-hub.git",
+  "repository": "https://github.com/ocboogie/action-hub/tree/2.0",
   "scripts": {
     "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
     "format": "npm run lint -- --fix",
