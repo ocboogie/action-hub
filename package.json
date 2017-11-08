@@ -9,7 +9,13 @@
     "format": "npm run lint -- --fix",
     "build": "cross-env NODE_ENV=development node ./scripts/build.js",
     "prod": "cross-env NODE_ENV=production node ./scripts/build.js",
-    "compile-md": "remark . -o"
+    "compile-md": "remark . -o",
+    "test": "jest"
+  },
+  "jest": {
+    "testMatch": [
+      "**/tests/**/*.js?(x)"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -32,6 +38,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.4.0",
     "fs-extra": "^4.0.2",
+    "jest": "^21.2.1",
     "lodash": "^4.17.4",
     "prettier": "^1.7.4",
     "remark-bookmarks": "^1.0.0",
