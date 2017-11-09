@@ -1,8 +1,9 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb", "prettier"],
+  "extends": ["airbnb", "prettier", "plugin:jest/recommended"],
   "env": {
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "rules": {
     "prettier/prettier": "error",
@@ -12,17 +13,12 @@
     "import/order": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          ["sibling", "parent"],
-          "index"
-        ],
+        "groups": ["builtin", "external", ["sibling", "parent"], "index"],
         "newlines-between": "always"
       }
     ],
     "no-console": "off",
     "react/jsx-filename-extension": "off"
   },
-  "plugins": ["import", "prettier"]
+  "plugins": ["import", "prettier", "jest"]
 }
