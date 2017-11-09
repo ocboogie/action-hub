@@ -2,29 +2,27 @@
   "parser": "babel-eslint",
   "extends": ["airbnb", "prettier"],
   "env": {
-    "node": true,
-    "browser": true
+    "node": true
   },
   "rules": {
     "prettier/prettier": "error",
-    "generator-star-spacing": "off",
+    "consistent-return": "off",
     "import/no-unresolved": "error",
     "import/no-extraneous-dependencies": "off",
     "import/order": [
       "error",
       {
+        "groups": [
+          "builtin",
+          "external",
+          ["sibling", "parent"],
+          "index"
+        ],
         "newlines-between": "always"
       }
     ],
     "no-console": "off",
-    "no-param-reassign": ["error", { "props": false }],
-    "react/jsx-filename-extension": [
-      "error",
-      {
-        "extensions": [".js", ".jsx"]
-      }
-    ],
-    "react/prefer-stateless-function": "off"
+    "react/jsx-filename-extension": "off"
   },
-  "plugins": ["import", "prettier", "react"]
+  "plugins": ["import", "prettier"]
 }
