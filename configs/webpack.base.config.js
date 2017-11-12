@@ -1,8 +1,10 @@
 const path = require("path");
 
+const { CheckerPlugin } = require("awesome-typescript-loader");
+
 module.exports = {
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".ts", ".tsx", ".js", ".jsx"]
   },
   output: {
     path: path.join(__dirname, "../dist")
@@ -10,10 +12,14 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        loader: "awesome-typescript-loader"
+      },
+      {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: ["babel-loader", "eslint-loader"]
+        loader: "babel-loader"
       }
     ]
-  }
+  },
+  plugins: [new CheckerPlugin()]
 };

@@ -8,7 +8,7 @@ const base = require("./webpack.base.config");
 module.exports = smart(base, {
   devtool: "inline-source-map",
   target: "electron-renderer",
-  entry: path.join(__dirname, "../app/renderer/index.js"),
+  entry: path.join(__dirname, "../app/renderer/index.ts"),
 
   output: {
     filename: "bundle.js"

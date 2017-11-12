@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "jsx": "react"
+  },
+  "files": ["./app/main/index.ts", "./app/renderer/index.ts"]
+}

@@ -1,11 +1,12 @@
-import { app, BrowserWindow } from "electron";
+import * as path from "path";
+import * as url from "url";
 
-const path = require("path");
-const url = require("url");
+// tslint:disable-next-line no-implicit-dependencies
+import { app, BrowserWindow } from "electron";
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
+let mainWindow: BrowserWindow;
 
 function createWindow() {
   // Create the browser window.

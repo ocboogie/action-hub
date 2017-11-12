@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-config-prettier",
+    "tslint-eslint-rules",
+    "tslint-react"
+  ],
+  "rules": {
+    "no-console": false,
+    "no-unused-variable": true
+  }
+}

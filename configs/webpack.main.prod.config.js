@@ -7,7 +7,7 @@ const base = require("./webpack.base.config");
 
 module.exports = smart(base, {
   target: "electron-main",
-  entry: path.join(__dirname, "../app/main/index.js"),
+  entry: path.join(__dirname, "../app/main/index.ts"),
   output: {
     filename: "main.js"
   },
