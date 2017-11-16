@@ -6,7 +6,7 @@
     "start": "electron .",
     "lint": "concurrently -n \"eslint,tslint\" -k \"npm run eslint\" \"npm run tslint\"",
     "eslint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
-    "tslint": "tslint -t stylish -p tsconfig.json ./app/**/*.ts",
+    "tslint": "tslint -t stylish -p tsconfig.eslint.json ./app/**/*.ts",
     "dev": "cross-env PORT=9000 concurrently -k -n \"main,renderer\" \"npm run dev-main\" \"npm run dev-renderer\"",
     "dev-main": "cross-env HOT=1 NODE_ENV=development concurrently -k -n \"webpack,electron\" \"webpack --watch --config configs/webpack.main.config.js\" \"nodemon --watch dist/main.js --exec \\\"electron dist/main.js\\\"\"",
     "dev-renderer": "cross-env NODE_ENV=development webpack-dev-server --config configs/webpack.renderer.config.js",

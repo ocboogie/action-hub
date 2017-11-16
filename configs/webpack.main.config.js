@@ -12,6 +12,17 @@ module.exports = smart(base, {
   output: {
     filename: "main.js"
   },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: "awesome-typescript-loader",
+        options: {
+          configFileName: "tsconfig.main.json"
+        }
+      }
+    ]
+  },
   node: {
     __dirname: false,
     __filename: false

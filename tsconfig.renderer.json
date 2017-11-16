@@ -4,5 +4,5 @@
     "sourceMap": true,
     "jsx": "react"
   },
-  "files": ["./app/main/index.ts", "./app/renderer/index.ts"]
+  "files": ["./app/renderer/index.ts"]
 }

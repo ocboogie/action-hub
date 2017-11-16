@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "sourceMap": true
+  },
+  "files": ["./app/main/index.ts"]
+}
