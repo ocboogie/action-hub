@@ -10,7 +10,6 @@ export default function(input: string): object {
       const err: any = e;
       throw new ParsingError(err, err.line, err.column);
     }
-    console.log(e instanceof Error);
     throw e;
   }
 }
