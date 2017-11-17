@@ -4,11 +4,12 @@ import * as url from "url";
 
 // tslint:disable-next-line no-implicit-dependencies
 import { app, BrowserWindow } from "electron";
+import * as fs from "fs-extra";
 import ActionHubWindow from "./ActionHubWindow";
+import { configDirPath, configName } from "./defaults";
 
-const CONFIG_PATH = path.join(homedir(), ".action-hub.toml");
-
-const window = new ActionHubWindow(app, CONFIG_PATH);
+fs.emptyDirSync(configDirPath);
+const window = new ActionHubWindow(app, path.join(configDirPath, configName));
 
 app.on("ready", () => {
   window.initializeWindow();

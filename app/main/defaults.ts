@@ -1,9 +1,15 @@
+import { homedir } from "os";
+import * as path from "path";
+
 // tslint:disable-next-line no-implicit-dependencies
 import { BrowserWindowConstructorOptions } from "electron";
 
 import IConfig from "../types/IConfig";
 
 const dev = process.env.NODE_ENV === "development";
+
+export const configName = "action-hub.toml";
+export const configDirPath = path.join(homedir(), "action-hub");
 
 export const windowSettings = (
   inputConfig: IConfig

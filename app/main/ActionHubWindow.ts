@@ -29,6 +29,7 @@ export default class ActionHubWindow {
     this.error = undefined;
     if (!existsSync(configPath)) {
       this.error = new Error(`Could not find the config at "${configPath}"`);
+      this.config = defaults.config;
       return;
     }
     let config: IConfig;
