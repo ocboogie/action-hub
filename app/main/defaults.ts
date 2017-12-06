@@ -11,16 +11,6 @@ const dev = process.env.NODE_ENV === "development";
 export const configName = "action-hub.toml";
 export const configDirPath = path.join(homedir(), "action-hub");
 
-export const windowSettings = (
-  inputConfig: IConfig
-): BrowserWindowConstructorOptions => {
-  return {
-    height: inputConfig.windowSize,
-    width: config.windowSize,
-    ...windowSettings
-  };
-};
-
 export const config = {
   hideWhenBlur: !dev,
   hotkey: process.platform === "darwin" ? "Cmd+Ctrl+C" : "Alt+Ctrl+C",
@@ -33,3 +23,11 @@ export const config = {
   },
   windowSize: dev ? 1000 : 500
 };
+
+export const windowSettings = (
+  inputConfig: IConfig
+): BrowserWindowConstructorOptions => ({
+  height: inputConfig.windowSize,
+  width: config.windowSize,
+  ...windowSettings
+});

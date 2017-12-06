@@ -1,12 +1,16 @@
 {
   "extends": [
     "tslint:latest",
-    "tslint-config-prettier",
     "tslint-eslint-rules",
-    "tslint-react"
+    "tslint-react",
+    "tslint-config-airbnb",
+    "tslint-config-prettier"
   ],
   "rules": {
+    "no-unused-variable": true,
     "no-console": false,
-    "no-unused-variable": true
+    "strict-boolean-expressions": false,
+    "import-name": false,
+    "object-literal-sort-keys": false
   }
 }

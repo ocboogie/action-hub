@@ -1,10 +1,10 @@
-import { homedir } from "os";
 import * as path from "path";
 import * as url from "url";
 
 // tslint:disable-next-line no-implicit-dependencies
-import { app, BrowserWindow } from "electron";
+import { app } from "electron";
 import * as fs from "fs-extra";
+
 import ActionHubWindow from "./ActionHubWindow";
 import { configDirPath, configName } from "./defaults";
 

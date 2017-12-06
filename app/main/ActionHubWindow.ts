@@ -18,6 +18,7 @@ export default class ActionHubWindow {
   constructor(app: App, configPath: string) {
     this.app = app;
     this.loadConfig(configPath);
+    this.registerEvents();
     try {
       this.initializeWatcher();
     } catch (err) {
@@ -113,13 +114,11 @@ export default class ActionHubWindow {
   private registerEvents() {
     ipcMain.on("hide-window", this.hide);
     ipcMain.on("show-window", this.showOnCur);
-    ipcMain.on("get-data", () => {
-      return {
-        config: this.config,
-        configPath: this.configPath,
-        error: this.error
-      };
-    });
+    ipcMain.on("get-data", () => ({
+      config: this.config,
+      configPath: this.configPath,
+      error: this.error
+    }));
   }
 
   private initializeWatcher() {

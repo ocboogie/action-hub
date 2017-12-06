@@ -4,7 +4,12 @@ export default class ParsingError extends Error {
   public filePath: string;
   public error: Error;
 
-  constructor(err: Error, line: number, column: number, filePath?: string) {
+  public constructor(
+    err: Error,
+    line: number,
+    column: number,
+    filePath?: string
+  ) {
     super();
 
     this.name = "ParsingError";
