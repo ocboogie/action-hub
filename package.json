@@ -18,12 +18,32 @@
     "prod-renderer": "cross-env NODE_ENV=production webpack --config configs/webpack.renderer.prod.config.js",
     "test": "jest"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.renderer.json"
+      }
+    }
+  },
   "devDependencies": {
     "@types/chokidar": "^1.7.3",
     "@types/fs-extra": "^4.0.4",
+    "@types/jest": "^21.1.8",
     "@types/node": "^8.0.50",
     "@types/react": "^16.0.22",
     "@types/react-dom": "^16.0.3",
+    "@types/shell-quote": "^1.6.0",
     "awesome-typescript-loader": "^3.3.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.2",
@@ -49,6 +69,7 @@
     "jest": "^21.2.1",
     "nodemon": "^1.12.1",
     "prettier": "^1.8.1",
+    "ts-jest": "^21.2.4",
     "tslint": "^5.8.0",
     "tslint-config-airbnb": "^5.4.2",
     "tslint-config-prettier": "^1.6.0",
@@ -70,6 +91,7 @@
     "react-router-redux": "^4.0.8",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "shell-quote": "^1.6.1",
     "toml": "^2.3.3"
   }
 }
