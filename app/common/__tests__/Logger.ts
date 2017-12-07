@@ -31,13 +31,13 @@ describe("addListener function", () => {
 });
 
 describe("report function", () => {
-  test("report calls all listeners with the correct message", () => {
+  test("Calls all listeners with the correct message", () => {
     const debugMsg = "This is a debug message";
     logger.report("debug", debugMsg);
     expect(mockListener.mock.calls[0][0]).toBe(debugMsg);
   });
 
-  test("report only reports to the specified category", () => {
+  test("Only reports to the specified category", () => {
     const warnMockListener = jest.fn();
     logger.addListener("warn", warnMockListener);
     logger.report("debug", "This is not a warn message");
