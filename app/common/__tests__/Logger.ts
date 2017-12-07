@@ -149,7 +149,7 @@ describe("Global listeners", () => {
   });
 
   describe("Disposing", () => {
-    test("addGlobalListener returns a function to dispose the listener", () => {
+    test("addGlobalListener returns a function to dispose the corresponding listener", () => {
       const globalListener = jest.fn();
       const dispose = logger.addGlobalListener(globalListener);
 
@@ -161,7 +161,7 @@ describe("Global listeners", () => {
       expect(globalListener.mock.calls[0]).toEqual(["warn", "foo"]);
     });
 
-    test("Only disposes the correct listener", () => {
+    test("Only disposes the corresponding listener", () => {
       const fooGlobalListener = jest.fn();
       const barGlobalListener = jest.fn();
 
