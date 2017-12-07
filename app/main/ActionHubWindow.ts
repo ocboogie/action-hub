@@ -126,11 +126,16 @@ export default class ActionHubWindow {
   private registerEvents() {
     ipcMain.on("hide-window", this.hide);
     ipcMain.on("show-window", this.showOnCur);
-    ipcMain.on("get-data", () => ({
-      config: this.config,
-      configPath: this.configPath,
-      logger: this.logger.toObj()
-    }));
+    ipcMain.on("clean-history", () => {
+      this.logger.history = [];
+    });
+    ipcMain.on("get-data", (event: Electron.Event) => {
+      event.returnValue = {
+        config: this.config,
+        configPath: this.configPath,
+        logger: this.logger.toObj()
+      };
+    });
   }
 
   private initializeWatcher() {
