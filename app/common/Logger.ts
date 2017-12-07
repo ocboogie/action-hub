@@ -5,7 +5,20 @@ interface ILoggedError {
   msg: string;
 }
 
+interface ILoggerObj {
+  history: ILoggedError[];
+  historyLimit: number;
+  categories: string[];
+}
+
 export default class Logger {
+  public static fromObj(obj: ILoggerObj) {
+    const logger = new this(obj.categories);
+    logger.history = obj.history;
+    logger.historyLimit = obj.historyLimit;
+    return logger;
+  }
+
   public history: ILoggedError[] = [];
   public historyLimit = 500;
 
@@ -42,6 +55,14 @@ export default class Logger {
     foundCategory.forEach(listener => {
       listener(msg);
     });
+  }
+
+  public toObj(): ILoggerObj {
+    return {
+      history: this.history,
+      historyLimit: this.historyLimit,
+      categories: Object.keys(this.categories)
+    };
   }
 
   private findCategory(category: string): IListener[] {

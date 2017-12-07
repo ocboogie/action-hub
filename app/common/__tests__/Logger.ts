@@ -60,3 +60,45 @@ describe("report function", () => {
     expect(logger.history.length).toBe(1);
   });
 });
+
+test("toObj returns correct information", () => {
+  const objTestLogger = new Logger(["foo", "bar"]);
+
+  objTestLogger.report("foo", "baz");
+  objTestLogger.historyLimit = 501;
+
+  expect(objTestLogger.toObj()).toEqual({
+    categories: ["foo", "bar"],
+    history: [
+      {
+        category: "foo",
+        msg: "baz"
+      }
+    ],
+    historyLimit: 501
+  });
+});
+
+test("fromObj returns an instance of itself from the object passed", () => {
+  const obj = {
+    categories: ["foo", "bar"],
+    history: [
+      {
+        category: "foo",
+        msg: "baz"
+      }
+    ],
+    historyLimit: 501
+  };
+  const objTestLogger = Logger.fromObj(obj);
+
+  expect(objTestLogger.hasCategory("foo")).toBeTruthy();
+  expect(objTestLogger.hasCategory("bar")).toBeTruthy();
+  expect(objTestLogger.history).toEqual([
+    {
+      category: "foo",
+      msg: "baz"
+    }
+  ]);
+  expect(objTestLogger.historyLimit).toBe(501);
+});
