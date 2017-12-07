@@ -43,6 +43,7 @@ export default class ActionHubWindow {
     let config: IConfig;
     try {
       config = configParser.parseFile(configPath) as IConfig;
+      this.logger.report("success", "Successfully loaded your config");
     } catch (err) {
       this.logger.report(
         "error",
@@ -51,7 +52,6 @@ export default class ActionHubWindow {
     }
     this.configPath = configPath;
     this.processConfig(config);
-    this.logger.report("success", "Successfully loaded your config");
   }
 
   public loadURL(url: string) {
