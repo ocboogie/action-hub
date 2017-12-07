@@ -4,6 +4,7 @@ import { App, BrowserWindow, globalShortcut, ipcMain, screen } from "electron";
 import { existsSync } from "fs-extra";
 
 import * as configParser from "../common/configParser";
+import Logger from "../common/Logger";
 import IConfig from "../types/IConfig";
 import * as defaults from "./defaults";
 
@@ -11,33 +12,42 @@ export default class ActionHubWindow {
   public configPath: string;
   public window: BrowserWindow;
   public config: IConfig;
-  public error: Error;
   public watcher: chokidar.FSWatcher;
   public app: App;
+  public logger: Logger;
 
-  constructor(app: App, configPath: string) {
+  constructor(app: App, configPath: string, logger: Logger) {
     this.app = app;
+    this.logger = logger;
     this.loadConfig(configPath);
     this.registerEvents();
     try {
       this.initializeWatcher();
     } catch (err) {
-      this.error = new Error(`There was an error watching your config: ${err}`);
+      this.logger.report(
+        "error",
+        `There was an error watching your config: ${err}`
+      );
     }
   }
 
   public loadConfig(configPath: string) {
-    this.error = undefined;
     if (!existsSync(configPath)) {
-      this.error = new Error(`Could not find the config at "${configPath}"`);
-      this.config = defaults.config;
+      this.logger.report(
+        "warn",
+        `Could not find the config at "${configPath}". Loading default`
+      );
+      this.processConfig();
       return;
     }
     let config: IConfig;
     try {
       config = configParser.parseFile(configPath) as IConfig;
     } catch (err) {
-      this.error = new Error(`There was an error loading your config: ${err}`);
+      this.logger.report(
+        "error",
+        `There was an error loading your config (loading default): ${err}`
+      );
     }
     this.configPath = configPath;
     this.processConfig(config);
@@ -117,7 +127,7 @@ export default class ActionHubWindow {
     ipcMain.on("get-data", () => ({
       config: this.config,
       configPath: this.configPath,
-      error: this.error
+      logger: this.logger.toObj()
     }));
   }
 

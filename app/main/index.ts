@@ -5,11 +5,21 @@ import * as url from "url";
 import { app } from "electron";
 import * as fs from "fs-extra";
 
+import Logger from "../common/Logger";
 import ActionHubWindow from "./ActionHubWindow";
 import { configDirPath, configName } from "./defaults";
 
+const logger = new Logger(["info", "success", "warn", "error", "fatal"]);
+
 fs.ensureDirSync(configDirPath);
-const window = new ActionHubWindow(app, path.join(configDirPath, configName));
+
+const window = new ActionHubWindow(
+  app,
+  path.join(configDirPath, configName),
+  logger
+);
+
+console.log(logger.history);
 
 app.on("ready", () => {
   window.initializeWindow();
