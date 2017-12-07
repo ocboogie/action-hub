@@ -19,8 +19,6 @@ const window = new ActionHubWindow(
   logger
 );
 
-console.log(logger.history);
-
 app.on("ready", () => {
   window.initializeWindow();
 
