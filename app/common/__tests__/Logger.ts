@@ -30,7 +30,7 @@ describe("addListener function", () => {
   });
 });
 
-describe("report function", () => {
+describe("Reporting", () => {
   test("Calls all listeners with the correct message", () => {
     const debugMsg = "This is a debug message";
     logger.report("debug", debugMsg);
@@ -58,6 +58,32 @@ describe("report function", () => {
     logger.report("debug", "foo");
 
     expect(logger.history.length).toBe(1);
+  });
+
+  describe("Disposing", () => {
+    test("report returns a function to dispose the corresponding listener", () => {
+      const listener = jest.fn();
+      const dispose = logger.addListener("warn", listener);
+
+      logger.report("warn", "foo");
+      dispose();
+      logger.report("warn", "bar");
+
+      expect(listener.mock.calls.length).toBe(1);
+      expect(listener.mock.calls[0]).toEqual(["foo"]);
+    });
+
+    test("Only disposes the corresponding listener", () => {
+      const fooListener = jest.fn();
+      const barListener = jest.fn();
+
+      logger.addListener("warn", fooListener);
+      logger.addListener("warn", barListener)();
+      logger.report("warn", "baz");
+
+      expect(fooListener.mock.calls.length).toBe(1);
+      expect(barListener.mock.calls.length).toBe(0);
+    });
   });
 });
 
