@@ -8,7 +8,7 @@ import * as fs from "fs-extra";
 import ActionHubWindow from "./ActionHubWindow";
 import { configDirPath, configName } from "./defaults";
 
-fs.emptyDirSync(configDirPath);
+fs.ensureDirSync(configDirPath);
 const window = new ActionHubWindow(app, path.join(configDirPath, configName));
 
 app.on("ready", () => {
