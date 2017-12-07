@@ -1,6 +1,14 @@
 type IListener = (msg: string) => void;
 
+interface ILoggedError {
+  category: string;
+  msg: string;
+}
+
 export default class Logger {
+  public history: ILoggedError[] = [];
+  public historyLimit = 500;
+
   private categories: Map<string, IListener[]> = new Map();
 
   constructor(categories: string[]) {
@@ -25,6 +33,11 @@ export default class Logger {
   }
 
   public report(category: string, msg: string) {
+    this.history.unshift({ category, msg });
+    if (this.history.length > this.historyLimit) {
+      this.history = this.history.slice(0, this.historyLimit);
+    }
+
     const foundCategory = this.findCategory(category);
     foundCategory.forEach(listener => {
       listener(msg);

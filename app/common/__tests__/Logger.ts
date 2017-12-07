@@ -44,4 +44,19 @@ describe("report function", () => {
 
     expect(warnMockListener.mock.calls.length).toBe(0);
   });
+
+  test("Logs to history", () => {
+    const reportMsg = "This should be in the history";
+
+    logger.report("debug", reportMsg);
+
+    expect(logger.history[0]).toEqual({ category: "debug", msg: reportMsg });
+  });
+
+  test("Conforms to history limit", () => {
+    logger.historyLimit = 1;
+    logger.report("debug", "foo");
+
+    expect(logger.history.length).toBe(1);
+  });
 });
