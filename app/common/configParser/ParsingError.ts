@@ -22,6 +22,7 @@ export default class ParsingError extends Error {
 
     this.error = err;
 
+    Object.setPrototypeOf(this, new.target.prototype); // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-2.html :kissing:
     Error.captureStackTrace(this, this.constructor);
   }
 }

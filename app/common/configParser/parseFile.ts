@@ -12,9 +12,8 @@ export default function(configPath: string): object {
   try {
     parsedCode = parse(contents, type);
   } catch (e) {
-    // instanceof wasn't working
-    if (e.name && e.name === "ParsingError") {
-      throw new ParsingError(e.error, e.line, e.column, configPath);
+    if (e instanceof ParsingError) {
+      e.filePath = configPath;
     }
     throw e;
   }
