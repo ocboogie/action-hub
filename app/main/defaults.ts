@@ -8,8 +8,8 @@ import IConfig from "../types/IConfig";
 
 const dev = process.env.NODE_ENV === "development";
 
-export const configName = "action-hub.toml";
-export const configDirPath = path.join(homedir(), "action-hub");
+export const configName = "config.toml";
+export const configDirPath = path.join(homedir(), ".action-hub");
 
 export const config = {
   hideWhenBlur: !dev,
