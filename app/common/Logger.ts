@@ -1,4 +1,5 @@
 type IListener = (msg: string) => void;
+type IGlobalListener = (category: string, msg: string) => void;
 
 interface ILoggedError {
   category: string;
@@ -22,6 +23,7 @@ export default class Logger {
   public history: ILoggedError[] = [];
   public historyLimit = 500;
 
+  private globalListeners: IGlobalListener[] = [];
   private categories: { [key: string]: IListener[] } = Object.create(null);
 
   constructor(categories: string[]) {
@@ -45,6 +47,16 @@ export default class Logger {
     };
   }
 
+  public addGlobalListener(listener: IGlobalListener): () => void {
+    this.globalListeners.push(listener);
+    return () => {
+      const index = this.globalListeners.indexOf(listener);
+      if (index > -1) {
+        this.globalListeners.splice(index, 1);
+      }
+    };
+  }
+
   public report(category: string, msg: string) {
     this.history.unshift({ category, msg });
     if (this.history.length > this.historyLimit) {
@@ -52,6 +64,11 @@ export default class Logger {
     }
 
     const foundCategory = this.findCategory(category);
+
+    this.globalListeners.forEach(listener => {
+      listener(category, msg);
+    });
+
     foundCategory.forEach(listener => {
       listener(msg);
     });

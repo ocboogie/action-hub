@@ -102,3 +102,49 @@ test("fromObj returns an instance of itself from the object passed", () => {
   ]);
   expect(objTestLogger.historyLimit).toBe(501);
 });
+
+describe("Global listeners", () => {
+  test("Gets called on any known category", () => {
+    const globalListener = jest.fn();
+
+    logger.addGlobalListener(globalListener);
+    logger.report("warn", "message");
+
+    expect(globalListener.mock.calls.length).toBe(1);
+  });
+
+  test("Gets passed the category and message", () => {
+    const globalListener = jest.fn();
+
+    logger.addGlobalListener(globalListener);
+    logger.report("warn", "message");
+
+    expect(globalListener.mock.calls[0]).toEqual(["warn", "message"]);
+  });
+
+  describe("Disposing", () => {
+    test("addGlobalListener returns a function to dispose the listener", () => {
+      const globalListener = jest.fn();
+      const dispose = logger.addGlobalListener(globalListener);
+
+      logger.report("warn", "foo");
+      dispose();
+      logger.report("warn", "bar");
+
+      expect(globalListener.mock.calls.length).toBe(1);
+      expect(globalListener.mock.calls[0]).toEqual(["warn", "foo"]);
+    });
+
+    test("Only disposes the correct listener", () => {
+      const fooGlobalListener = jest.fn();
+      const barGlobalListener = jest.fn();
+
+      logger.addGlobalListener(fooGlobalListener);
+      logger.addGlobalListener(barGlobalListener)();
+      logger.report("warn", "baz");
+
+      expect(fooGlobalListener.mock.calls.length).toBe(1);
+      expect(barGlobalListener.mock.calls.length).toBe(0);
+    });
+  });
+});
