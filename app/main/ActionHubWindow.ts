@@ -51,6 +51,7 @@ export default class ActionHubWindow {
     }
     this.configPath = configPath;
     this.processConfig(config);
+    this.logger.report("success", "Successfully loaded your config");
   }
 
   public loadURL(url: string) {
