@@ -113,6 +113,7 @@ export default class ActionHubWindow {
       }
     });
 
+    this.registerLoggerWithWindow();
     this.registerShortcut();
   }
 
@@ -138,6 +139,12 @@ export default class ActionHubWindow {
       .on("change", () => {
         this.loadConfig(this.configPath);
       });
+  }
+
+  private registerLoggerWithWindow() {
+    this.logger.addGlobalListener((category, msg) =>
+      this.window.webContents.send("log", category, msg)
+    );
   }
 
   private processConfig(config?: IConfig) {
