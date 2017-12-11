@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "noImplicitAny": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "lib": ["es2015", "es2017"]
   },
   "files": ["./app/main/index.ts"]
 }
