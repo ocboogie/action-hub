@@ -17,9 +17,9 @@ module.exports = smart(base, {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: "awesome-typescript-loader",
+        loader: "ts-loader",
         options: {
-          configFileName: "tsconfig.renderer.json"
+          configFile: "tsconfig.renderer.json"
         }
       }
     ]

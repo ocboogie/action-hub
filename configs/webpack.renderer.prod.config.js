@@ -3,6 +3,7 @@ const path = require("path");
 const webpack = require("webpack");
 const { smart } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 const base = require("./webpack.base.config");
 
@@ -17,9 +18,9 @@ module.exports = smart(base, {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: "awesome-typescript-loader",
+        loader: "ts-loader",
         options: {
-          configFileName: "tsconfig.renderer.json"
+          configFile: "tsconfig.renderer.json"
         }
       }
     ]
