@@ -2,15 +2,15 @@ export interface IMessage {
   title: string;
   description: string;
 }
-type IListener = (msg: IMessage) => void;
-type IGlobalListener = (category: string, msg: IMessage) => void;
+export type IListener = (msg: IMessage) => void;
+export type IGlobalListener = (category: string, msg: IMessage) => void;
 
-interface ILoggedError {
+export interface ILoggedError {
   category: string;
   msg: IMessage;
 }
 
-interface ILoggerObj {
+export interface ILoggerObj {
   history: ILoggedError[];
   historyLimit: number;
   categories: string[];
