@@ -1,3 +1,8 @@
 import * as React from "react";
+import { ToastContainer } from "react-toastify";
 
-export default <h1>We out here</h1>;
+export default (
+  <div>
+    <ToastContainer position="top-center" closeOnClick={false} />
+  </div>
+);
