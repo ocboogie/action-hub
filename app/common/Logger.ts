@@ -24,6 +24,25 @@ export default class Logger {
     return logger;
   }
 
+  public static log2Console(category: string, msg: IMessage) {
+    const msgToLog = msg.description
+      ? `${msg.title}: ${msg.description}`
+      : msg.title;
+    switch (category) {
+      case "error":
+        console.error(msgToLog);
+        break;
+      case "info":
+        console.info(msgToLog);
+        break;
+      case "warn":
+        console.warn(msgToLog);
+        break;
+      default:
+        console.log(msgToLog);
+    }
+  }
+
   public history: ILoggedError[] = [];
   public historyLimit = 500;
 
