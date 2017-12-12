@@ -15,7 +15,7 @@ export default (loggerObj: ILoggerObj): Logger => {
           ? ". Look at the console for more info ctrl+shift+i"
           : ""),
       {
-        type: category as toastify.ToastType
+        type: (category === "warn" ? "warning" : category) as toastify.ToastType
       }
     );
     ipcRenderer.send("clean-history");
