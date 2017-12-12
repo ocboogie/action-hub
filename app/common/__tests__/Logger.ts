@@ -34,7 +34,14 @@ describe("Reporting", () => {
   test("Calls all listeners with the correct message", () => {
     const debugMsg = "This is a debug message";
     logger.report("debug", debugMsg);
-    expect(mockListener.mock.calls[0][0]).toBe(debugMsg);
+    expect(mockListener.mock.calls[0][0].title).toBe(debugMsg);
+  });
+
+  test("Calls all listeners with the correct description", () => {
+    const debugMsg = "This is a debug message with a description";
+    const descriptionMsg = "This is a debug message description";
+    logger.report("debug", debugMsg, descriptionMsg);
+    expect(mockListener.mock.calls[1][0].description).toBe(descriptionMsg);
   });
 
   test("Only reports to the specified category", () => {
@@ -50,7 +57,10 @@ describe("Reporting", () => {
 
     logger.report("debug", reportMsg);
 
-    expect(logger.history[0]).toEqual({ category: "debug", msg: reportMsg });
+    expect(logger.history[0]).toEqual({
+      category: "debug",
+      msg: { title: reportMsg }
+    });
   });
 
   test("Conforms to history limit", () => {
@@ -70,7 +80,7 @@ describe("Reporting", () => {
       logger.report("warn", "bar");
 
       expect(listener.mock.calls.length).toBe(1);
-      expect(listener.mock.calls[0]).toEqual(["foo"]);
+      expect(listener.mock.calls[0]).toEqual([{ title: "foo" }]);
     });
 
     test("Only disposes the corresponding listener", () => {
@@ -98,7 +108,7 @@ test("toObj returns correct information", () => {
     history: [
       {
         category: "foo",
-        msg: "baz"
+        msg: { title: "baz" }
       }
     ],
     historyLimit: 501
@@ -145,7 +155,10 @@ describe("Global listeners", () => {
     logger.addGlobalListener(globalListener);
     logger.report("warn", "message");
 
-    expect(globalListener.mock.calls[0]).toEqual(["warn", "message"]);
+    expect(globalListener.mock.calls[0]).toEqual([
+      "warn",
+      { title: "message" }
+    ]);
   });
 
   describe("Disposing", () => {
@@ -158,7 +171,7 @@ describe("Global listeners", () => {
       logger.report("warn", "bar");
 
       expect(globalListener.mock.calls.length).toBe(1);
-      expect(globalListener.mock.calls[0]).toEqual(["warn", "foo"]);
+      expect(globalListener.mock.calls[0]).toEqual(["warn", { title: "foo" }]);
     });
 
     test("Only disposes the corresponding listener", () => {

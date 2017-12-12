@@ -26,7 +26,8 @@ export default class ActionHubWindow {
     } catch (err) {
       this.logger.report(
         "error",
-        `There was an error watching your config: ${err}`
+        "There was an error watching your config",
+        err.toString()
       );
     }
   }
@@ -35,7 +36,7 @@ export default class ActionHubWindow {
     if (!existsSync(configPath)) {
       this.logger.report(
         "warn",
-        `Could not find the config at "${configPath}". Loading default`
+        `Could not find the config at "${configPath}"`
       );
       this.processConfig();
       return;
@@ -47,7 +48,8 @@ export default class ActionHubWindow {
     } catch (err) {
       this.logger.report(
         "error",
-        `There was an error loading your config (loading default): ${err}`
+        "There was an error loading your config",
+        err.toString()
       );
     }
     this.configPath = configPath;

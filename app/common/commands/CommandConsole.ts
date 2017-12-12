@@ -31,7 +31,8 @@ export default class CommandConsole extends CommandRegistry {
       if (this.logger) {
         this.logger.report(
           "error",
-          `There was an error running command "${commandId}": ${e}`
+          `There was an error running command "${commandId}"`,
+          e.toString()
         );
       }
     }

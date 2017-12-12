@@ -1,9 +1,13 @@
-type IListener = (msg: string) => void;
-type IGlobalListener = (category: string, msg: string) => void;
+export interface IMessage {
+  title: string;
+  description: string;
+}
+type IListener = (msg: IMessage) => void;
+type IGlobalListener = (category: string, msg: IMessage) => void;
 
 interface ILoggedError {
   category: string;
-  msg: string;
+  msg: IMessage;
 }
 
 interface ILoggerObj {
@@ -57,7 +61,11 @@ export default class Logger {
     };
   }
 
-  public report(category: string, msg: string) {
+  public report(category: string, title: string, description?: string) {
+    const msg = {
+      title,
+      description
+    };
     this.history.unshift({ category, msg });
     if (this.history.length > this.historyLimit) {
       this.history = this.history.slice(0, this.historyLimit);

@@ -58,15 +58,16 @@ describe("run function", () => {
 
     logger.addListener("error", loggerMockListener);
     commandConsole.run("not.a.real.command");
-    expect(loggerMockListener.mock.calls[0][0]).toBe(
-      'Could not found command "not.a.real.command"'
-    );
+    expect(loggerMockListener.mock.calls[0][0]).toEqual({
+      title: 'Could not found command "not.a.real.command"'
+    });
   });
 
   test("Logs an error when command handler throws an error", () => {
     const errorMsg = "Oh no!";
+    const mockErrorMsg = new Error(errorMsg);
     const mockErrorThrower = () => {
-      throw new Error(errorMsg);
+      throw mockErrorMsg;
     };
     const loggerMockListener = jest.fn();
     const commandId = "command.four";
@@ -78,8 +79,9 @@ describe("run function", () => {
     logger.addListener("error", loggerMockListener);
     commandConsole.registerCommand(command);
     commandConsole.run("command.four");
-    expect(loggerMockListener.mock.calls[0][0]).toBe(
-      `There was an error running command "command.four": Error: ${errorMsg}`
-    );
+    expect(loggerMockListener.mock.calls[0][0]).toEqual({
+      title: `There was an error running command "command.four"`,
+      description: mockErrorMsg.toString()
+    });
   });
 });
