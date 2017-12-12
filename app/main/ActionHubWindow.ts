@@ -19,7 +19,7 @@ export default class ActionHubWindow {
   constructor(app: App, configPath: string, logger: Logger) {
     this.app = app;
     this.logger = logger;
-    this.loadConfig(configPath);
+    this.loadConfig(configPath, true);
     this.registerEvents();
     try {
       this.initializeWatcher();
@@ -32,7 +32,7 @@ export default class ActionHubWindow {
     }
   }
 
-  public loadConfig(configPath: string) {
+  public loadConfig(configPath: string, initial: boolean = false) {
     if (!existsSync(configPath)) {
       this.logger.report(
         "warn",
@@ -44,7 +44,9 @@ export default class ActionHubWindow {
     let config: IConfig;
     try {
       config = configParser.parseFile(configPath) as IConfig;
-      this.logger.report("success", "Successfully loaded your config");
+      if (!initial) {
+        this.logger.report("success", "Successfully loaded your config");
+      }
     } catch (err) {
       this.logger.report(
         "error",
