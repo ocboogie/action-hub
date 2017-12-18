@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "jsx": "react",
+    "lib": [
+      "es2015",
+      "es2017",
+      "dom"
+    ]
+  }
+}
