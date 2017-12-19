@@ -1,6 +1,7 @@
 export interface IMessage {
   title: string;
   description: string;
+  settings?: IMsgSettings;
 }
 export type IListener = (msg: IMessage) => void;
 export type IGlobalListener = (category: string, msg: IMessage) => void;
@@ -16,7 +17,15 @@ export interface ILoggerObj {
   categories: string[];
 }
 
+export interface IMsgSettings {
+  prependTitleToDescription?: boolean;
+}
+
 export default class Logger {
+  public static readonly defaultSettings: IMsgSettings = {
+    prependTitleToDescription: true
+  };
+
   public static fromObj(obj: ILoggerObj) {
     const logger = new this(obj.categories);
     logger.history = obj.history;
@@ -26,7 +35,9 @@ export default class Logger {
 
   public static log2Console(category: string, msg: IMessage) {
     const msgToLog = msg.description
-      ? `${msg.title}: ${msg.description}`
+      ? msg.settings.prependTitleToDescription
+        ? `${msg.title}: ${msg.description}`
+        : msg.description
       : msg.title;
     switch (category) {
       case "error":
@@ -80,10 +91,17 @@ export default class Logger {
     };
   }
 
-  public report(category: string, title: string, description?: string) {
-    const msg = {
+  public report(
+    category: string,
+    title: string,
+    description?: string,
+    settings?: IMsgSettings
+  ) {
+    const msgSettings = { ...Logger.defaultSettings, ...settings };
+    const msg: IMessage = {
       title,
-      description
+      description,
+      settings: msgSettings
     };
     this.history.unshift({ category, msg });
     if (this.history.length > this.historyLimit) {
