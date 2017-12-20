@@ -58,7 +58,7 @@ describe("run function", () => {
 
     logger.addListener("error", loggerMockListener);
     commandConsole.run("not.a.real.command");
-    expect(loggerMockListener.mock.calls[0][0]).toEqual({
+    expect(loggerMockListener.mock.calls[0][0]).toMatchObject({
       title: 'Could not found command "not.a.real.command"'
     });
   });
@@ -79,7 +79,7 @@ describe("run function", () => {
     logger.addListener("error", loggerMockListener);
     commandConsole.registerCommand(command);
     commandConsole.run("command.four");
-    expect(loggerMockListener.mock.calls[0][0]).toEqual({
+    expect(loggerMockListener.mock.calls[0][0]).toMatchObject({
       title: `There was an error running command "command.four"`,
       description: mockErrorMsg.toString()
     });

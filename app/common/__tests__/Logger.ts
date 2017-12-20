@@ -59,7 +59,7 @@ describe("Reporting", () => {
 
     expect(logger.history[0]).toEqual({
       category: "debug",
-      msg: { title: reportMsg }
+      msg: { title: reportMsg, settings: Logger.defaultSettings }
     });
   });
 
@@ -80,7 +80,7 @@ describe("Reporting", () => {
       logger.report("warn", "bar");
 
       expect(listener.mock.calls.length).toBe(1);
-      expect(listener.mock.calls[0]).toEqual([{ title: "foo" }]);
+      expect(listener.mock.calls[0][0]).toMatchObject({ title: "foo" });
     });
 
     test("Only disposes the corresponding listener", () => {
@@ -108,7 +108,7 @@ test("toObj returns correct information", () => {
     history: [
       {
         category: "foo",
-        msg: { title: "baz" }
+        msg: { title: "baz", settings: Logger.defaultSettings
       }
     ],
     historyLimit: 501
@@ -157,7 +157,7 @@ describe("Global listeners", () => {
 
     expect(globalListener.mock.calls[0]).toEqual([
       "warn",
-      { title: "message" }
+      { title: "message", settings: Logger.defaultSettings }
     ]);
   });
 
@@ -171,7 +171,12 @@ describe("Global listeners", () => {
       logger.report("warn", "bar");
 
       expect(globalListener.mock.calls.length).toBe(1);
-      expect(globalListener.mock.calls[0]).toEqual(["warn", { title: "foo" }]);
+      expect(globalListener.mock.calls[0]).toMatchObject([
+        "warn",
+        {
+          title: "foo"
+        }
+      ]);
     });
 
     test("Only disposes the corresponding listener", () => {
