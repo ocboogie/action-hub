@@ -11,6 +11,7 @@
     "no-console": false,
     "strict-boolean-expressions": false,
     "import-name": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "variable-name": false
   }
 }
