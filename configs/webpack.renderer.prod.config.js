@@ -3,7 +3,6 @@ const path = require("path");
 const webpack = require("webpack");
 const { smart } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 const base = require("./webpack.base.config");
 

@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb", "prettier", "plugin:jest/recommended"],
+  "extends": ["airbnb-base", "prettier", "plugin:jest/recommended"],
   "env": {
     "node": true,
     "jest/globals": true
@@ -17,8 +17,7 @@
         "newlines-between": "always"
       }
     ],
-    "no-console": "off",
-    "react/jsx-filename-extension": "off"
+    "no-console": "off"
   },
   "plugins": ["import", "prettier", "jest"]
 }
