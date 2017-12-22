@@ -121,7 +121,10 @@ test("fromObj returns an instance of itself from the object passed", () => {
     history: [
       {
         category: "foo",
-        msg: "baz"
+        msg: {
+          title: "foo",
+          description: "bar"
+        }
       }
     ],
     historyLimit: 501
@@ -133,7 +136,10 @@ test("fromObj returns an instance of itself from the object passed", () => {
   expect(objTestLogger.history).toEqual([
     {
       category: "foo",
-      msg: "baz"
+      msg: {
+        title: "foo",
+        description: "bar"
+      }
     }
   ]);
   expect(objTestLogger.historyLimit).toBe(501);
