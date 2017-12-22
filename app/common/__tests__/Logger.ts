@@ -108,7 +108,7 @@ test("toObj returns correct information", () => {
     history: [
       {
         category: "foo",
-        msg: { title: "baz", settings: Logger.defaultSettings
+        msg: { title: "baz", settings: Logger.defaultSettings }
       }
     ],
     historyLimit: 501
