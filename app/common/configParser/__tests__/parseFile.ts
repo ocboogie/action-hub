@@ -1,5 +1,3 @@
-import { resolve } from "path";
-
 import parseFile from "../parseFile";
 import ParsingError from "../ParsingError";
 

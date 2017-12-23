@@ -6,9 +6,7 @@ import Logger from "../common/Logger";
 import createLogger from "./createLogger";
 import root from "./root";
 
-const { config, configPath, logger: loggerObj } = ipcRenderer.sendSync(
-  "get-data"
-);
+const { config, logger: loggerObj } = ipcRenderer.sendSync("get-data");
 
 const logger = createLogger(loggerObj);
 
