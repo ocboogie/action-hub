@@ -1,14 +1,6 @@
 import { ICommand, ICommandHandler } from "./command";
 
-export interface ICommandRegistry {
-  registerCommand(command: ICommand);
-  registerCommands(commands: ICommand[]);
-  createCommand(id: string, commandHandler: ICommandHandler);
-  getCommand(id: string): ICommand;
-  getCommands(id: string): Map<string, ICommand>;
-}
-
-export default class CommandRegistry implements ICommandRegistry {
+export default class CommandRegistry {
   private commands = new Map<string, ICommand>();
 
   public registerCommand(command: ICommand) {
