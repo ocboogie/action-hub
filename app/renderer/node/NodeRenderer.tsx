@@ -1,4 +1,3 @@
-import * as joi from "joi";
 import * as React from "react";
 
 import Logger from "../../common/Logger";

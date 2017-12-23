@@ -18,9 +18,7 @@ test("renders node", () => {
 
 test("throws when arguments are invalid", () => {
   expect(() => {
-    const wrapper = shallow(
-      <NodeRenderer node={mockNode} args={{ foo: "bar" }} />
-    );
+    shallow(<NodeRenderer node={mockNode} args={{ foo: "bar" }} />);
   }).toThrowErrorMatchingSnapshot();
 });
 
@@ -28,7 +26,7 @@ test("logs when arguments are invalid", () => {
   const mockListener = jest.fn();
   logger.addListener("error", mockListener);
 
-  const wrapper = shallow(
+  shallow(
     <NodeRenderer logger={logger} node={mockNode} args={{ foo: "bar" }} />
   );
 
