@@ -158,6 +158,6 @@ export default class ActionHubWindow {
   }
 
   private processConfig(config?: IConfig) {
-    this.config = defaultsDeep(defaults.config, config);
+    this.config = defaultsDeep({}, config, defaults.config);
   }
 }
