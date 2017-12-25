@@ -21,8 +21,6 @@ export interface IMsgSettings {
   prependTitleToDescription?: boolean;
 }
 
-console.log("test");
-
 export default class Logger {
   public static readonly defaultSettings: IMsgSettings = {
     prependTitleToDescription: true
