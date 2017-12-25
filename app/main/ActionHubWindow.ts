@@ -4,6 +4,7 @@ import { App, BrowserWindow, globalShortcut, ipcMain, screen } from "electron";
 import { existsSync } from "fs-extra";
 import { defaultsDeep } from "lodash";
 
+import updateWindowOptions from "electron-update-window-options";
 import * as configParser from "../common/configParser";
 import Logger from "../common/Logger";
 import IConfig from "../types/IConfig";
@@ -43,20 +44,20 @@ export default class ActionHubWindow {
       return;
     }
     let config: IConfig;
-    try {
+
+    let successfullyLoaded = this.configSafeRun(() => {
       config = configParser.parseFile(configPath) as IConfig;
-      if (!initial) {
-        this.logger.report("success", "Successfully loaded your config");
-      }
-    } catch (err) {
-      this.logger.report(
-        "error",
-        "There was an error loading your config",
-        err.toString()
-      );
-    }
+    });
     this.configPath = configPath;
     this.processConfig(config);
+    successfullyLoaded = this.configSafeRun(() => {
+      if (this.window) {
+        updateWindowOptions(this.window, defaults.windowSettings(this.config));
+      }
+    });
+    if (!initial && successfullyLoaded) {
+      this.logger.report("success", "Successfully loaded your config");
+    }
   }
 
   public loadURL(url: string) {
@@ -141,6 +142,20 @@ export default class ActionHubWindow {
         logger: this.logger.toObj()
       };
     });
+  }
+
+  private configSafeRun(func: () => void): boolean {
+    try {
+      func();
+    } catch (err) {
+      this.logger.report(
+        "error",
+        "There was an error loading your config",
+        err.toString()
+      );
+      return false;
+    }
+    return true;
   }
 
   private initializeWatcher() {
