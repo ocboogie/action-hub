@@ -2,6 +2,7 @@ import * as chokidar from "chokidar";
 // tslint:disable-next-line no-implicit-dependencies
 import { App, BrowserWindow, globalShortcut, ipcMain, screen } from "electron";
 import { existsSync } from "fs-extra";
+import { defaultsDeep } from "lodash";
 
 import * as configParser from "../common/configParser";
 import Logger from "../common/Logger";
@@ -157,6 +158,6 @@ export default class ActionHubWindow {
   }
 
   private processConfig(config?: IConfig) {
-    this.config = { ...defaults.config, ...config };
+    this.config = defaultsDeep(defaults.config, config);
   }
 }

@@ -86,6 +86,10 @@
   version "13.0.3"
   resolved "https://registry.yarnpkg.com/@types/joi/-/joi-13.0.3.tgz#420cd3a59f3e739a711c11619790b3e80068ab92"
 
+"@types/lodash@^4.14.91":
+  version "4.14.91"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.91.tgz#794611b28056d16b5436059c6d800b39d573cd3a"
+
 "@types/node@*":
   version "8.0.51"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.51.tgz#b31d716fb8d58eeb95c068a039b9b6292817d5fb"

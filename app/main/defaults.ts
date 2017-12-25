@@ -29,5 +29,5 @@ export const windowSettings = (
 ): BrowserWindowConstructorOptions => ({
   height: inputConfig.windowSize,
   width: inputConfig.windowSize,
-  ...windowSettings
+  ...inputConfig.windowSettings
 });
