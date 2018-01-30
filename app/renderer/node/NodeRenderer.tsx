@@ -1,36 +1,31 @@
 import * as React from "react";
 
-import Logger from "../../common/Logger";
 import { INode } from "./index";
 
 export interface INodeRendererProps {
   node: INode;
   args?: object;
-  logger?: Logger;
 }
 
 export default class NodeRenderer extends React.Component<INodeRendererProps> {
-  public render() {
-    const logger = this.props.logger || window.logger;
-    const node = this.props.node;
-    const NodeComponent = node.component;
+  constructor(props: INodeRendererProps) {
+    super(props);
 
-    const error = node.argSchema.validate(this.props.args).error;
+    const error = this.props.node.argSchema.validate(this.props.args).error;
     if (error) {
-      if (!logger) {
-        throw error;
-      }
-      logger.report(
-        "error",
-        "Incorrect arguments passed to node",
-        error.message
-      );
-      return <div />;
+      // tslint:disable-next-line: no-string-throw
+      throw `Invalid arguments: ${error.message}.`;
     }
+  }
+
+  public render() {
+    const NodeComponent = this.props.node.component;
 
     return (
       <div>
-        <NodeComponent {...this.props.args} />
+        <NodeComponent {...this.props.args}>
+          {this.props.children}
+        </NodeComponent>
       </div>
     );
   }

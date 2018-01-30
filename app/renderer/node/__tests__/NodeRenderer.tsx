@@ -2,15 +2,12 @@
 import { mount, shallow } from "enzyme";
 import * as React from "react";
 
-import Logger from "../../../common/Logger";
 import NodeRenderer from "../NodeRenderer";
-import mockNode from "./resources/mockNode";
-
-const logger = new Logger(["error"]);
+import textNode from "./resources/mockNodes/text";
 
 test("renders node", () => {
   const wrapper = mount(
-    <NodeRenderer node={mockNode} args={{ text: "foo" }} />
+    <NodeRenderer node={textNode} args={{ text: "foo" }} />
   );
 
   expect(wrapper.contains(<h1>foo</h1>)).toBeTruthy();
@@ -18,19 +15,6 @@ test("renders node", () => {
 
 test("throws when arguments are invalid", () => {
   expect(() => {
-    shallow(<NodeRenderer node={mockNode} args={{ foo: "bar" }} />);
+    shallow(<NodeRenderer node={textNode} args={{ foo: "bar" }} />);
   }).toThrowErrorMatchingSnapshot();
-});
-
-test("logs when arguments are invalid", () => {
-  const mockListener = jest.fn();
-  logger.addListener("error", mockListener);
-
-  shallow(
-    <NodeRenderer logger={logger} node={mockNode} args={{ foo: "bar" }} />
-  );
-
-  expect(mockListener.mock.calls[0][0]).toMatchObject({
-    title: "Incorrect arguments passed to node"
-  });
 });

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering updates 1`] = `"<div>start<div><h1>foo</h1></div>end</div>"`;

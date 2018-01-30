@@ -1,7 +1,7 @@
 import * as joi from "joi";
 import * as React from "react";
 
-import { INode } from "../../";
+import { INode } from "../../../";
 
 const node: INode = {
   name: "text",
