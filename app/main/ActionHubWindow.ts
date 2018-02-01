@@ -5,7 +5,7 @@ import { existsSync } from "fs-extra";
 import { defaultsDeep } from "lodash";
 
 import updateWindowOptions from "electron-update-window-options";
-import * as configParser from "../common/configParser";
+import parseFile from "../common/configParser/parseFile";
 import Logger from "../common/Logger";
 import IConfig from "../types/IConfig";
 import * as defaults from "./defaults";
@@ -46,7 +46,7 @@ export default class ActionHubWindow {
     let config: IConfig;
 
     let successfullyLoaded = this.configSafeRun(() => {
-      config = configParser.parseFile(configPath) as IConfig;
+      config = parseFile(configPath) as IConfig;
     });
     this.configPath = configPath;
     this.processConfig(config);
