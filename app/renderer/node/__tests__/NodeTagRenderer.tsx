@@ -3,7 +3,7 @@ import { mount, shallow } from "enzyme";
 import * as React from "react";
 
 import NodeTagRenderer from "../NodeTagRenderer";
-import registry from "./resources/mockRegistry";
+import registry from "./__resources__/mockRegistry";
 
 test("renders node", () => {
   const wrapper = mount(

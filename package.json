@@ -41,7 +41,7 @@
       "<rootDir>/test/enzymeSetup.ts"
     ],
     "modulePathIgnorePatterns": [
-      "/resources/"
+      "/__resources__/"
     ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"

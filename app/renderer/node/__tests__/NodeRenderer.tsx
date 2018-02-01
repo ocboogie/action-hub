@@ -3,7 +3,7 @@ import { mount, shallow } from "enzyme";
 import * as React from "react";
 
 import NodeRenderer from "../NodeRenderer";
-import textNode from "./resources/mockNodes/text";
+import textNode from "./__resources__/mockNodes/text";
 
 test("renders node", () => {
   const wrapper = mount(

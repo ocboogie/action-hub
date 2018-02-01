@@ -6,8 +6,8 @@ import * as React from "react";
 import Logger from "../../../common/Logger";
 import { IRegistry } from "../../registry";
 import NodeManager from "../NodeManager";
-import childrenNode from "./resources/mockNodes/children";
-import textNode from "./resources/mockNodes/text";
+import childrenNode from "./__resources__/mockNodes/children";
+import textNode from "./__resources__/mockNodes/text";
 
 const registry: IRegistry = {
   nodes: {
