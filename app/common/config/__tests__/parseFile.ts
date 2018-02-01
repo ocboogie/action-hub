@@ -1,8 +1,7 @@
 import parseFile from "../parseFile";
 import ParsingError from "../ParsingError";
 
-const incorrectTomlFilePath =
-  "./app/common/configParser/__tests__/incorrect.toml";
+const incorrectTomlFilePath = "./app/common/config/__tests__/incorrect.toml";
 
 const tomlObj = {
   tmol: "is",
@@ -12,7 +11,7 @@ const tomlObj = {
 };
 
 test("Parses known file types", () => {
-  expect(parseFile("./app/common/configParser/__tests__/correct.toml")).toEqual(
+  expect(parseFile("./app/common/config/__tests__/correct.toml")).toEqual(
     tomlObj
   );
 });
