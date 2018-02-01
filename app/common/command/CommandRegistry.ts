@@ -1,4 +1,4 @@
-import { ICommand, ICommandHandler } from "./command";
+import { ICommand, ICommandHandler } from "./";
 
 export default class CommandRegistry {
   private commands = new Map<string, ICommand>();

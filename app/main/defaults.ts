@@ -4,7 +4,7 @@ import * as path from "path";
 // tslint:disable-next-line no-implicit-dependencies
 import { BrowserWindowConstructorOptions } from "electron";
 
-import IConfig from "../types/IConfig";
+import { IConfig } from "../common/config/index";
 
 const dev = process.env.NODE_ENV === "development";
 

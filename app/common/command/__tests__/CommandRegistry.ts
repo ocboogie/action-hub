@@ -1,4 +1,4 @@
-import { ICommand } from "../command";
+import { ICommand } from "../";
 import CommandRegistry from "../CommandRegistry";
 
 let commandRegistry: CommandRegistry;

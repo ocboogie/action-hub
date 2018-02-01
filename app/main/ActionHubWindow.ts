@@ -5,9 +5,9 @@ import { existsSync } from "fs-extra";
 import { defaultsDeep } from "lodash";
 
 import updateWindowOptions from "electron-update-window-options";
-import parseFile from "../common/configParser/parseFile";
+import { IConfig } from "../common/config";
+import parseFile from "../common/config/parseFile";
 import Logger from "../common/Logger";
-import IConfig from "../types/IConfig";
 import * as defaults from "./defaults";
 
 export default class ActionHubWindow {

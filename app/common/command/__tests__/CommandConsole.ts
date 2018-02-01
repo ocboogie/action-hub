@@ -1,5 +1,5 @@
+import { ICommand } from "../";
 import Logger from "../../Logger";
-import { ICommand } from "../command";
 import CommandConsole from "../CommandConsole";
 
 let commandConsole: CommandConsole;
