@@ -77,3 +77,20 @@ Each argument is split up by spaces, similar to a command line console.
 Plugins are a very essential part to Action Hub, they are what allow you to use someone else's nodes and actions.
 Plugins consist of nodes and action types.
 For example: a plugin named grid might define a grid node.
+
+## Contributing
+
+1. Install:
+
+```bash
+git clone https://github.com/ocboogie/action-hub.git action-hub
+cd action-hub
+npm install
+# yarn (if you use yarn)
+```
+
+2. Create a feature branch
+3. Make some changes
+4. Follow linting rules
+5. Successfully run tests
+6. Create a pull request
