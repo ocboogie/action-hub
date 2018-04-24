@@ -1,7 +1,6 @@
 const path = require("path");
 
 const { smart } = require("webpack-merge");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 const base = require("./webpack.base.config");
 
@@ -14,6 +13,5 @@ module.exports = smart(base, {
   node: {
     __dirname: false,
     __filename: false
-  },
-  plugins: [new UglifyJsPlugin()]
+  }
 });
