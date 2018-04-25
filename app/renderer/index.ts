@@ -1,6 +1,8 @@
 // tslint:disable-next-line no-implicit-dependencies
 import { ipcRenderer } from "electron";
 import * as ReactDom from "react-dom";
+// tslint:disable-next-line no-submodule-imports
+import "react-toastify/dist/ReactToastify.css";
 
 import Logger from "../common/Logger";
 import createLogger from "./createLogger";
