@@ -13,6 +13,22 @@ module.exports = smart(base, {
   output: {
     filename: "bundle.js"
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        loader: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       inject: true, // will inject the main bundle to index.html
