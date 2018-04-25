@@ -6,9 +6,9 @@
     "start": "electron .",
     "lint": "concurrently -n \"eslint,tslint\" --kill-others-on-fail \"npm run eslint\" \"npm run tslint\"",
     "eslint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
-    "tslint": "tslint -t stylish ./app/**/*.{ts,tsx} --project tsconfig.json",
+    "tslint": "tslint -t stylish --project tsconfig.json ./app/**/*.{ts,tsx}",
     "format": "concurrently -n \"js,ts\" \"npm run format-js\" \"npm run format-ts\"",
-    "format-js": "prettier --write ./**/*.{js,jsx} & npm run eslint -- --fix",
+    "format-js": "npm run eslint -- --fix",
     "format-ts": "prettier --parser typescript --write ./app/**/*.{ts,tsx} & npm run tslint -- --fix",
     "dev": "cross-env PORT=9000 concurrently -k -n \"main,renderer\" \"npm run dev-main\" \"npm run dev-renderer\"",
     "dev-main": "cross-env HOT=1 NODE_ENV=development concurrently -k -n \"webpack,electron\" \"webpack --watch --config configs/webpack.main.config.js --mode development\" \"nodemon --watch dist/main.js --exec \\\"electron dist/main.js\\\"\"",
@@ -25,13 +25,12 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "prettier --write",
-      "eslint --fix",
+      "eslint --cache --format=node_modules/eslint-formatter-pretty",
       "git add"
     ],
     "*.{ts,tsx}": [
       "prettier --parser typescript --write",
-      "tslint --project tsconfig.json --fix",
+      "tslint -t stylish --project tsconfig.json",
       "git add"
     ]
   },
