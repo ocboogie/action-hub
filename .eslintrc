@@ -1,9 +1,7 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["airbnb-base", "prettier", "plugin:jest/recommended"],
+  "extends": ["airbnb-base", "prettier"],
   "env": {
-    "node": true,
-    "jest/globals": true
+    "node": true
   },
   "rules": {
     "prettier/prettier": "error",
@@ -19,5 +17,5 @@
     ],
     "no-console": "off"
   },
-  "plugins": ["import", "prettier", "jest"]
+  "plugins": ["import", "prettier"]
 }
