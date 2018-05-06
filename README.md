@@ -39,7 +39,7 @@ Note that nodes can render other nodes, for example a button node might just be 
 ### Actions
 
 Actions are what nodes do. For example clicking on a button node runs an action that you defined in the `layout.html` file.
-Users define actions and developers define actions types.
+Users define actions and developers define action types.
 
 Examples of action types:
 
